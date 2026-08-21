@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Location | ELPIDA'S EDEM</title>
+
+    <meta
+        name="description"
+        content="Discover the location of Elpida's Edem in Palaio Faliro, Athens Riviera, close to Edem Beach, Flisvos and central Athens."
+    >
+
+    <style>
+
+        :root {
+            --navy: #102a43;
+            --blue: #176b87;
+            --sea: #2b8ca3;
+            --gold: #c69b5d;
+            --sand: #f4eee5;
+            --cream: #fbf9f5;
+            --dark: #17202a;
+            --muted: #667085;
+            --white: #ffffff;
+            --border: #e1e6ea;
+            --shadow: 0 18px 45px rgba(16, 42, 67, .11);
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--dark);
+            background: var(--cream);
+            line-height: 1.65;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* =========================
+           TOP BAR
+        ========================= */
+
+        .topbar {
+            background: var(--navy);
+            color: white;
+            text-align: center;
+            padding: 9px 15px;
+            font-size: .85rem;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        header {
+            background: white;
+            border-bottom: 1px solid #edf0f2;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: auto;
+            padding: 18px 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            color: var(--navy);
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            display: block;
+            font-size: .62rem;
+            letter-spacing: 2px;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+
+            color: var(--navy);
+            font-size: .92rem;
+        }
+
+        .nav-links a {
+            transition: .2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-book {
+            background: var(--gold);
+            color: white !important;
+
+            padding: 9px 17px;
+            border-radius: 7px;
+
+            font-weight: 700;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 470px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            color: white;
+
+            padding: 80px 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #102a43,
+                    #176b87 55%,
+                    #2b8ca3
+                );
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: .75rem;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.7rem, 6vw, 5rem);
+            line-height: 1.05;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            max-width: 720px;
+            margin: auto;
+
+            font-size: 1.12rem;
+
+            color: #e3eef3;
+        }
+
+        /* =========================
+           GENERAL
+        ========================= */
+
+        section {
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-heading .eyebrow {
+            color: var(--sea);
+            margin-bottom: 10px;
+        }
+
+        .section-heading h2 {
+            color: var(--navy);
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 12px;
+        }
+
+        .section-heading p {
+            max-width: 700px;
+            margin: auto;
+            color: var(--muted);
+        }
+
+        /* =========================
+           LOCATION INTRO
+        ========================= */
+
+        .location-intro {
+            background: white;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .intro-text h2 {
+            color: var(--navy);
+            font-size: 2.2rem;
+            margin-bottom: 18px;
+        }
+
+        .intro-text p {
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+
+        .address-box {
+            margin-top: 25px;
+            padding: 22px;
+
+            background: var(--sand);
+            border-left: 4px solid var(--gold);
+
+            border-radius: 8px;
+        }
+
+        .address-box strong {
+            display: block;
+            color: var(--navy);
+            margin-bottom: 5px;
+        }
+
+        .address-box span {
+            color: var(--muted);
+            font-size: .9rem;
+        }
+
+        /* =========================
+           MAP PLACEHOLDER
+        ========================= */
+
+        .map-placeholder {
+            min-height: 420px;
+
+            border-radius: var(--radius);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #d9edf0,
+                    #a8d2d9
+                );
+
+            box-shadow: var(--shadow);
+
+            position: relative;
+            overflow: hidden;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .map-grid {
+            position: absolute;
+            inset: 0;
+
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,.5) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,.5) 1px,
+                    transparent 1px
+                );
+
+            background-size: 45px 45px;
+
+            transform: rotate(-8deg) scale(1.25);
+        }
+
+        .map-content {
+            position: relative;
+            z-index: 2;
+
+            background: white;
+
+            padding: 28px;
+
+            border-radius: 14px;
+
+            text-align: center;
+
+            box-shadow: 0 15px 35px rgba(16,42,67,.16);
+        }
+
+        .map-pin {
+            font-size: 3rem;
+            margin-bottom: 8px;
+        }
+
+        .map-content h3 {
+            color: var(--navy);
+            margin-bottom: 5px;
+        }
+
+        .map-content p {
+            color: var(--muted);
+            font-size: .85rem;
+        }
+
+        /* =========================
+           NEARBY
+        ========================= */
+
+        .nearby {
+            background: var(--cream);
+        }
+
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .place-card {
+            background: white;
+
+            border-radius: var(--radius);
+
+            padding: 27px;
+
+            box-shadow:
+                0 8px 25px rgba(16,42,67,.06);
+
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            gap: 18px;
+
+            align-items: center;
+        }
+
+        .place-icon {
+            width: 60px;
+            height: 60px;
+
+            border-radius: 50%;
+
+            background: var(--sand);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 1.65rem;
+        }
+
+        .place-card h3 {
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .place-card p {
+            color: var(--muted);
+            font-size: .85rem;
+        }
+
+        .distance {
+            display: inline-block;
+
+            margin-top: 7px;
+
+            color: var(--sea);
+
+            font-size: .75rem;
+            font-weight: 700;
+
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* =========================
+           ATHENS RIVIERA
+        ========================= */
+
+        .riviera {
+            background: white;
+        }
+
+        .riviera-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 45px;
+            align-items: center;
+        }
+
+        .riviera-visual {
+            min-height: 380px;
+
+            border-radius: var(--radius);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #0f536b,
+                    #2b8ca3 50%,
+                    #d3b478
+                );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+
+            text-align: center;
+
+            box-shadow: var(--shadow);
+        }
+
+        .riviera-visual-content {
+            padding: 30px;
+        }
+
+        .riviera-visual-content .big-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+
+        .riviera-visual-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .riviera-visual-content p {
+            color: #e0edf1;
+        }
+
+        .riviera-text h2 {
+            color: var(--navy);
+            font-size: 2.2rem;
+            margin-bottom: 18px;
+        }
+
+        .riviera-text p {
+            color: var(--muted);
+            margin-bottom: 17px;
+        }
+
+        /* =========================
+           TRANSPORT
+        ========================= */
+
+        .transport {
+            background: var(--sand);
+        }
+
+        .transport-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .transport-card {
+            background: white;
+            padding: 28px;
+            border-radius: 14px;
+        }
+
+        .transport-card .icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .transport-card h3 {
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .transport-card p {
+            color: var(--muted);
+            font-size: .87rem;
+        }
+
+        /* =========================
+           CTA
+        ========================= */
+
+        .cta {
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--navy),
+                    var(--blue)
+                );
+
+            color: white;
+
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 12px;
+        }
+
+        .cta p {
+            max-width: 650px;
+            margin: auto;
+
+            color: #d8e7ed;
+        }
+
+        .cta-button {
+            display: inline-block;
+
+            margin-top: 28px;
+
+            padding: 14px 28px;
+
+            background: var(--gold);
+            color: white;
+
+            border-radius: 8px;
+
+            font-weight: 700;
+
+            transition: .2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 20px rgba(198,155,93,.3);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #091d2d;
+            color: #b8c7d1;
+
+            padding: 45px 20px 25px;
+        }
+
+        .footer-grid {
+            max-width: 1100px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+
+            gap: 40px;
+        }
+
+        footer h3 {
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        footer p,
+        footer li {
+            font-size: .88rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin: 7px 0;
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 35px auto 0;
+
+            padding-top: 20px;
+
+            border-top:
+                1px solid rgba(255,255,255,.12);
+
+            text-align: center;
+
+            font-size: .75rem;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .intro-grid,
+            .riviera-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .places-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .transport-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .nav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 16px 18px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+
+                font-size: .8rem;
+            }
+
+            .hero {
+                min-height: 430px;
+                padding: 60px 18px;
+            }
+
+            section {
+                padding: 60px 16px;
+            }
+
+            .transport-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .place-card {
+                grid-template-columns: 50px 1fr;
+            }
+
+            .place-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .map-placeholder,
+            .riviera-visual {
+                min-height: 300px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- TOP BAR -->
+
+    <div class="topbar">
+        Book directly with us and enjoy a personal hosting experience.
+    </div>
+
+
+    <!-- NAVIGATION -->
+
+    <header>
+
+        <nav class="nav">
+
+            <a href="index.html" class="logo">
+                ELPIDA'S EDEM
+                <span>APARTMENT · ATHENS RIVIERA</span>
+            </a>
+
+
+            <div class="nav-links">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="rooms.html">
+                    Apartment
+                </a>
+
+                <a href="index.html#gallery">
+                    Gallery
+                </a>
+
+                <a href="index.html#amenities">
+                    Amenities
+                </a>
+
+                <a href="location.html">
+                    Location
+                </a>
+
+                <a href="booking.html" class="nav-book">
+                    Book
+                </a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+                ATHENS RIVIERA · PALAIO FALIRO
+            </div>
+
+            <h1>
+                The Right Place to Discover Athens
+            </h1>
+
+            <p>
+                Stay by the sea while remaining close to everything
+                that makes Athens special.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- LOCATION INTRO -->
+
+    <section class="location-intro">
+
+        <div class="container">
+
+            <div class="intro-grid">
+
+
+                <div class="intro-text">
+
+                    <div class="eyebrow">
+                        OUR LOCATION
+                    </div>
+
+                    <h2>
+                        By the sea. Close to Athens.
+                    </h2>
+
+                    <p>
+                        ELPIDA'S EDEM is located in Palaio Faliro,
+                        on the beautiful Athens Riviera.
+                    </p>
+
+                    <p>
+                        The area combines the relaxed atmosphere of
+                        the coast with easy access to the centre of
+                        Athens, making it an excellent choice for
+                        guests who want to enjoy both the sea and the city.
+                    </p>
+
+                    <p>
+                        Edem Beach, the seaside promenade, restaurants,
+                        cafés and Flisvos are all within easy reach.
+                    </p>
+
+
+                    <div class="address-box">
+
+                        <strong>
+                            ELPIDA'S EDEM
+                        </strong>
+
+                        <span>
+                            3 Achilleos, 2nd Floor<br>
+                            Palaio Faliro, Athens 17562<br>
+                            Greece
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MAP PLACEHOLDER -->
+
+                <div class="map-placeholder">
+
+                    <div class="map-grid"></div>
+
+                    <div class="map-content">
+
+                        <div class="map-pin">
+                            📍
+                        </div>
+
+                        <h3>
+                            Palaio Faliro
+                        </h3>
+
+                        <p>
+                            Athens Riviera
+                        </p>
+
+                        <p>
+                            Interactive map will be added here.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- NEARBY PLACES -->
+
+    <section class="nearby">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="eyebrow">
+                    NEARBY
+                </div>
+
+                <h2>
+                    Everything close at hand
+                </h2>
+
+                <p>
+                    Enjoy the coast on foot and explore the wider
+                    Athens area from a convenient seaside base.
+                </p>
+
+            </div>
+
+
+            <div class="places-grid">
+
+
+                <article class="place-card">
+
+                    <div class="place-icon">
+                        🏖️
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Edem Beach
+                        </h3>
+
+                        <p>
+                            One of the closest beaches to the apartment,
+                            ideal for a morning swim, a walk by the sea
+                            or a relaxed afternoon.
+                        </p>
+
+                        <span class="distance">
+                            Just a short walk
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <article class="place-card">
+
+                    <div class="place-icon">
+                        ⚓
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Flisvos Marina
+                        </h3>
+
+                        <p>
+                            A lively waterfront area with yachts,
+                            restaurants, cafés and beautiful views
+                            along the Athens Riviera.
+                        </p>
+
+                        <span class="distance">
+                            Nearby
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <article class="place-card">
+
+                    <div class="place-icon">
+                        🚋
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Athens Tram
+                        </h3>
+
+                        <p>
+                            The tram provides a convenient way to travel
+                            along the coastal areas of Athens and connect
+                            with other parts of the city.
+                        </p>
+
+                        <span class="distance">
+                            Coastal connection
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <article class="place-card">
+
+                    <div class="place-icon">
+                        🌊
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Athens Riviera
+                        </h3>
+
+                        <p>
+                            Discover beaches, marinas, seaside cafés,
+                            restaurants and the long coastal promenade
+                            stretching south from Athens.
+                        </p>
+
+                        <span class="distance">
+                            On your doorstep
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <article class="place-card">
+
+                    <div class="place-icon">
+                        🏛️
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Central Athens
+                        </h3>
+
+                        <p>
+                            From Palaio Faliro you can combine a seaside
+                            stay with easy access to the historic centre
+                            and Athens' major attractions.
+                        </p>
+
+                        <span class="distance">
+                            Easy city access
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <article class="place-card">
+
+                    <div class="place-icon">
+                        🌳
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Stavros Niarchos Foundation
+                        </h3>
+
+                        <p>
+                            A major cultural and recreational destination
+                            with parkland, architecture and events,
+                            located in the wider coastal area.
+                        </p>
+
+                        <span class="distance">
+                            Nearby by car / transport
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ATHENS RIVIERA -->
+
+    <section class="riviera">
+
+        <div class="container">
+
+            <div class="riviera-grid">
+
+
+                <div class="riviera-visual">
+
+                    <div class="riviera-visual-content">
+
+                        <div class="big-icon">
+                            🌅
+                        </div>
+
+                        <h3>
+                            Athens Riviera
+                        </h3>
+
+                        <p>
+                            Sea, sunshine, promenades and the city
+                            all in one destination.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="riviera-text">
+
+                    <div class="eyebrow">
+                        EXPERIENCE ATHENS DIFFERENTLY
+                    </div>
+
+                    <h2>
+                        Wake up by the sea
+                    </h2>
+
+                    <p>
+                        One of the special things about staying in
+                        Palaio Faliro is the combination of two experiences:
+                        the relaxed rhythm of the coast and the energy
+                        of Athens.
+                    </p>
+
+                    <p>
+                        Start your morning with a walk by the water,
+                        enjoy a coffee overlooking the sea, spend the
+                        afternoon exploring Athens and return home to
+                        the quieter atmosphere of the Riviera.
+                    </p>
+
+                    <p>
+                        It is a location that works equally well for
+                        holidays, couples, families and guests who want
+                        to experience Athens beyond the traditional
+                        city-centre hotel.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- TRANSPORT -->
+
+    <section class="transport">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="eyebrow">
+                    GETTING AROUND
+                </div>
+
+                <h2>
+                    Explore with ease
+                </h2>
+
+                <p>
+                    The apartment's coastal location makes it easy
+                    to combine walking, public transport and taxis.
+                </p>
+
+            </div>
+
+
+            <div class="transport-grid">
+
+
+                <div class="transport-card">
+
+                    <div class="icon">
+                        🚶
+                    </div>
+
+                    <h3>
+                        On Foot
+                    </h3>
+
+                    <p>
+                        The seaside, Edem Beach and local cafés and
+                        restaurants can be enjoyed without needing a car.
+                    </p>
+
+                </div>
+
+
+                <div class="transport-card">
+
+                    <div class="icon">
+                        🚋
+                    </div>
+
+                    <h3>
+                        Tram
+                    </h3>
+
+                    <p>
+                        The coastal tram network provides a convenient
+                        connection along the Athens Riviera and towards
+                        the city.
+                    </p>
+
+                </div>
+
+
+                <div class="transport-card">
+
+                    <div class="icon">
+                        🚕
+                    </div>
+
+                    <h3>
+                        Taxi / Car
+                    </h3>
+
+                    <p>
+                        Taxis and road connections make it easy to reach
+                        destinations across Athens and the surrounding area.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CTA -->
+
+    <section class="cta">
+
+        <div class="container">
+
+            <h2>
+                Make the Riviera your base
+            </h2>
+
+            <p>
+                Check your dates and discover how easy it is to stay
+                by the sea while exploring Athens.
+            </p>
+
+            <a
+                href="booking.html"
+                class="cta-button"
+            >
+                CHECK AVAILABILITY & BOOK
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-grid">
+
+
+            <div>
+
+                <h3>
+                    ELPIDA'S EDEM
+                </h3>
+
+                <p>
+                    Your private apartment by the sea in Palaio Faliro,
+                    on the Athens Riviera.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Explore
+                </h3>
+
+                <ul class="footer-links">
+
+                    <li>
+                        <a href="index.html">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="rooms.html">
+                            Apartment
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="index.html#gallery">
+                            Gallery
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="location.html">
+                            Location
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Booking
+                </h3>
+
+                <ul class="footer-links">
+
+                    <li>
+                        <a href="booking.html">
+                            Book directly
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="index.html">
+                            Home
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            © 2026 ELPIDA'S EDEM · Palaio Faliro · Athens Riviera
+
+        </div>
+
+    </footer>
+
+
+</body>
+</html>
