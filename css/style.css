@@ -1,0 +1,406 @@
+/* =========================================
+   ELPIDA'S EDEM
+   GLOBAL STYLESHEET
+   ========================================= */
+
+:root {
+    --navy: #102a43;
+    --blue: #176b87;
+    --sea: #2b8ca3;
+    --gold: #c69b5d;
+    --sand: #f4eee5;
+    --cream: #fbf9f5;
+    --dark: #17202a;
+    --muted: #667085;
+    --white: #ffffff;
+    --border: #e1e6ea;
+
+    --shadow:
+        0 18px 45px rgba(16, 42, 67, .11);
+
+    --radius: 16px;
+}
+
+
+/* =========================================
+   RESET
+   ========================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: var(--dark);
+    background: var(--cream);
+
+    line-height: 1.65;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+
+/* =========================================
+   COMMON TOP BAR
+   ========================================= */
+
+.topbar {
+    background: var(--navy);
+    color: var(--white);
+
+    text-align: center;
+
+    padding: 9px 15px;
+
+    font-size: .85rem;
+}
+
+
+/* =========================================
+   COMMON HEADER
+   ========================================= */
+
+header {
+    background: var(--white);
+
+    border-bottom:
+        1px solid #edf0f2;
+}
+
+.nav {
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 18px 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+.logo {
+    color: var(--navy);
+
+    font-size: 1.3rem;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.logo span {
+    display: block;
+
+    font-size: .62rem;
+
+    letter-spacing: 2px;
+
+    font-weight: 400;
+
+    margin-top: 2px;
+}
+
+.nav-links {
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    color: var(--navy);
+
+    font-size: .92rem;
+}
+
+.nav-links a {
+    transition: .2s;
+}
+
+.nav-links a:hover {
+    color: var(--gold);
+}
+
+.nav-book {
+    background: var(--gold);
+
+    color: var(--white) !important;
+
+    padding: 9px 17px;
+
+    border-radius: 7px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   COMMON HERO
+   ========================================= */
+
+.hero {
+    min-height: 430px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    color: var(--white);
+
+    padding: 70px 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--navy),
+            var(--blue) 55%,
+            var(--sea)
+        );
+}
+
+.hero-content {
+    max-width: 850px;
+}
+
+.eyebrow {
+    text-transform: uppercase;
+
+    letter-spacing: 4px;
+
+    font-size: .75rem;
+
+    margin-bottom: 16px;
+}
+
+.hero h1 {
+    font-size:
+        clamp(2.7rem, 6vw, 5rem);
+
+    line-height: 1.05;
+
+    margin-bottom: 20px;
+}
+
+.hero p {
+    max-width: 720px;
+
+    margin: auto;
+
+    color: #e3eef3;
+
+    font-size: 1.1rem;
+}
+
+
+/* =========================================
+   COMMON SECTIONS
+   ========================================= */
+
+section {
+    padding: 80px 20px;
+}
+
+.container {
+    max-width: 1100px;
+
+    margin: auto;
+}
+
+.section-heading {
+    text-align: center;
+
+    margin-bottom: 45px;
+}
+
+.section-heading .eyebrow {
+    color: var(--sea);
+
+    margin-bottom: 10px;
+}
+
+.section-heading h2 {
+    color: var(--navy);
+
+    font-size:
+        clamp(2rem, 4vw, 3rem);
+
+    margin-bottom: 12px;
+}
+
+.section-heading p {
+    max-width: 700px;
+
+    margin: auto;
+
+    color: var(--muted);
+}
+
+
+/* =========================================
+   COMMON BUTTONS
+   ========================================= */
+
+.button {
+    display: inline-block;
+
+    padding: 13px 25px;
+
+    border-radius: 8px;
+
+    font-weight: 700;
+
+    transition: .2s;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+}
+
+.button-primary {
+    background: var(--gold);
+
+    color: var(--white);
+}
+
+.button-secondary {
+    border: 1px solid var(--navy);
+
+    color: var(--navy);
+}
+
+
+/* =========================================
+   COMMON FOOTER
+   ========================================= */
+
+footer {
+    background: #091d2d;
+
+    color: #b8c7d1;
+
+    padding: 45px 20px 25px;
+}
+
+.footer-grid {
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        2fr 1fr 1fr;
+
+    gap: 40px;
+}
+
+footer h3 {
+    color: var(--white);
+
+    margin-bottom: 12px;
+}
+
+footer p,
+footer li {
+    font-size: .88rem;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin: 7px 0;
+}
+
+.footer-bottom {
+    max-width: 1100px;
+
+    margin: 35px auto 0;
+
+    padding-top: 20px;
+
+    border-top:
+        1px solid rgba(255,255,255,.12);
+
+    text-align: center;
+
+    font-size: .75rem;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 850px) {
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .nav {
+        flex-direction: column;
+
+        gap: 15px;
+
+        padding: 16px 18px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        gap: 12px;
+
+        font-size: .8rem;
+    }
+
+    section {
+        padding: 60px 16px;
+    }
+
+    .hero {
+        min-height: 400px;
+
+        padding: 60px 18px;
+    }
+
+}
