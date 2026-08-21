@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Book Direct | ELPIDA'S EDEM</title>
+
+    <meta
+        name="description"
+        content="Book your stay directly at Elpida's Edem, a private apartment by the sea in Palaio Faliro, Athens."
+    >
+
+    <style>
+        :root {
+            --navy: #102a43;
+            --blue: #176b87;
+            --sea: #2b8ca3;
+            --sand: #f4eee5;
+            --cream: #fbf9f5;
+            --gold: #c69b5d;
+            --dark: #17202a;
+            --muted: #667085;
+            --white: #ffffff;
+            --border: #d9e0e6;
+            --success: #247a52;
+            --danger: #b42318;
+            --shadow: 0 18px 45px rgba(16, 42, 67, .12);
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--dark);
+            background: var(--cream);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+        }
+
+        /* =========================
+           TOP BAR
+        ========================= */
+
+        .topbar {
+            background: var(--navy);
+            color: white;
+            text-align: center;
+            padding: 9px 15px;
+            font-size: .85rem;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            background: white;
+            border-bottom: 1px solid #edf0f2;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: auto;
+            padding: 18px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            color: var(--navy);
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            display: block;
+            font-size: .62rem;
+            letter-spacing: 2px;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            color: var(--navy);
+            font-size: .92rem;
+        }
+
+        .nav-links a {
+            transition: .2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-book {
+            background: var(--gold);
+            color: white !important;
+            padding: 9px 17px;
+            border-radius: 7px;
+            font-weight: 700;
+        }
+
+        /* =========================
+           PAGE HERO
+        ========================= */
+
+        .page-hero {
+            background:
+                linear-gradient(
+                    rgba(16, 42, 67, .94),
+                    rgba(16, 42, 67, .94)
+                ),
+                linear-gradient(135deg, #2b8ca3, #102a43);
+
+            color: white;
+            text-align: center;
+            padding: 85px 20px;
+        }
+
+        .page-hero .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: .75rem;
+            margin-bottom: 15px;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            margin-bottom: 15px;
+        }
+
+        .page-hero p {
+            max-width: 700px;
+            margin: auto;
+            color: #dce7ed;
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        main {
+            padding: 65px 20px 90px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .booking-layout {
+            display: grid;
+            grid-template-columns: 1.15fr .85fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        /* =========================
+           CARDS
+        ========================= */
+
+        .card {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+        }
+
+        .card + .card {
+            margin-top: 25px;
+        }
+
+        .card h2 {
+            color: var(--navy);
+            font-size: 1.55rem;
+            margin-bottom: 7px;
+        }
+
+        .card-intro {
+            color: var(--muted);
+            font-size: .92rem;
+            margin-bottom: 25px;
+        }
+
+        /* =========================
+           DATE / GUEST FORM
+        ========================= */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+            font-size: .78rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: var(--muted);
+            margin-bottom: 7px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            padding: 13px 14px;
+            background: white;
+            color: var(--dark);
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--sea);
+            box-shadow: 0 0 0 3px rgba(43, 140, 163, .12);
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .date-note {
+            font-size: .78rem;
+            color: var(--muted);
+            margin-top: 6px;
+        }
+
+        /* =========================
+           AVAILABILITY MESSAGE
+        ========================= */
+
+        .availability {
+            margin-top: 10px;
+            padding: 14px 16px;
+            border-radius: 9px;
+            background: #f1f6f7;
+            color: var(--navy);
+            font-size: .9rem;
+            display: none;
+        }
+
+        .availability.show {
+            display: block;
+        }
+
+        .availability.success {
+            background: #edf8f2;
+            color: var(--success);
+        }
+
+        .availability.warning {
+            background: #fff8e8;
+            color: #8a5a00;
+        }
+
+        /* =========================
+           SUMMARY
+        ========================= */
+
+        .summary {
+            position: sticky;
+            top: 25px;
+        }
+
+        .summary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .summary-header h2 {
+            margin: 0;
+        }
+
+        .summary-badge {
+            background: var(--sand);
+            color: var(--navy);
+            border-radius: 20px;
+            padding: 6px 10px;
+            font-size: .72rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .property-box {
+            background: var(--sand);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 22px;
+        }
+
+        .property-box h3 {
+            color: var(--navy);
+            margin-bottom: 5px;
+        }
+
+        .property-box p {
+            color: var(--muted);
+            font-size: .88rem;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 12px 0;
+            border-bottom: 1px solid #edf0f2;
+            font-size: .9rem;
+        }
+
+        .summary-row span:first-child {
+            color: var(--muted);
+        }
+
+        .summary-row strong {
+            color: var(--navy);
+            text-align: right;
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid var(--navy);
+        }
+
+        .summary-total span {
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .summary-total strong {
+            font-size: 1.7rem;
+            color: var(--navy);
+        }
+
+        .price-note {
+            margin-top: 12px;
+            color: var(--muted);
+            font-size: .75rem;
+            text-align: right;
+        }
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: .2s;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(198, 155, 93, .3);
+        }
+
+        .btn-large {
+            width: 100%;
+            margin-top: 20px;
+            font-size: 1rem;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 18px;
+            color: var(--sea);
+            font-size: .9rem;
+            font-weight: 700;
+        }
+
+        /* =========================
+           PAYMENT NOTICE
+        ========================= */
+
+        .payment-notice {
+            margin-top: 22px;
+            padding: 15px;
+            background: #f7f9fa;
+            border: 1px solid #e6eaed;
+            border-radius: 10px;
+            font-size: .82rem;
+            color: var(--muted);
+        }
+
+        .payment-notice strong {
+            color: var(--navy);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #091d2d;
+            color: #b8c7d1;
+            padding: 45px 20px 25px;
+        }
+
+        .footer-grid {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        footer h3 {
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        footer p,
+        footer li {
+            font-size: .88rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin: 7px 0;
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 35px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,.12);
+            text-align: center;
+            font-size: .75rem;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .nav {
+                padding: 16px 18px;
+            }
+
+            .nav-links {
+                gap: 12px;
+                font-size: .8rem;
+            }
+
+            .booking-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .summary {
+                position: static;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .page-hero {
+                padding: 65px 18px;
+            }
+
+            main {
+                padding: 45px 15px 70px;
+            }
+
+            .card {
+                padding: 22px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .summary-total strong {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="topbar">
+        Book directly with us and enjoy a personal hosting experience.
+    </div>
+
+    <header>
+        <nav class="nav">
+
+            <a href="index.html" class="logo">
+                ELPIDA'S EDEM
+                <span>APARTMENT · ATHENS RIVIERA</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#apartment">Apartment</a>
+                <a href="index.html#gallery">Gallery</a>
+                <a href="index.html#amenities">Amenities</a>
+                <a href="index.html#location">Location</a>
+                <a href="booking.html" class="nav-book">Book</a>
+            </div>
+
+        </nav>
+    </header>
+
+    <section class="page-hero">
+
+        <div class="eyebrow">
+            ELPIDA'S EDEM · PALAIO FALIRO
+        </div>
+
+        <h1>Book Your Stay</h1>
+
+        <p>
+            Stay in your own private apartment by the sea,
+            just moments from Edem Beach and the Athens Riviera.
+        </p>
+
+    </section>
+
+    <main>
+
+        <div class="container">
+
+            <div class="booking-layout">
+
+                <!-- =========================
+                     LEFT SIDE
+                ========================= -->
+
+                <div>
+
+                    <div class="card">
+
+                        <h2>Your stay</h2>
+
+                        <p class="card-intro">
+                            Select your dates and number of guests.
+                            We will use these details to prepare your reservation.
+                        </p>
+
+                        <form id="bookingForm">
+
+                            <div class="form-grid">
+
+                                <div class="form-group">
+
+                                    <label for="checkin">
+                                        Check-in
+                                    </label>
+
+                                    <input
+                                        type="date"
+                                        id="checkin"
+                                        name="checkin"
+                                        required
+                                    >
+
+                                    <div class="date-note">
+                                        Select your arrival date.
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="checkout">
+                                        Check-out
+                                    </label>
+
+                                    <input
+                                        type="date"
+                                        id="checkout"
+                                        name="checkout"
+                                        required
+                                    >
+
+                                    <div class="date-note">
+                                        Select your departure date.
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group full">
+
+                                    <label for="guests">
+                                        Guests
+                                    </label>
+
+                                    <select id="guests" name="guests" required>
+
+                                        <option value="1">
+                                            1 guest
+                                        </option>
+
+                                        <option value="2" selected>
+                                            2 guests
+                                        </option>
+
+                                        <option value="3">
+                                            3 guests
+                                        </option>
+
+                                        <option value="4">
+                                            4 guests
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                            <div
+                                id="availabilityMessage"
+                                class="availability"
+                            ></div>
+
+                        </form>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <h2>Guest details</h2>
+
+                        <p class="card-intro">
+                            Please enter the details of the person making the reservation.
+                        </p>
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label for="firstName">
+                                    First name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="firstName"
+                                    name="firstName"
+                                    autocomplete="given-name"
+                                    placeholder="First name"
+                                    required
+                                >
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label for="lastName">
+                                    Last name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="lastName"
+                                    name="lastName"
+                                    autocomplete="family-name"
+                                    placeholder="Last name"
+                                    required
+                                >
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label for="email">
+                                    Email
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    autocomplete="email"
+                                    placeholder="your@email.com"
+                                    required
+                                >
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label for="phone">
+                                    Phone
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    autocomplete="tel"
+                                    placeholder="+30 ..."
+                                >
+
+                            </div>
+
+                            <div class="form-group full">
+
+                                <label for="requests">
+                                    Special requests
+                                </label>
+
+                                <textarea
+                                    id="requests"
+                                    name="requests"
+                                    placeholder="Airport transfer, baby cot, arrival information, or anything else you would like us to know..."
+                                ></textarea>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     RIGHT SIDE
+                ========================= -->
+
+                <aside class="card summary">
+
+                    <div class="summary-header">
+
+                        <h2>Reservation</h2>
+
+                        <span class="summary-badge">
+                            DIRECT BOOKING
+                        </span>
+
+                    </div>
+
+                    <div class="property-box">
+
+                        <h3>ELPIDA'S EDEM</h3>
+
+                        <p>
+                            Private apartment · Palaio Faliro · Athens Riviera
+                        </p>
+
+                    </div>
+
+                    <div class="summary-row">
+
+                        <span>Check-in</span>
+
+                        <strong id="summaryCheckin">
+                            Select date
+                        </strong>
+
+                    </div>
+
+                    <div class="summary-row">
+
+                        <span>Check-out</span>
+
+                        <strong id="summaryCheckout">
+                            Select date
+                        </strong>
+
+                    </div>
+
+                    <div class="summary-row">
+
+                        <span>Guests</span>
+
+                        <strong id="summaryGuests">
+                            2 guests
+                        </strong>
+
+                    </div>
+
+                    <div class="summary-row">
+
+                        <span>Stay</span>
+
+                        <strong id="summaryNights">
+                            0 nights
+                        </strong>
+
+                    </div>
+
+                    <div class="summary-total">
+
+                        <span>
+                            Total
+                        </span>
+
+                        <strong id="summaryTotal">
+                            —
+                        </strong>
+
+                    </div>
+
+                    <div class="price-note">
+                        Final price will be calculated from the live booking system.
+                    </div>
+
+                    <button
+                        type="button"
+                        id="continueButton"
+                        class="btn btn-primary btn-large"
+                    >
+                        Continue to booking
+                    </button>
+
+                    <div class="payment-notice">
+
+                        <strong>Secure payment</strong><br>
+
+                        Online payment will be handled securely through
+                        PayPal when the booking system is connected.
+
+                    </div>
+
+                    <a
+                        href="index.html"
+                        class="btn-back"
+                    >
+                        ← Back to apartment
+                    </a>
+
+                </aside>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        <div class="footer-grid">
+
+            <div>
+
+                <h3>ELPIDA'S EDEM</h3>
+
+                <p>
+                    Your private apartment by the sea in Palaio Faliro,
+                    on the Athens Riviera.
+                </p>
+
+            </div>
+
+            <div>
+
+                <h3>Explore</h3>
+
+                <ul class="footer-links">
+
+                    <li>
+                        <a href="index.html#apartment">
+                            Apartment
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="index.html#gallery">
+                            Gallery
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="index.html#amenities">
+                            Amenities
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="index.html#location">
+                            Location
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div>
+
+                <h3>Booking</h3>
+
+                <ul class="footer-links">
+
+                    <li>
+                        <a href="booking.html">
+                            Book directly
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="index.html">
+                            Home
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            © 2026 ELPIDA'S EDEM · Palaio Faliro · Athens Riviera
+
+        </div>
+
+    </footer>
+
+
+    <script>
+
+        const checkin = document.getElementById("checkin");
+        const checkout = document.getElementById("checkout");
+        const guests = document.getElementById("guests");
+
+        const summaryCheckin =
+            document.getElementById("summaryCheckin");
+
+        const summaryCheckout =
+            document.getElementById("summaryCheckout");
+
+        const summaryGuests =
+            document.getElementById("summaryGuests");
+
+        const summaryNights =
+            document.getElementById("summaryNights");
+
+        const summaryTotal =
+            document.getElementById("summaryTotal");
+
+        const availabilityMessage =
+            document.getElementById("availabilityMessage");
+
+        const continueButton =
+            document.getElementById("continueButton");
+
+
+        /* =========================
+           DATE HELPERS
+        ========================= */
+
+        function formatDate(dateString) {
+
+            if (!dateString) {
+                return "Select date";
+            }
+
+            const date = new Date(dateString + "T00:00:00");
+
+            return date.toLocaleDateString(
+                "en-GB",
+                {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric"
+                }
+            );
+        }
+
+
+        function calculateNights() {
+
+            if (!checkin.value || !checkout.value) {
+                return 0;
+            }
+
+            const start =
+                new Date(checkin.value + "T00:00:00");
+
+            const end =
+                new Date(checkout.value + "T00:00:00");
+
+            const difference =
+                end.getTime() - start.getTime();
+
+            const nights =
+                Math.round(
+                    difference / (1000 * 60 * 60 * 24)
+                );
+
+            return nights > 0 ? nights : 0;
+        }
+
+
+        /* =========================
+           MINIMUM DATES
+        ========================= */
+
+        const today =
+            new Date().toISOString().split("T")[0];
+
+        checkin.min = today;
+        checkout.min = today;
+
+
+        checkin.addEventListener("change", function () {
+
+            checkout.min = checkin.value;
+
+            if (
+                checkout.value &&
+                checkout.value <= checkin.value
+            ) {
+                checkout.value = "";
+            }
+
+            updateSummary();
+
+        });
+
+
+        checkout.addEventListener(
+            "change",
+            updateSummary
+        );
+
+
+        guests.addEventListener(
+            "change",
+            updateSummary
+        );
+
+
+        /* =========================
+           SUMMARY
+        ========================= */
+
+        function updateSummary() {
+
+            const nights =
+                calculateNights();
+
+            summaryCheckin.textContent =
+                formatDate(checkin.value);
+
+            summaryCheckout.textContent =
+                formatDate(checkout.value);
+
+            summaryGuests.textContent =
+                guests.value +
+                (guests.value === "1"
+                    ? " guest"
+                    : " guests");
+
+            summaryNights.textContent =
+                nights +
+                (nights === 1
+                    ? " night"
+                    : " nights");
+
+
+            if (nights > 0) {
+
+                availabilityMessage.className =
+                    "availability show success";
+
+                availabilityMessage.textContent =
+                    "Your dates are ready to check against live availability.";
+
+            } else {
+
+                availabilityMessage.className =
+                    "availability";
+
+            }
+
+            /*
+             * IMPORTANT:
+             * No price is calculated here yet.
+             *
+             * The final price will come from the
+             * real booking backend once connected.
+             */
+
+            summaryTotal.textContent = "—";
+        }
+
+
+        /* =========================
+           CONTINUE
+        ========================= */
+
+        continueButton.addEventListener(
+            "click",
+            function () {
+
+                const nights =
+                    calculateNights();
+
+                const firstName =
+                    document.getElementById("firstName").value.trim();
+
+                const lastName =
+                    document.getElementById("lastName").value.trim();
+
+                const email =
+                    document.getElementById("email").value.trim();
+
+
+                if (!checkin.value || !checkout.value) {
+
+                    alert(
+                        "Please select your check-in and check-out dates."
+                    );
+
+                    return;
+                }
+
+
+                if (nights <= 0) {
+
+                    alert(
+                        "Check-out must be after check-in."
+                    );
+
+                    return;
+                }
+
+
+                if (!firstName || !lastName || !email) {
+
+                    alert(
+                        "Please enter your name and email address."
+                    );
+
+                    return;
+                }
+
+
+                /*
+                 * This is intentionally not connected
+                 * to payment yet.
+                 *
+                 * Next stage:
+                 * 1. Check real availability
+                 * 2. Create reservation
+                 * 3. Calculate final price
+                 * 4. Connect PayPal
+                 * 5. Confirm reservation
+                 */
+
+                alert(
+                    "Thank you! Your booking details are ready. " +
+                    "The secure payment and live availability system " +
+                    "will be connected in the next stage."
+                );
+
+            }
+        );
+
+
+        updateSummary();
+
+    </script>
+
+</body>
+</html>
