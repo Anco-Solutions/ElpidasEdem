@@ -1,769 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ELPIDA'S EDEM | Apartment by the Sea in Athens</title>
+    <meta charset="UTF-8">
 
-<meta name="description"
-      content="Elpida's Edem is a beautiful private apartment near the sea in Palaio Faliro, Athens. Enjoy beaches, the Athens Riviera and direct booking.">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<style>
-:root{
-    --navy:#102a43;
-    --blue:#176b87;
-    --sea:#2b8ca3;
-    --sand:#f4eee5;
-    --cream:#fbf9f5;
-    --gold:#c69b5d;
-    --dark:#17202a;
-    --muted:#667085;
-    --white:#ffffff;
-    --shadow:0 18px 45px rgba(16,42,67,.12);
-    --radius:18px;
-}
+    <meta
+        name="description"
+        content="ELPIDA'S EDEM — Your private apartment by the sea in Palaio Faliro, Athens Riviera."
+    >
 
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
+    <title>ELPIDA'S EDEM | Apartment by the Sea in Athens</title>
 
-html{
-    scroll-behavior:smooth;
-}
+    <!-- Shared stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
 
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    color:var(--dark);
-    background:var(--cream);
-    line-height:1.6;
-}
-
-a{
-    color:inherit;
-    text-decoration:none;
-}
-
-button,
-select{
-    font:inherit;
-}
-
-/* =========================
-   TOP BAR
-========================= */
-
-.topbar{
-    background:var(--navy);
-    color:white;
-    text-align:center;
-    padding:9px 15px;
-    font-size:.85rem;
-    letter-spacing:.3px;
-}
-
-/* =========================
-   NAVIGATION
-========================= */
-
-header{
-    position:absolute;
-    top:35px;
-    left:0;
-    right:0;
-    z-index:20;
-}
-
-.nav{
-    max-width:1200px;
-    margin:auto;
-    padding:20px 25px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-}
-
-.logo{
-    color:white;
-    font-size:1.35rem;
-    font-weight:700;
-    letter-spacing:2px;
-    text-shadow:0 2px 8px rgba(0,0,0,.3);
-}
-
-.logo span{
-    display:block;
-    font-size:.65rem;
-    letter-spacing:2px;
-    font-weight:400;
-}
-
-.nav-links{
-    display:flex;
-    align-items:center;
-    gap:28px;
-    color:white;
-    font-size:.92rem;
-}
-
-.nav-links a{
-    transition:.2s;
-}
-
-.nav-links a:hover{
-    color:#f2d29d;
-}
-
-.language{
-    border:1px solid rgba(255,255,255,.6);
-    background:rgba(0,0,0,.15);
-    color:white;
-    padding:7px 10px;
-    border-radius:8px;
-    cursor:pointer;
-}
-
-.mobile-menu{
-    display:none;
-    color:white;
-    font-size:1.8rem;
-    cursor:pointer;
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero{
-    min-height:780px;
-    position:relative;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    color:white;
-
-    background:
-        linear-gradient(rgba(8,35,52,.42),rgba(8,35,52,.55)),
-        linear-gradient(135deg,#23788c,#0f415d);
-}
-
-.hero-placeholder{
-    position:absolute;
-    inset:0;
-    background:
-        radial-gradient(circle at 75% 30%,rgba(255,255,255,.22),transparent 25%),
-        linear-gradient(135deg,#257d91 0%,#14536c 50%,#0c344c 100%);
-    z-index:-1;
-}
-
-.hero-content{
-    max-width:850px;
-    padding:100px 25px 60px;
-}
-
-.hero-kicker{
-    text-transform:uppercase;
-    letter-spacing:4px;
-    font-size:.8rem;
-    margin-bottom:18px;
-}
-
-.hero h1{
-    font-size:clamp(3rem,7vw,6rem);
-    line-height:1;
-    letter-spacing:3px;
-    margin-bottom:20px;
-}
-
-.hero h2{
-    font-size:clamp(1.2rem,2.5vw,1.8rem);
-    font-weight:400;
-    margin-bottom:20px;
-}
-
-.hero p{
-    max-width:680px;
-    margin:0 auto 35px;
-    font-size:1.05rem;
-}
-
-.btn{
-    display:inline-block;
-    border:none;
-    cursor:pointer;
-    padding:14px 28px;
-    border-radius:8px;
-    font-weight:700;
-    letter-spacing:.3px;
-    transition:.25s;
-}
-
-.btn-primary{
-    background:var(--gold);
-    color:white;
-}
-
-.btn-primary:hover{
-    transform:translateY(-2px);
-    box-shadow:0 10px 25px rgba(0,0,0,.2);
-}
-
-.btn-light{
-    background:white;
-    color:var(--navy);
-}
-
-.btn-outline{
-    border:1px solid white;
-    color:white;
-    margin-left:10px;
-}
-
-.btn-outline:hover{
-    background:white;
-    color:var(--navy);
-}
-
-/* =========================
-   BOOKING BAR
-========================= */
-
-.booking-bar{
-    max-width:1050px;
-    margin:-48px auto 0;
-    position:relative;
-    z-index:10;
-    background:white;
-    box-shadow:var(--shadow);
-    border-radius:14px;
-    padding:20px;
-}
-
-.booking-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr auto;
-    gap:12px;
-    align-items:end;
-}
-
-.booking-field label{
-    display:block;
-    font-size:.72rem;
-    text-transform:uppercase;
-    letter-spacing:1px;
-    color:var(--muted);
-    margin-bottom:6px;
-}
-
-.booking-field input,
-.booking-field select{
-    width:100%;
-    padding:13px;
-    border:1px solid #d8dee6;
-    border-radius:8px;
-    background:white;
-}
-
-/* =========================
-   GENERAL
-========================= */
-
-section{
-    padding:90px 20px;
-}
-
-.container{
-    max-width:1150px;
-    margin:auto;
-}
-
-.section-heading{
-    text-align:center;
-    margin-bottom:50px;
-}
-
-.section-heading .eyebrow{
-    color:var(--sea);
-    text-transform:uppercase;
-    letter-spacing:3px;
-    font-size:.75rem;
-    font-weight:700;
-}
-
-.section-heading h2{
-    color:var(--navy);
-    font-size:clamp(2rem,4vw,3rem);
-    margin:10px 0 15px;
-}
-
-.section-heading p{
-    max-width:700px;
-    margin:auto;
-    color:var(--muted);
-}
-
-/* =========================
-   INTRO
-========================= */
-
-.intro{
-    background:white;
-}
-
-.intro-grid{
-    display:grid;
-    grid-template-columns:1.05fr .95fr;
-    gap:65px;
-    align-items:center;
-}
-
-.intro-image{
-    min-height:500px;
-    border-radius:var(--radius);
-    background:
-        linear-gradient(135deg,#d6e9ed,#7bb6c4);
-    box-shadow:var(--shadow);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:white;
-    text-align:center;
-    padding:30px;
-}
-
-.photo-note{
-    background:rgba(0,0,0,.22);
-    padding:15px 20px;
-    border-radius:10px;
-    font-size:.85rem;
-}
-
-.intro-text h2{
-    color:var(--navy);
-    font-size:2.4rem;
-    margin-bottom:20px;
-}
-
-.intro-text p{
-    color:var(--muted);
-    margin-bottom:18px;
-}
-
-.features{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
-    margin:25px 0;
-}
-
-.feature{
-    padding:13px;
-    background:var(--sand);
-    border-radius:10px;
-    font-size:.92rem;
-}
-
-/* =========================
-   HIGHLIGHTS
-========================= */
-
-.highlights{
-    background:var(--sand);
-}
-
-.highlight-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:18px;
-}
-
-.highlight{
-    background:white;
-    padding:28px 20px;
-    text-align:center;
-    border-radius:var(--radius);
-    box-shadow:0 8px 25px rgba(0,0,0,.05);
-}
-
-.highlight-icon{
-    font-size:2rem;
-    margin-bottom:12px;
-}
-
-.highlight h3{
-    color:var(--navy);
-    margin-bottom:7px;
-}
-
-.highlight p{
-    color:var(--muted);
-    font-size:.9rem;
-}
-
-/* =========================
-   ROOMS
-========================= */
-
-.rooms{
-    background:white;
-}
-
-.room-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:22px;
-}
-
-.room-card{
-    background:var(--cream);
-    border-radius:var(--radius);
-    overflow:hidden;
-}
-
-.room-photo{
-    height:240px;
-    background:linear-gradient(135deg,#c7dfe5,#6da8b7);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:white;
-    text-align:center;
-    padding:20px;
-}
-
-.room-body{
-    padding:24px;
-}
-
-.room-body h3{
-    color:var(--navy);
-    font-size:1.25rem;
-    margin-bottom:8px;
-}
-
-.room-body p{
-    color:var(--muted);
-    font-size:.92rem;
-}
-
-/* =========================
-   GALLERY
-========================= */
-
-.gallery{
-    background:#f1f6f7;
-}
-
-.gallery-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    grid-auto-rows:180px;
-    gap:12px;
-}
-
-.gallery-item{
-    border-radius:12px;
-    overflow:hidden;
-    background:linear-gradient(135deg,#b7d8df,#4e91a2);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:white;
-    text-align:center;
-    padding:15px;
-}
-
-.gallery-item:first-child{
-    grid-column:span 2;
-    grid-row:span 2;
-}
-
-.gallery-item:nth-child(4){
-    grid-column:span 2;
-}
-
-/* =========================
-   AMENITIES
-========================= */
-
-.amenities{
-    background:white;
-}
-
-.amenity-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-}
-
-.amenity{
-    padding:16px 18px;
-    border:1px solid #e5e9ee;
-    border-radius:10px;
-    color:#344054;
-    background:#fff;
-}
-
-/* =========================
-   LOCATION
-========================= */
-
-.location{
-    background:var(--navy);
-    color:white;
-}
-
-.location-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:60px;
-    align-items:center;
-}
-
-.location h2{
-    font-size:2.6rem;
-    margin-bottom:20px;
-}
-
-.location p{
-    color:#d6e0e8;
-    margin-bottom:18px;
-}
-
-.location-list{
-    list-style:none;
-    margin-top:25px;
-}
-
-.location-list li{
-    margin:12px 0;
-}
-
-.location-map{
-    min-height:400px;
-    border-radius:var(--radius);
-    background:
-        radial-gradient(circle at 30% 40%,rgba(255,255,255,.25),transparent 5%),
-        radial-gradient(circle at 65% 60%,rgba(255,255,255,.18),transparent 5%),
-        linear-gradient(135deg,#2a8196,#174c67);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:30px;
-}
-
-/* =========================
-   CTA
-========================= */
-
-.cta{
-    background:
-        linear-gradient(rgba(16,42,67,.86),rgba(16,42,67,.92)),
-        linear-gradient(135deg,#2b8ca3,#102a43);
-    color:white;
-    text-align:center;
-}
-
-.cta h2{
-    font-size:clamp(2rem,4vw,3.3rem);
-    margin-bottom:15px;
-}
-
-.cta p{
-    max-width:650px;
-    margin:0 auto 28px;
-    color:#dce7ed;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-    background:#091d2d;
-    color:#b8c7d1;
-    padding:45px 20px 25px;
-}
-
-.footer-grid{
-    max-width:1150px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:2fr 1fr 1fr;
-    gap:40px;
-}
-
-footer h3{
-    color:white;
-    margin-bottom:12px;
-}
-
-footer p{
-    font-size:.9rem;
-}
-
-.footer-links{
-    list-style:none;
-}
-
-.footer-links li{
-    margin:7px 0;
-}
-
-.footer-bottom{
-    max-width:1150px;
-    margin:35px auto 0;
-    padding-top:20px;
-    border-top:1px solid rgba(255,255,255,.12);
-    text-align:center;
-    font-size:.78rem;
-}
-
-/* =========================
-   LANGUAGE
-========================= */
-
-[data-lang]{
-    transition:opacity .15s;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:850px){
-
-    .nav-links{
-        display:none;
-        position:absolute;
-        top:75px;
-        left:15px;
-        right:15px;
-        background:var(--navy);
-        border-radius:12px;
-        padding:20px;
-        flex-direction:column;
-        align-items:stretch;
-    }
-
-    .nav-links.open{
-        display:flex;
-    }
-
-    .mobile-menu{
-        display:block;
-    }
-
-    .hero{
-        min-height:700px;
-    }
-
-    .booking-grid{
-        grid-template-columns:1fr;
-    }
-
-    .booking-bar{
-        margin:-30px 15px 0;
-    }
-
-    .intro-grid,
-    .location-grid{
-        grid-template-columns:1fr;
-    }
-
-    .highlight-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .room-grid{
-        grid-template-columns:1fr;
-    }
-
-    .amenity-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .gallery-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .footer-grid{
-        grid-template-columns:1fr;
-    }
-}
-
-@media(max-width:520px){
-
-    section{
-        padding:65px 16px;
-    }
-
-    .hero h1{
-        font-size:3rem;
-    }
-
-    .btn-outline{
-        margin-left:0;
-        margin-top:10px;
-    }
-
-    .highlight-grid,
-    .amenity-grid{
-        grid-template-columns:1fr;
-    }
-
-    .gallery-grid{
-        grid-template-columns:1fr;
-        grid-auto-rows:220px;
-    }
-
-    .gallery-item:first-child,
-    .gallery-item:nth-child(4){
-        grid-column:auto;
-        grid-row:auto;
-    }
-
-    .intro-image{
-        min-height:350px;
-    }
-}
-</style>
 </head>
 
 <body>
 
 <!-- TOP BAR -->
 <div class="topbar">
-    <span data-lang="topbar">
-        Book directly with us and enjoy a personal hosting experience.
-    </span>
+    <div class="container">
+        <span data-lang="topbar">
+            Book directly with us and enjoy a personal hosting experience.
+        </span>
+    </div>
 </div>
 
-<!-- NAVIGATION -->
-<header>
-    <nav class="nav">
 
-        <a href="#home" class="logo">
-            ELPIDA'S EDEM
-            <span>APARTMENT • ATHENS RIVIERA</span>
+<!-- HEADER -->
+<header>
+
+    <div class="container nav">
+
+        <a href="index.html" class="logo">
+            <span>ELPIDA'S EDEM</span>
+            <small>APARTMENT · ATHENS RIVIERA</small>
         </a>
 
-        <div class="mobile-menu" onclick="toggleMenu()">☰</div>
+        <button
+            class="menu-toggle"
+            id="menuButton"
+            type="button"
+            aria-label="Open navigation"
+            onclick="toggleMenu()"
+        >
+            ☰
+        </button>
 
-        <div class="nav-links" id="navLinks">
+        <nav
+            class="nav-links"
+            id="navLinks"
+        >
 
             <a href="#home" data-lang="navHome">Home</a>
-            <a href="#apartment" data-lang="navApartment">Apartment</a>
-            <a href="#gallery" data-lang="navGallery">Gallery</a>
-            <a href="#amenities" data-lang="navAmenities">Amenities</a>
-            <a href="#location" data-lang="navLocation">Location</a>
-            <a href="#book" data-lang="navBook">Book</a>
 
-            <select class="language" onchange="changeLanguage(this.value)" aria-label="Language">
+            <a href="#apartment" data-lang="navApartment">
+                Apartment
+            </a>
+
+            <a href="#gallery" data-lang="navGallery">
+                Gallery
+            </a>
+
+            <a href="#amenities" data-lang="navAmenities">
+                Amenities
+            </a>
+
+            <a href="#location" data-lang="navLocation">
+                Location
+            </a>
+
+            <a
+                href="#book"
+                class="nav-book"
+                data-lang="navBook"
+            >
+                Book
+            </a>
+
+            <select
+                class="language"
+                onchange="changeLanguage(this.value)"
+                aria-label="Language"
+            >
                 <option value="en">🇬🇧 English</option>
                 <option value="el">🇬🇷 Ελληνικά</option>
                 <option value="de">🇩🇪 Deutsch</option>
@@ -774,26 +100,30 @@ footer p{
                 <option value="pl">🇵🇱 Polski</option>
             </select>
 
-        </div>
-    </nav>
+        </nav>
+
+    </div>
+
 </header>
 
+
 <!-- HERO -->
-<section class="hero" id="home">
+<section
+    class="hero"
+    id="home"
+>
 
-    <div class="hero-placeholder"></div>
+    <div class="container hero-content">
 
-    <div class="hero-content">
-
-        <div class="hero-kicker" data-lang="heroKicker">
-            Athens Riviera • Palaio Faliro
+        <div class="eyebrow">
+            <span data-lang="heroKicker">
+                Athens Riviera • Palaio Faliro
+            </span>
         </div>
 
-        <h1>ELPIDA'S EDEM</h1>
-
-        <h2 data-lang="heroTitle">
+        <h1 data-lang="heroTitle">
             Your private apartment by the sea in Athens
-        </h2>
+        </h1>
 
         <p data-lang="heroText">
             A spacious and comfortable 74 m² apartment in Palaio Faliro,
@@ -801,106 +131,197 @@ footer p{
             The perfect base for relaxing by the coast while exploring Athens.
         </p>
 
-        <a href="#book" class="btn btn-primary" data-lang="heroBook">
-            BOOK DIRECT
-        </a>
+        <div class="hero-buttons">
 
-        <a href="#apartment" class="btn btn-outline" data-lang="heroExplore">
-            EXPLORE THE APARTMENT
-        </a>
+            <a
+                href="#book"
+                class="button button-primary"
+                data-lang="heroBook"
+            >
+                BOOK DIRECT
+            </a>
+
+            <a
+                href="#apartment"
+                class="button button-secondary"
+                data-lang="heroExplore"
+            >
+                EXPLORE THE APARTMENT
+            </a>
+
+        </div>
 
     </div>
+
 </section>
 
-<!-- BOOKING SEARCH -->
-<div class="booking-bar" id="book">
 
-    <div class="booking-grid">
+<!-- BOOKING CHECK -->
+<section
+    class="booking-bar"
+    id="book"
+>
 
-        <div class="booking-field">
-            <label data-lang="checkinLabel">Check-in</label>
-            <input type="date" id="checkin">
-        </div>
+    <div class="container">
 
-        <div class="booking-field">
-            <label data-lang="checkoutLabel">Check-out</label>
-            <input type="date" id="checkout">
-        </div>
+        <div class="booking-grid">
 
-        <div class="booking-field">
-            <label data-lang="guestsLabel">Guests</label>
-            <select id="guests">
-                <option value="1">1 Guest</option>
-                <option value="2">2 Guests</option>
-                <option value="3">3 Guests</option>
-                <option value="4" selected>4 Guests</option>
-            </select>
-        </div>
+            <div class="booking-field">
 
-        <button class="btn btn-primary" onclick="checkAvailability()" data-lang="availability">
-            CHECK AVAILABILITY
-        </button>
+                <label
+                    for="checkin"
+                    data-lang="checkinLabel"
+                >
+                    Check-in
+                </label>
 
-    </div>
+                <input
+                    type="date"
+                    id="checkin"
+                >
 
-    <div id="bookingMessage"
-         style="text-align:center;margin-top:15px;color:#176b87;font-weight:600;">
-    </div>
-
-</div>
-
-<!-- INTRO -->
-<section class="intro" id="apartment">
-
-    <div class="container intro-grid">
-
-        <div class="intro-image">
-            <div class="photo-note">
-                📸 Main apartment photo will be placed here
             </div>
+
+
+            <div class="booking-field">
+
+                <label
+                    for="checkout"
+                    data-lang="checkoutLabel"
+                >
+                    Check-out
+                </label>
+
+                <input
+                    type="date"
+                    id="checkout"
+                >
+
+            </div>
+
+
+            <div class="booking-field">
+
+                <label
+                    for="guests"
+                    data-lang="guestsLabel"
+                >
+                    Guests
+                </label>
+
+                <select id="guests">
+
+                    <option value="1">1</option>
+                    <option value="2" selected>2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="button button-primary"
+                onclick="checkAvailability()"
+                data-lang="availability"
+            >
+                CHECK AVAILABILITY
+            </button>
+
         </div>
 
-        <div class="intro-text">
 
-            <div class="section-heading" style="text-align:left;margin-bottom:20px;">
-                <div class="eyebrow" data-lang="aboutEyebrow">THE APARTMENT</div>
+        <div
+            id="bookingMessage"
+            class="booking-message"
+            aria-live="polite"
+        ></div>
+
+    </div>
+
+</section>
+
+
+<!-- APARTMENT -->
+<section
+    class="about"
+    id="apartment"
+>
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div
+                class="eyebrow"
+                data-lang="aboutEyebrow"
+            >
+                THE APARTMENT
             </div>
 
             <h2 data-lang="aboutTitle">
                 Feel at home by the sea
             </h2>
 
-            <p data-lang="aboutText1">
-                ELPIDA'S EDEM is a private 74 m² apartment designed for
-                comfortable holidays in one of Athens' most attractive
-                coastal neighbourhoods.
-            </p>
+        </div>
 
-            <p data-lang="aboutText2">
-                With two bedrooms, a comfortable living room, a private
-                kitchen, bathroom and balcony, it is ideal for couples,
-                families and friends who want both the sea and the city
-                within easy reach.
-            </p>
 
-            <div class="features">
+        <div class="about-grid">
 
-                <div class="feature">🛏️ 2 Bedrooms</div>
-                <div class="feature">📐 74 m² Apartment</div>
-                <div class="feature">👨‍👩‍👧‍👦 Up to 4 Guests</div>
-                <div class="feature">🌊 Sea & City Views</div>
-                <div class="feature">📶 Free Wi-Fi</div>
-                <div class="feature">❄️ Air Conditioning</div>
+            <div class="about-content">
+
+                <p data-lang="aboutText1">
+                    ELPIDA'S EDEM is a private 74 m² apartment designed
+                    for comfortable holidays in one of Athens' most attractive
+                    coastal neighbourhoods.
+                </p>
+
+                <p data-lang="aboutText2">
+                    With two bedrooms, a comfortable living room,
+                    a private kitchen, bathroom and balcony, it is ideal
+                    for couples, families and friends who want both the sea
+                    and the city within easy reach.
+                </p>
+
+                <a
+                    href="#book"
+                    class="button button-primary"
+                    data-lang="aboutButton"
+                >
+                    CHECK DATES
+                </a>
 
             </div>
 
-            <a href="#book" class="btn btn-primary" data-lang="aboutButton">
-                CHECK DATES
-            </a>
+
+            <div class="about-card">
+
+                <div class="about-card-number">
+                    74
+                </div>
+
+                <div class="about-card-label">
+                    m²
+                </div>
+
+                <p>
+                    Private apartment
+                    <br>
+                    Palaio Faliro
+                    <br>
+                    Athens Riviera
+                </p>
+
+            </div>
 
         </div>
+
     </div>
+
 </section>
+
 
 <!-- HIGHLIGHTS -->
 <section class="highlights">
@@ -908,172 +329,352 @@ footer p{
     <div class="container">
 
         <div class="section-heading">
-            <div class="eyebrow" data-lang="highlightsEyebrow">AT A GLANCE</div>
-            <h2 data-lang="highlightsTitle">Everything you need for a relaxing stay</h2>
+
+            <div
+                class="eyebrow"
+                data-lang="highlightsEyebrow"
+            >
+                AT A GLANCE
+            </div>
+
+            <h2 data-lang="highlightsTitle">
+                Everything you need for a relaxing stay
+            </h2>
+
             <p data-lang="highlightsText">
                 Comfort, privacy and the Athens Riviera right outside your door.
             </p>
+
         </div>
+
 
         <div class="highlight-grid">
 
-            <div class="highlight">
-                <div class="highlight-icon">🌊</div>
-                <h3 data-lang="h1">By the Sea</h3>
-                <p data-lang="h1p">Close to Edem and Flisvos beaches.</p>
+            <div class="highlight-card">
+
+                <div class="highlight-icon">
+                    🌊
+                </div>
+
+                <h3 data-lang="h1">
+                    By the Sea
+                </h3>
+
+                <p data-lang="h1p">
+                    Close to Edem and Flisvos beaches.
+                </p>
+
             </div>
 
-            <div class="highlight">
-                <div class="highlight-icon">🏠</div>
-                <h3 data-lang="h2">Entire Apartment</h3>
-                <p data-lang="h2p">Enjoy your own private space.</p>
+
+            <div class="highlight-card">
+
+                <div class="highlight-icon">
+                    🏠
+                </div>
+
+                <h3 data-lang="h2">
+                    Entire Apartment
+                </h3>
+
+                <p data-lang="h2p">
+                    Enjoy your own private space.
+                </p>
+
             </div>
 
-            <div class="highlight">
-                <div class="highlight-icon">🛁</div>
-                <h3 data-lang="h3">Relax</h3>
-                <p data-lang="h3p">Private jacuzzi / hydromassage available.</p>
+
+            <div class="highlight-card">
+
+                <div class="highlight-icon">
+                    🛁
+                </div>
+
+                <h3 data-lang="h3">
+                    Relax
+                </h3>
+
+                <p data-lang="h3p">
+                    Private jacuzzi / hydromassage available.
+                </p>
+
             </div>
 
-            <div class="highlight">
-                <div class="highlight-icon">📍</div>
-                <h3 data-lang="h4">Great Location</h3>
-                <p data-lang="h4p">Beach life with Athens close by.</p>
+
+            <div class="highlight-card">
+
+                <div class="highlight-icon">
+                    📍
+                </div>
+
+                <h3 data-lang="h4">
+                    Great Location
+                </h3>
+
+                <p data-lang="h4p">
+                    Beach life with Athens close by.
+                </p>
+
             </div>
 
         </div>
+
     </div>
+
 </section>
+
 
 <!-- ROOMS -->
-<section class="rooms">
+<section
+    class="rooms"
+    id="rooms"
+>
 
     <div class="container">
 
         <div class="section-heading">
-            <div class="eyebrow" data-lang="roomsEyebrow">YOUR SPACE</div>
-            <h2 data-lang="roomsTitle">Comfortable rooms for your stay</h2>
+
+            <div
+                class="eyebrow"
+                data-lang="roomsEyebrow"
+            >
+                YOUR SPACE
+            </div>
+
+            <h2 data-lang="roomsTitle">
+                Comfortable rooms for your stay
+            </h2>
+
             <p data-lang="roomsText">
-                Every part of the apartment is designed to make your stay easy and comfortable.
+                Every part of the apartment is designed
+                to make your stay easy and comfortable.
             </p>
+
         </div>
 
-        <div class="room-grid">
+
+        <div class="rooms-grid">
 
             <article class="room-card">
-                <div class="room-photo">
-                    📸 Bedroom 1 photo
+
+                <div class="room-image">
+                    🛏️
                 </div>
-                <div class="room-body">
-                    <h3 data-lang="bed1">Master Bedroom</h3>
+
+                <div class="room-content">
+
+                    <h3 data-lang="bed1">
+                        Master Bedroom
+                    </h3>
+
                     <p data-lang="bed1p">
-                        A comfortable bedroom with a very large double bed,
-                        designed for a peaceful night's sleep.
+                        A comfortable bedroom with a very large
+                        double bed, designed for a peaceful night's sleep.
                     </p>
+
                 </div>
+
             </article>
 
+
             <article class="room-card">
-                <div class="room-photo">
-                    📸 Bedroom 2 photo
+
+                <div class="room-image">
+                    🛏️
                 </div>
-                <div class="room-body">
-                    <h3 data-lang="bed2">Second Bedroom</h3>
+
+                <div class="room-content">
+
+                    <h3 data-lang="bed2">
+                        Second Bedroom
+                    </h3>
+
                     <p data-lang="bed2p">
-                        A welcoming second bedroom with a comfortable double bed.
+                        A welcoming second bedroom
+                        with a comfortable double bed.
                     </p>
+
                 </div>
+
             </article>
 
+
             <article class="room-card">
-                <div class="room-photo">
-                    📸 Living room photo
+
+                <div class="room-image">
+                    🛋️
                 </div>
-                <div class="room-body">
-                    <h3 data-lang="living">Living Room</h3>
+
+                <div class="room-content">
+
+                    <h3 data-lang="living">
+                        Living Room
+                    </h3>
+
                     <p data-lang="livingp">
-                        A spacious living area with comfortable seating and a sofa
-                        that can also be used as a bed.
+                        A spacious living area with comfortable seating
+                        and a sofa that can also be used as a bed.
                     </p>
+
                 </div>
+
             </article>
 
         </div>
+
     </div>
+
 </section>
 
+
 <!-- GALLERY -->
-<section class="gallery" id="gallery">
+<section
+    class="gallery"
+    id="gallery"
+>
 
     <div class="container">
 
         <div class="section-heading">
-            <div class="eyebrow" data-lang="galleryEyebrow">DISCOVER ELPIDA'S EDEM</div>
-            <h2 data-lang="galleryTitle">A place to enjoy</h2>
+
+            <div
+                class="eyebrow"
+                data-lang="galleryEyebrow"
+            >
+                DISCOVER ELPIDA'S EDEM
+            </div>
+
+            <h2 data-lang="galleryTitle">
+                A place to enjoy
+            </h2>
+
             <p data-lang="galleryText">
-                Explore the apartment, the balcony, the sea and the Athens Riviera.
+                Explore the apartment, the balcony,
+                the sea and the Athens Riviera.
             </p>
+
         </div>
+
 
         <div class="gallery-grid">
 
-            <div class="gallery-item">📸 Main living room</div>
-            <div class="gallery-item">📸 Bedroom</div>
-            <div class="gallery-item">📸 Kitchen</div>
-            <div class="gallery-item">📸 Balcony & sea view</div>
-            <div class="gallery-item">📸 Bathroom</div>
-            <div class="gallery-item">📸 Dining area</div>
-            <div class="gallery-item">📸 Edem Beach</div>
-            <div class="gallery-item">📸 Athens Riviera</div>
+            <div class="gallery-item">
+                📸 Main living room
+            </div>
+
+            <div class="gallery-item">
+                📸 Bedroom
+            </div>
+
+            <div class="gallery-item">
+                📸 Kitchen
+            </div>
+
+            <div class="gallery-item">
+                📸 Balcony & sea view
+            </div>
+
+            <div class="gallery-item">
+                📸 Bathroom
+            </div>
+
+            <div class="gallery-item">
+                📸 Dining area
+            </div>
+
+            <div class="gallery-item">
+                📸 Edem Beach
+            </div>
+
+            <div class="gallery-item">
+                📸 Athens Riviera
+            </div>
 
         </div>
 
     </div>
+
 </section>
 
+
 <!-- AMENITIES -->
-<section class="amenities" id="amenities">
+<section
+    class="amenities"
+    id="amenities"
+>
 
     <div class="container">
 
         <div class="section-heading">
-            <div class="eyebrow" data-lang="amenitiesEyebrow">AMENITIES</div>
-            <h2 data-lang="amenitiesTitle">Everything for a comfortable stay</h2>
+
+            <div
+                class="eyebrow"
+                data-lang="amenitiesEyebrow"
+            >
+                AMENITIES
+            </div>
+
+            <h2 data-lang="amenitiesTitle">
+                Everything for a comfortable stay
+            </h2>
+
         </div>
+
 
         <div class="amenity-grid">
 
             <div class="amenity">📶 Free Wi-Fi</div>
+
             <div class="amenity">❄️ Air conditioning</div>
+
             <div class="amenity">🛁 Jacuzzi / hydromassage</div>
+
             <div class="amenity">🌊 Sea view</div>
+
             <div class="amenity">🏙️ City view</div>
+
             <div class="amenity">🌿 Garden / courtyard view</div>
+
             <div class="amenity">🍳 Fully equipped kitchen</div>
+
             <div class="amenity">🧊 Refrigerator</div>
+
             <div class="amenity">🔥 Oven</div>
+
             <div class="amenity">☕ Coffee maker & kettle</div>
+
             <div class="amenity">🧺 Washing machine</div>
+
             <div class="amenity">📺 TV</div>
+
             <div class="amenity">💇 Hair dryer</div>
+
             <div class="amenity">👕 Iron</div>
+
             <div class="amenity">🌅 Balcony / terrace</div>
 
         </div>
 
     </div>
+
 </section>
 
+
 <!-- LOCATION -->
-<section class="location" id="location">
+<section
+    class="location"
+    id="location"
+>
 
     <div class="container location-grid">
 
         <div>
 
-            <div class="eyebrow"
-                 style="color:#9bd0db;"
-                 data-lang="locationEyebrow">
+            <div
+                class="eyebrow"
+                style="color:#9bd0db;"
+                data-lang="locationEyebrow"
+            >
                 THE ATHENS RIVIERA
             </div>
 
@@ -1082,33 +683,63 @@ footer p{
             </h2>
 
             <p data-lang="locationText">
-                Located in Palaio Faliro, ELPIDA'S EDEM gives you the chance
-                to enjoy the relaxed atmosphere of the Athens Riviera while
-                remaining close to the centre of Athens.
+                Located in Palaio Faliro, ELPIDA'S EDEM gives you
+                the chance to enjoy the relaxed atmosphere of the Athens Riviera
+                while remaining close to the centre of Athens.
             </p>
+
 
             <ul class="location-list">
 
-                <li>🏖️ <strong>Edem Beach</strong></li>
-                <li>⛵ <strong>Flisvos Marina</strong></li>
-                <li>🌊 <strong>Athens Riviera</strong></li>
-                <li>🏛️ <strong>Central Athens</strong></li>
-                <li>✈️ <strong>Athens International Airport</strong></li>
+                <li>
+                    🏖️ <strong>Edem Beach</strong>
+                </li>
+
+                <li>
+                    ⛵ <strong>Flisvos Marina</strong>
+                </li>
+
+                <li>
+                    🌊 <strong>Athens Riviera</strong>
+                </li>
+
+                <li>
+                    🏛️ <strong>Central Athens</strong>
+                </li>
+
+                <li>
+                    ✈️ <strong>Athens International Airport</strong>
+                </li>
 
             </ul>
 
         </div>
 
+
         <div class="location-map">
+
             <div>
-                <div style="font-size:4rem;">📍</div>
-                <h3>Palaio Faliro</h3>
-                <p>Athens, Greece</p>
+
+                <div style="font-size:4rem;">
+                    📍
+                </div>
+
+                <h3>
+                    Palaio Faliro
+                </h3>
+
+                <p>
+                    Athens, Greece
+                </p>
+
             </div>
+
         </div>
 
     </div>
+
 </section>
+
 
 <!-- FINAL CTA -->
 <section class="cta">
@@ -1124,7 +755,11 @@ footer p{
             We look forward to welcoming you to ELPIDA'S EDEM.
         </p>
 
-        <a href="#book" class="btn btn-primary" data-lang="ctaButton">
+        <a
+            href="#book"
+            class="button button-primary"
+            data-lang="ctaButton"
+        >
             CHECK AVAILABILITY
         </a>
 
@@ -1132,663 +767,654 @@ footer p{
 
 </section>
 
+
 <!-- FOOTER -->
 <footer>
 
-    <div class="footer-grid">
+    <div class="container footer-grid">
 
         <div>
-            <h3>ELPIDA'S EDEM</h3>
+
+            <h3>
+                ELPIDA'S EDEM
+            </h3>
+
             <p data-lang="footerText">
                 Your private apartment by the sea in Palaio Faliro, Athens.
                 A comfortable home for discovering the Athens Riviera and Athens.
             </p>
+
         </div>
 
-        <div>
-            <h3 data-lang="footerExplore">Explore</h3>
-            <ul class="footer-links">
-                <li><a href="#apartment" data-lang="navApartment">Apartment</a></li>
-                <li><a href="#gallery" data-lang="navGallery">Gallery</a></li>
-                <li><a href="#amenities" data-lang="navAmenities">Amenities</a></li>
-                <li><a href="#location" data-lang="navLocation">Location</a></li>
-            </ul>
-        </div>
 
         <div>
-            <h3 data-lang="footerBook">Reservations</h3>
+
+            <h3 data-lang="footerExplore">
+                Explore
+            </h3>
+
             <ul class="footer-links">
-                <li><a href="#book" data-lang="footerCheck">Check availability</a></li>
-                <li><a href="#book" data-lang="footerDirect">Book direct</a></li>
-                <li><span>📍 Palaio Faliro, Athens</span></li>
+
+                <li>
+                    <a
+                        href="#apartment"
+                        data-lang="navApartment"
+                    >
+                        Apartment
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="#gallery"
+                        data-lang="navGallery"
+                    >
+                        Gallery
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="#amenities"
+                        data-lang="navAmenities"
+                    >
+                        Amenities
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="#location"
+                        data-lang="navLocation"
+                    >
+                        Location
+                    </a>
+                </li>
+
             </ul>
+
+        </div>
+
+
+        <div>
+
+            <h3 data-lang="footerBook">
+                Reservations
+            </h3>
+
+            <ul class="footer-links">
+
+                <li>
+                    <a
+                        href="#book"
+                        data-lang="footerCheck"
+                    >
+                        Check availability
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="#book"
+                        data-lang="footerDirect"
+                    >
+                        Book direct
+                    </a>
+                </li>
+
+                <li>
+                    <span>
+                        📍 Palaio Faliro, Athens
+                    </span>
+                </li>
+
+            </ul>
+
         </div>
 
     </div>
 
-    <div class="footer-bottom">
-        © <span id="year"></span> ELPIDA'S EDEM. All rights reserved.
+
+    <div class="container footer-bottom">
+
+        ©
+        <span id="year"></span>
+        ELPIDA'S EDEM.
+        All rights reserved.
+
     </div>
 
 </footer>
 
+
+<!-- EXISTING PAGE FUNCTIONALITY -->
 <script>
 
-/* =========================
-   MOBILE MENU
-========================= */
+function toggleMenu() {
 
-function toggleMenu(){
-    document.getElementById("navLinks").classList.toggle("open");
+    const nav = document.getElementById("navLinks");
+
+    if (nav) {
+        nav.classList.toggle("open");
+    }
+
 }
 
-/* =========================
-   DATE MINIMUM
-========================= */
 
-const today = new Date().toISOString().split("T")[0];
+/* DATE MINIMUM */
 
-document.getElementById("checkin").min = today;
-document.getElementById("checkout").min = today;
+const today =
+    new Date().toISOString().split("T")[0];
 
-document.getElementById("checkin").addEventListener("change", function(){
+const checkin =
+    document.getElementById("checkin");
 
-    document.getElementById("checkout").min = this.value;
+const checkout =
+    document.getElementById("checkout");
 
-});
+if (checkin) {
+    checkin.min = today;
+}
 
-/* =========================
-   TEMPORARY AVAILABILITY
-   REAL DATABASE WILL REPLACE THIS
-========================= */
+if (checkout) {
+    checkout.min = today;
+}
 
-function checkAvailability(){
 
-    const checkin = document.getElementById("checkin").value;
-    const checkout = document.getElementById("checkout").value;
-    const guests = document.getElementById("guests").value;
-    const message = document.getElementById("bookingMessage");
+if (checkin) {
 
-    if(!checkin || !checkout){
+    checkin.addEventListener(
+        "change",
+        function () {
 
-        message.textContent = "Please select your check-in and check-out dates.";
+            if (checkout) {
+                checkout.min = this.value;
+            }
+
+        }
+    );
+
+}
+
+
+/* TEMPORARY AVAILABILITY */
+
+function checkAvailability() {
+
+    const checkin =
+        document.getElementById("checkin").value;
+
+    const checkout =
+        document.getElementById("checkout").value;
+
+    const guests =
+        document.getElementById("guests").value;
+
+    const message =
+        document.getElementById("bookingMessage");
+
+
+    if (!checkin || !checkout) {
+
+        message.textContent =
+            "Please select your check-in and check-out dates.";
+
         return;
 
     }
 
-    if(new Date(checkout) <= new Date(checkin)){
 
-        message.textContent = "Check-out must be after check-in.";
+    if (
+        new Date(checkout) <=
+        new Date(checkin)
+    ) {
+
+        message.textContent =
+            "Check-out must be after check-in.";
+
         return;
 
     }
+
 
     message.textContent =
         "Great! Your dates are ready. Our online booking system will be connected here next.";
 
 }
 
-/* =========================
-   TRANSLATIONS
-========================= */
+
+/* TRANSLATIONS */
 
 const translations = {
 
-en:{
+    en: {
 
-topbar:"Book directly with us and enjoy a personal hosting experience.",
-navHome:"Home",
-navApartment:"Apartment",
-navGallery:"Gallery",
-navAmenities:"Amenities",
-navLocation:"Location",
-navBook:"Book",
+        topbar:
+            "Book directly with us and enjoy a personal hosting experience.",
 
-heroKicker:"Athens Riviera • Palaio Faliro",
-heroTitle:"Your private apartment by the sea in Athens",
-heroText:"A spacious and comfortable 74 m² apartment in Palaio Faliro, just moments from the sea, beaches and the beautiful Athens Riviera. The perfect base for relaxing by the coast while exploring Athens.",
-heroBook:"BOOK DIRECT",
-heroExplore:"EXPLORE THE APARTMENT",
+        navHome: "Home",
+        navApartment: "Apartment",
+        navGallery: "Gallery",
+        navAmenities: "Amenities",
+        navLocation: "Location",
+        navBook: "Book",
 
-checkinLabel:"Check-in",
-checkoutLabel:"Check-out",
-guestsLabel:"Guests",
-availability:"CHECK AVAILABILITY",
+        heroKicker:
+            "Athens Riviera • Palaio Faliro",
 
-aboutEyebrow:"THE APARTMENT",
-aboutTitle:"Feel at home by the sea",
-aboutText1:"ELPIDA'S EDEM is a private 74 m² apartment designed for comfortable holidays in one of Athens' most attractive coastal neighbourhoods.",
-aboutText2:"With two bedrooms, a comfortable living room, a private kitchen, bathroom and balcony, it is ideal for couples, families and friends who want both the sea and the city within easy reach.",
-aboutButton:"CHECK DATES",
+        heroTitle:
+            "Your private apartment by the sea in Athens",
 
-highlightsEyebrow:"AT A GLANCE",
-highlightsTitle:"Everything you need for a relaxing stay",
-highlightsText:"Comfort, privacy and the Athens Riviera right outside your door.",
+        heroText:
+            "A spacious and comfortable 74 m² apartment in Palaio Faliro, just moments from the sea, beaches and the beautiful Athens Riviera. The perfect base for relaxing by the coast while exploring Athens.",
 
-h1:"By the Sea",
-h1p:"Close to Edem and Flisvos beaches.",
-h2:"Entire Apartment",
-h2p:"Enjoy your own private space.",
-h3:"Relax",
-h3p:"Private jacuzzi / hydromassage available.",
-h4:"Great Location",
-h4p:"Beach life with Athens close by.",
+        heroBook:
+            "BOOK DIRECT",
 
-roomsEyebrow:"YOUR SPACE",
-roomsTitle:"Comfortable rooms for your stay",
-roomsText:"Every part of the apartment is designed to make your stay easy and comfortable.",
+        heroExplore:
+            "EXPLORE THE APARTMENT",
 
-bed1:"Master Bedroom",
-bed1p:"A comfortable bedroom with a very large double bed, designed for a peaceful night's sleep.",
-bed2:"Second Bedroom",
-bed2p:"A welcoming second bedroom with a comfortable double bed.",
-living:"Living Room",
-livingp:"A spacious living area with comfortable seating and a sofa that can also be used as a bed.",
+        checkinLabel:
+            "Check-in",
 
-galleryEyebrow:"DISCOVER ELPIDA'S EDEM",
-galleryTitle:"A place to enjoy",
-galleryText:"Explore the apartment, the balcony, the sea and the Athens Riviera.",
+        checkoutLabel:
+            "Check-out",
 
-amenitiesEyebrow:"AMENITIES",
-amenitiesTitle:"Everything for a comfortable stay",
+        guestsLabel:
+            "Guests",
 
-locationEyebrow:"THE ATHENS RIVIERA",
-locationTitle:"Sea, beaches and Athens in one place",
-locationText:"Located in Palaio Faliro, ELPIDA'S EDEM gives you the chance to enjoy the relaxed atmosphere of the Athens Riviera while remaining close to the centre of Athens.",
+        availability:
+            "CHECK AVAILABILITY",
 
-ctaTitle:"Your Athens Riviera escape starts here",
-ctaText:"Check your dates and book directly with us. We look forward to welcoming you to ELPIDA'S EDEM.",
-ctaButton:"CHECK AVAILABILITY",
+        aboutEyebrow:
+            "THE APARTMENT",
 
-footerText:"Your private apartment by the sea in Palaio Faliro, Athens. A comfortable home for discovering the Athens Riviera and Athens.",
-footerExplore:"Explore",
-footerBook:"Reservations",
-footerCheck:"Check availability",
-footerDirect:"Book direct"
+        aboutTitle:
+            "Feel at home by the sea",
 
-},
+        aboutText1:
+            "ELPIDA'S EDEM is a private 74 m² apartment designed for comfortable holidays in one of Athens' most attractive coastal neighbourhoods.",
 
-el:{
+        aboutText2:
+            "With two bedrooms, a comfortable living room, a private kitchen, bathroom and balcony, it is ideal for couples, families and friends who want both the sea and the city within easy reach.",
 
-topbar:"Κάντε απευθείας κράτηση μαζί μας και απολαύστε προσωπική φιλοξενία.",
-navHome:"Αρχική",
-navApartment:"Το διαμέρισμα",
-navGallery:"Φωτογραφίες",
-navAmenities:"Παροχές",
-navLocation:"Τοποθεσία",
-navBook:"Κράτηση",
+        aboutButton:
+            "CHECK DATES",
 
-heroKicker:"Αθηναϊκή Ριβιέρα • Παλαιό Φάληρο",
-heroTitle:"Το δικό σας διαμέρισμα δίπλα στη θάλασσα στην Αθήνα",
-heroText:"Ένα άνετο και ευρύχωρο διαμέρισμα 74 m² στο Παλαιό Φάληρο, λίγα μόλις λεπτά από τη θάλασσα, τις παραλίες και την όμορφη Αθηναϊκή Ριβιέρα.",
-heroBook:"ΑΠΕΥΘΕΙΑΣ ΚΡΑΤΗΣΗ",
-heroExplore:"ΕΞΕΡΕΥΝΗΣΤΕ ΤΟ ΔΙΑΜΕΡΙΣΜΑ",
+        highlightsEyebrow:
+            "AT A GLANCE",
 
-checkinLabel:"Άφιξη",
-checkoutLabel:"Αναχώρηση",
-guestsLabel:"Επισκέπτες",
-availability:"ΕΛΕΓΧΟΣ ΔΙΑΘΕΣΙΜΟΤΗΤΑΣ",
+        highlightsTitle:
+            "Everything you need for a relaxing stay",
 
-aboutEyebrow:"ΤΟ ΔΙΑΜΕΡΙΣΜΑ",
-aboutTitle:"Νιώστε σαν στο σπίτι σας δίπλα στη θάλασσα",
-aboutText1:"Το ELPIDA'S EDEM είναι ένα ιδιωτικό διαμέρισμα 74 m² σχεδιασμένο για άνετες διακοπές σε μία από τις πιο όμορφες παραθαλάσσιες περιοχές της Αθήνας.",
-aboutText2:"Με δύο υπνοδωμάτια, άνετο σαλόνι, ιδιωτική κουζίνα, μπάνιο και μπαλκόνι, είναι ιδανικό για ζευγάρια, οικογένειες και φίλους.",
-aboutButton:"ΕΛΕΓΧΟΣ ΗΜΕΡΟΜΗΝΙΩΝ",
+        highlightsText:
+            "Comfort, privacy and the Athens Riviera right outside your door.",
 
-highlightsEyebrow:"ΜΕ ΜΙΑ ΜΑΤΙΑ",
-highlightsTitle:"Όλα όσα χρειάζεστε για μια όμορφη διαμονή",
-highlightsText:"Άνεση, ιδιωτικότητα και η Αθηναϊκή Ριβιέρα ακριβώς έξω από την πόρτα σας.",
+        h1:
+            "By the Sea",
 
-h1:"Δίπλα στη θάλασσα",
-h1p:"Κοντά στις παραλίες Έδεμ και Φλοίσβος.",
-h2:"Ολόκληρο διαμέρισμα",
-h2p:"Απολαύστε τον δικό σας ιδιωτικό χώρο.",
-h3:"Χαλάρωση",
-h3p:"Ιδιωτικό jacuzzi / υδρομασάζ.",
-h4:"Εξαιρετική τοποθεσία",
-h4p:"Παραλία και Αθήνα σε απόσταση.",
+        h1p:
+            "Close to Edem and Flisvos beaches.",
 
-roomsEyebrow:"Ο ΧΩΡΟΣ ΣΑΣ",
-roomsTitle:"Άνετοι χώροι για τη διαμονή σας",
-roomsText:"Κάθε χώρος του διαμερίσματος έχει σχεδιαστεί για άνεση και ξεκούραση.",
+        h2:
+            "Entire Apartment",
 
-bed1:"Κύριο υπνοδωμάτιο",
-bed1p:"Άνετο υπνοδωμάτιο με πολύ μεγάλο διπλό κρεβάτι για έναν ξεκούραστο ύπνο.",
-bed2:"Δεύτερο υπνοδωμάτιο",
-bed2p:"Φιλόξενο δεύτερο υπνοδωμάτιο με άνετο διπλό κρεβάτι.",
-living:"Σαλόνι",
-livingp:"Ευρύχωρο σαλόνι με άνετο καθιστικό και καναπέ που μπορεί να χρησιμοποιηθεί και ως κρεβάτι.",
+        h2p:
+            "Enjoy your own private space.",
 
-galleryEyebrow:"ΑΝΑΚΑΛΥΨΤΕ ΤΟ ELPIDA'S EDEM",
-galleryTitle:"Ένας χώρος για να απολαύσετε",
-galleryText:"Γνωρίστε το διαμέρισμα, το μπαλκόνι, τη θάλασσα και την Αθηναϊκή Ριβιέρα.",
+        h3:
+            "Relax",
 
-amenitiesEyebrow:"ΠΑΡΟΧΕΣ",
-amenitiesTitle:"Όλα όσα χρειάζεστε για μια άνετη διαμονή",
+        h3p:
+            "Private jacuzzi / hydromassage available.",
 
-locationEyebrow:"Η ΑΘΗΝΑΪΚΗ ΡΙΒΙΕΡΑ",
-locationTitle:"Θάλασσα, παραλίες και Αθήνα σε ένα σημείο",
-locationText:"Στο Παλαιό Φάληρο, το ELPIDA'S EDEM σας επιτρέπει να απολαύσετε την ήρεμη ατμόσφαιρα της Αθηναϊκής Ριβιέρας και ταυτόχρονα να βρίσκεστε κοντά στο κέντρο της Αθήνας.",
+        h4:
+            "Great Location",
 
-ctaTitle:"Η απόδρασή σας στην Αθηναϊκή Ριβιέρα ξεκινά εδώ",
-ctaText:"Ελέγξτε τις ημερομηνίες σας και κάντε απευθείας κράτηση μαζί μας.",
-ctaButton:"ΕΛΕΓΧΟΣ ΔΙΑΘΕΣΙΜΟΤΗΤΑΣ",
+        h4p:
+            "Beach life with Athens close by.",
 
-footerText:"Το ιδιωτικό σας διαμέρισμα δίπλα στη θάλασσα στο Παλαιό Φάληρο.",
-footerExplore:"Εξερεύνηση",
-footerBook:"Κρατήσεις",
-footerCheck:"Έλεγχος διαθεσιμότητας",
-footerDirect:"Απευθείας κράτηση"
+        roomsEyebrow:
+            "YOUR SPACE",
 
-},
+        roomsTitle:
+            "Comfortable rooms for your stay",
 
-de:{
-topbar:"Buchen Sie direkt bei uns und genießen Sie persönliche Gastfreundschaft.",
-navHome:"Startseite",
-navApartment:"Apartment",
-navGallery:"Galerie",
-navAmenities:"Ausstattung",
-navLocation:"Lage",
-navBook:"Buchen",
-heroKicker:"Athener Riviera • Palaio Faliro",
-heroTitle:"Ihr privates Apartment am Meer in Athen",
-heroText:"Ein großzügiges und komfortables 74 m² Apartment in Palaio Faliro, nur wenige Minuten vom Meer und den Stränden entfernt.",
-heroBook:"DIREKT BUCHEN",
-heroExplore:"APARTMENT ENTDECKEN",
-checkinLabel:"Anreise",
-checkoutLabel:"Abreise",
-guestsLabel:"Gäste",
-availability:"VERFÜGBARKEIT PRÜFEN",
-aboutEyebrow:"DAS APARTMENT",
-aboutTitle:"Fühlen Sie sich am Meer wie zu Hause",
-aboutText1:"ELPIDA'S EDEM ist ein privates 74 m² Apartment für einen komfortablen Aufenthalt an der Athener Riviera.",
-aboutText2:"Mit zwei Schlafzimmern, Wohnzimmer, Küche, Bad und Balkon ist es ideal für Paare, Familien und Freunde.",
-aboutButton:"TERMINE PRÜFEN",
-highlightsEyebrow:"AUF EINEN BLICK",
-highlightsTitle:"Alles für einen entspannten Aufenthalt",
-highlightsText:"Komfort, Privatsphäre und die Athener Riviera direkt vor Ihrer Tür.",
-h1:"Am Meer",
-h1p:"In der Nähe von Edem und Flisvos.",
-h2:"Ganzes Apartment",
-h2p:"Ihr eigener privater Raum.",
-h3:"Entspannung",
-h3p:"Privater Whirlpool / Hydromassage.",
-h4:"Tolle Lage",
-h4p:"Strand und Athen in Reichweite.",
-roomsEyebrow:"IHR RAUM",
-roomsTitle:"Komfortable Räume für Ihren Aufenthalt",
-roomsText:"Das Apartment wurde für einen komfortablen Aufenthalt gestaltet.",
-bed1:"Hauptschlafzimmer",
-bed1p:"Komfortables Schlafzimmer mit sehr großem Doppelbett.",
-bed2:"Zweites Schlafzimmer",
-bed2p:"Einladendes zweites Schlafzimmer mit Doppelbett.",
-living:"Wohnzimmer",
-livingp:"Geräumiges Wohnzimmer mit bequemer Sitzecke und Schlafsofa.",
-galleryEyebrow:"ELPIDA'S EDEM ENTDECKEN",
-galleryTitle:"Ein Ort zum Genießen",
-galleryText:"Entdecken Sie Apartment, Balkon, Meer und Athener Riviera.",
-amenitiesEyebrow:"AUSSTATTUNG",
-amenitiesTitle:"Alles für einen komfortablen Aufenthalt",
-locationEyebrow:"DIE ATHENER RIVIERA",
-locationTitle:"Meer, Strände und Athen an einem Ort",
-locationText:"In Palaio Faliro genießen Sie die entspannte Atmosphäre der Athener Riviera und bleiben gleichzeitig in der Nähe des Zentrums.",
-ctaTitle:"Ihre Auszeit an der Athener Riviera beginnt hier",
-ctaText:"Prüfen Sie Ihre Termine und buchen Sie direkt bei uns.",
-ctaButton:"VERFÜGBARKEIT PRÜFEN",
-footerText:"Ihr privates Apartment am Meer in Palaio Faliro, Athen.",
-footerExplore:"Entdecken",
-footerBook:"Reservierungen",
-footerCheck:"Verfügbarkeit prüfen",
-footerDirect:"Direkt buchen"
-},
+        roomsText:
+            "Every part of the apartment is designed to make your stay easy and comfortable.",
 
-fr:{
-topbar:"Réservez directement avec nous et profitez d'un accueil personnalisé.",
-navHome:"Accueil",
-navApartment:"Appartement",
-navGallery:"Galerie",
-navAmenities:"Équipements",
-navLocation:"Emplacement",
-navBook:"Réserver",
-heroKicker:"Riviera d'Athènes • Palaio Faliro",
-heroTitle:"Votre appartement privé au bord de la mer à Athènes",
-heroText:"Un appartement confortable de 74 m² à Palaio Faliro, à quelques minutes de la mer et des plages.",
-heroBook:"RÉSERVER DIRECTEMENT",
-heroExplore:"DÉCOUVRIR L'APPARTEMENT",
-checkinLabel:"Arrivée",
-checkoutLabel:"Départ",
-guestsLabel:"Voyageurs",
-availability:"VÉRIFIER LA DISPONIBILITÉ",
-aboutEyebrow:"L'APPARTEMENT",
-aboutTitle:"Comme chez vous au bord de la mer",
-aboutText1:"ELPIDA'S EDEM est un appartement privé de 74 m² conçu pour des vacances confortables sur la Riviera d'Athènes.",
-aboutText2:"Avec deux chambres, un salon, une cuisine, une salle de bain et un balcon, il convient parfaitement aux couples et aux familles.",
-aboutButton:"VÉRIFIER LES DATES",
-highlightsEyebrow:"EN UN COUP D'ŒIL",
-highlightsTitle:"Tout pour un séjour relaxant",
-highlightsText:"Confort, intimité et Riviera d'Athènes à votre porte.",
-h1:"Près de la mer",
-h1p:"À proximité des plages d'Edem et Flisvos.",
-h2:"Appartement entier",
-h2p:"Profitez de votre espace privé.",
-h3:"Détente",
-h3p:"Jacuzzi / hydromassage privé.",
-h4:"Excellent emplacement",
-h4p:"La plage et Athènes à proximité.",
-roomsEyebrow:"VOTRE ESPACE",
-roomsTitle:"Des chambres confortables",
-roomsText:"Chaque espace est conçu pour rendre votre séjour agréable.",
-bed1:"Chambre principale",
-bed1p:"Chambre confortable avec un très grand lit double.",
-bed2:"Deuxième chambre",
-bed2p:"Deuxième chambre accueillante avec lit double.",
-living:"Salon",
-livingp:"Salon spacieux avec canapé pouvant servir de lit.",
-galleryEyebrow:"DÉCOUVREZ ELPIDA'S EDEM",
-galleryTitle:"Un lieu à apprécier",
-galleryText:"Découvrez l'appartement, le balcon, la mer et la Riviera d'Athènes.",
-amenitiesEyebrow:"ÉQUIPEMENTS",
-amenitiesTitle:"Tout pour un séjour confortable",
-locationEyebrow:"LA RIVIERA D'ATHÈNES",
-locationTitle:"Mer, plages et Athènes",
-locationText:"À Palaio Faliro, profitez de l'atmosphère de la Riviera d'Athènes tout en restant proche du centre.",
-ctaTitle:"Votre escapade commence ici",
-ctaText:"Vérifiez vos dates et réservez directement avec nous.",
-ctaButton:"VÉRIFIER LA DISPONIBILITÉ",
-footerText:"Votre appartement privé au bord de la mer à Palaio Faliro, Athènes.",
-footerExplore:"Découvrir",
-footerBook:"Réservations",
-footerCheck:"Vérifier la disponibilité",
-footerDirect:"Réserver directement"
-},
+        bed1:
+            "Master Bedroom",
 
-it:{
-topbar:"Prenota direttamente con noi e vivi un'esperienza di ospitalità personale.",
-navHome:"Home",
-navApartment:"Appartamento",
-navGallery:"Galleria",
-navAmenities:"Servizi",
-navLocation:"Posizione",
-navBook:"Prenota",
-heroKicker:"Riviera di Atene • Palaio Faliro",
-heroTitle:"Il tuo appartamento privato sul mare ad Atene",
-heroText:"Un confortevole appartamento di 74 m² a Palaio Faliro, a pochi minuti dal mare e dalle spiagge.",
-heroBook:"PRENOTA DIRETTAMENTE",
-heroExplore:"SCOPRI L'APPARTAMENTO",
-checkinLabel:"Check-in",
-checkoutLabel:"Check-out",
-guestsLabel:"Ospiti",
-availability:"VERIFICA DISPONIBILITÀ",
-aboutEyebrow:"L'APPARTAMENTO",
-aboutTitle:"Sentiti a casa vicino al mare",
-aboutText1:"ELPIDA'S EDEM è un appartamento privato di 74 m² pensato per una vacanza confortevole sulla Riviera di Atene.",
-aboutText2:"Con due camere, soggiorno, cucina, bagno e balcone, è ideale per coppie, famiglie e amici.",
-aboutButton:"CONTROLLA LE DATE",
-highlightsEyebrow:"IN BREVE",
-highlightsTitle:"Tutto ciò che serve per un soggiorno rilassante",
-highlightsText:"Comfort, privacy e Riviera di Atene fuori dalla porta.",
-h1:"Vicino al mare",
-h1p:"Vicino alle spiagge di Edem e Flisvos.",
-h2:"Appartamento intero",
-h2p:"Goditi il tuo spazio privato.",
-h3:"Relax",
-h3p:"Jacuzzi / idromassaggio privato.",
-h4:"Ottima posizione",
-h4p:"Mare e Atene a portata di mano.",
-roomsEyebrow:"IL TUO SPAZIO",
-roomsTitle:"Camere confortevoli",
-roomsText:"Ogni spazio è pensato per il tuo comfort.",
-bed1:"Camera principale",
-bed1p:"Camera confortevole con letto matrimoniale molto grande.",
-bed2:"Seconda camera",
-bed2p:"Seconda camera accogliente con letto matrimoniale.",
-living:"Soggiorno",
-livingp:"Ampio soggiorno con divano utilizzabile anche come letto.",
-galleryEyebrow:"SCOPRI ELPIDA'S EDEM",
-galleryTitle:"Un luogo da vivere",
-galleryText:"Scopri appartamento, balcone, mare e Riviera di Atene.",
-amenitiesEyebrow:"SERVIZI",
-amenitiesTitle:"Tutto per un soggiorno confortevole",
-locationEyebrow:"LA RIVIERA DI ATENE",
-locationTitle:"Mare, spiagge e Atene",
-locationText:"A Palaio Faliro puoi goderti la Riviera di Atene rimanendo vicino al centro.",
-ctaTitle:"La tua fuga sulla Riviera di Atene inizia qui",
-ctaText:"Controlla le date e prenota direttamente con noi.",
-ctaButton:"VERIFICA DISPONIBILITÀ",
-footerText:"Il tuo appartamento privato sul mare a Palaio Faliro, Atene.",
-footerExplore:"Scopri",
-footerBook:"Prenotazioni",
-footerCheck:"Verifica disponibilità",
-footerDirect:"Prenota direttamente"
-},
+        bed1p:
+            "A comfortable bedroom with a very large double bed, designed for a peaceful night's sleep.",
 
-es:{
-topbar:"Reserva directamente con nosotros y disfruta de una atención personalizada.",
-navHome:"Inicio",
-navApartment:"Apartamento",
-navGallery:"Galería",
-navAmenities:"Servicios",
-navLocation:"Ubicación",
-navBook:"Reservar",
-heroKicker:"Riviera de Atenas • Palaio Faliro",
-heroTitle:"Tu apartamento privado junto al mar en Atenas",
-heroText:"Un cómodo apartamento de 74 m² en Palaio Faliro, a pocos minutos del mar y de las playas.",
-heroBook:"RESERVAR DIRECTAMENTE",
-heroExplore:"DESCUBRIR EL APARTAMENTO",
-checkinLabel:"Entrada",
-checkoutLabel:"Salida",
-guestsLabel:"Huéspedes",
-availability:"COMPROBAR DISPONIBILIDAD",
-aboutEyebrow:"EL APARTAMENTO",
-aboutTitle:"Siéntete como en casa junto al mar",
-aboutText1:"ELPIDA'S EDEM es un apartamento privado de 74 m² diseñado para unas vacaciones cómodas en la Riviera de Atenas.",
-aboutText2:"Con dos dormitorios, salón, cocina, baño y balcón, es ideal para parejas, familias y amigos.",
-aboutButton:"COMPROBAR FECHAS",
-highlightsEyebrow:"EN RESUMEN",
-highlightsTitle:"Todo para una estancia relajante",
-highlightsText:"Comodidad, privacidad y la Riviera de Atenas a tu puerta.",
-h1:"Junto al mar",
-h1p:"Cerca de las playas de Edem y Flisvos.",
-h2:"Apartamento completo",
-h2p:"Disfruta de tu propio espacio privado.",
-h3:"Relájate",
-h3p:"Jacuzzi / hidromasaje privado.",
-h4:"Excelente ubicación",
-h4p:"Playa y Atenas al alcance.",
-roomsEyebrow:"TU ESPACIO",
-roomsTitle:"Habitaciones cómodas",
-roomsText:"Cada espacio está diseñado para tu comodidad.",
-bed1:"Dormitorio principal",
-bed1p:"Cómodo dormitorio con una cama doble muy grande.",
-bed2:"Segundo dormitorio",
-bed2p:"Acogedor segundo dormitorio con cama doble.",
-living:"Salón",
-livingp:"Amplio salón con sofá que también puede utilizarse como cama.",
-galleryEyebrow:"DESCUBRE ELPIDA'S EDEM",
-galleryTitle:"Un lugar para disfrutar",
-galleryText:"Descubre el apartamento, el balcón, el mar y la Riviera de Atenas.",
-amenitiesEyebrow:"SERVICIOS",
-amenitiesTitle:"Todo para una estancia cómoda",
-locationEyebrow:"LA RIVIERA DE ATENAS",
-locationTitle:"Mar, playas y Atenas",
-locationText:"En Palaio Faliro puedes disfrutar de la Riviera de Atenas y permanecer cerca del centro.",
-ctaTitle:"Tu escapada a la Riviera de Atenas comienza aquí",
-ctaText:"Comprueba tus fechas y reserva directamente con nosotros.",
-ctaButton:"COMPROBAR DISPONIBILIDAD",
-footerText:"Tu apartamento privado junto al mar en Palaio Faliro, Atenas.",
-footerExplore:"Descubrir",
-footerBook:"Reservas",
-footerCheck:"Comprobar disponibilidad",
-footerDirect:"Reservar directamente"
-},
+        bed2:
+            "Second Bedroom",
 
-ru:{
-topbar:"Бронируйте напрямую у нас и наслаждайтесь персональным гостеприимством.",
-navHome:"Главная",
-navApartment:"Апартаменты",
-navGallery:"Галерея",
-navAmenities:"Удобства",
-navLocation:"Расположение",
-navBook:"Забронировать",
-heroKicker:"Афинская Ривьера • Палео Фалиро",
-heroTitle:"Ваши частные апартаменты у моря в Афинах",
-heroText:"Комфортные апартаменты площадью 74 м² в Палео Фалиро, всего в нескольких минутах от моря и пляжей.",
-heroBook:"ЗАБРОНИРОВАТЬ НАПРЯМУЮ",
-heroExplore:"ПОСМОТРЕТЬ АПАРТАМЕНТЫ",
-checkinLabel:"Заезд",
-checkoutLabel:"Выезд",
-guestsLabel:"Гости",
-availability:"ПРОВЕРИТЬ ДОСТУПНОСТЬ",
-aboutEyebrow:"АПАРТАМЕНТЫ",
-aboutTitle:"Почувствуйте себя как дома у моря",
-aboutText1:"ELPIDA'S EDEM — частные апартаменты площадью 74 м² для комфортного отдыха на Афинской Ривьере.",
-aboutText2:"Две спальни, гостиная, кухня, ванная комната и балкон делают апартаменты идеальными для пар, семей и друзей.",
-aboutButton:"ПРОВЕРИТЬ ДАТЫ",
-highlightsEyebrow:"ВКРАТЦЕ",
-highlightsTitle:"Всё необходимое для отдыха",
-highlightsText:"Комфорт, приватность и Афинская Ривьера прямо у вашей двери.",
-h1:"У моря",
-h1p:"Рядом с пляжами Эдем и Флисвос.",
-h2:"Целые апартаменты",
-h2p:"Ваше собственное личное пространство.",
-h3:"Отдых",
-h3p:"Частное джакузи / гидромассаж.",
-h4:"Отличное расположение",
-h4p:"Пляж и Афины рядом.",
-roomsEyebrow:"ВАШЕ ПРОСТРАНСТВО",
-roomsTitle:"Комфортные комнаты",
-roomsText:"Каждая часть апартаментов создана для удобства.",
-bed1:"Главная спальня",
-bed1p:"Уютная спальня с очень большой двуспальной кроватью.",
-bed2:"Вторая спальня",
-bed2p:"Уютная вторая спальня с двуспальной кроватью.",
-living:"Гостиная",
-livingp:"Просторная гостиная с диваном, который можно использовать как кровать.",
-galleryEyebrow:"ОТКРОЙТЕ ELPIDA'S EDEM",
-galleryTitle:"Место для отдыха",
-galleryText:"Апартаменты, балкон, море и Афинская Ривьера.",
-amenitiesEyebrow:"УДОБСТВА",
-amenitiesTitle:"Всё для комфортного проживания",
-locationEyebrow:"АФИНСКАЯ РИВЬЕРА",
-locationTitle:"Море, пляжи и Афины",
-locationText:"В Палео Фалиро вы наслаждаетесь спокойствием Афинской Ривьеры и остаётесь рядом с центром.",
-ctaTitle:"Ваш отдых на Афинской Ривьере начинается здесь",
-ctaText:"Проверьте даты и забронируйте напрямую.",
-ctaButton:"ПРОВЕРИТЬ ДОСТУПНОСТЬ",
-footerText:"Ваши частные апартаменты у моря в Палео Фалиро, Афины.",
-footerExplore:"Открыть",
-footerBook:"Бронирование",
-footerCheck:"Проверить доступность",
-footerDirect:"Забронировать напрямую"
-},
+        bed2p:
+            "A welcoming second bedroom with a comfortable double bed.",
 
-pl:{
-topbar:"Zarezerwuj bezpośrednio u nas i ciesz się wyjątkową gościnnością.",
-navHome:"Start",
-navApartment:"Apartament",
-navGallery:"Galeria",
-navAmenities:"Udogodnienia",
-navLocation:"Lokalizacja",
-navBook:"Rezerwacja",
-heroKicker:"Riwiera Ateńska • Palaio Faliro",
-heroTitle:"Twój prywatny apartament nad morzem w Atenach",
-heroText:"Komfortowy apartament o powierzchni 74 m² w Palaio Faliro, kilka minut od morza i plaż.",
-heroBook:"ZAREZERWUJ BEZPOŚREDNIO",
-heroExplore:"POZNAJ APARTAMENT",
-checkinLabel:"Zameldowanie",
-checkoutLabel:"Wymeldowanie",
-guestsLabel:"Goście",
-availability:"SPRAWDŹ DOSTĘPNOŚĆ",
-aboutEyebrow:"APARTAMENT",
-aboutTitle:"Poczuj się jak w domu nad morzem",
-aboutText1:"ELPIDA'S EDEM to prywatny apartament o powierzchni 74 m² stworzony z myślą o komfortowym wypoczynku na Riwierze Ateńskiej.",
-aboutText2:"Dwie sypialnie, salon, kuchnia, łazienka i balkon sprawiają, że apartament jest idealny dla par, rodzin i przyjaciół.",
-aboutButton:"SPRAWDŹ DATY",
-highlightsEyebrow:"W SKRÓCIE",
-highlightsTitle:"Wszystko na relaksujący pobyt",
-highlightsText:"Komfort, prywatność i Riwiera Ateńska tuż za drzwiami.",
-h1:"Nad morzem",
-h1p:"Blisko plaż Edem i Flisvos.",
-h2:"Cały apartament",
-h2p:"Ciesz się własną prywatną przestrzenią.",
-h3:"Relaks",
-h3p:"Prywatne jacuzzi / hydromasaż.",
-h4:"Świetna lokalizacja",
-h4p:"Plaża i Ateny w zasięgu ręki.",
-roomsEyebrow:"TWOJA PRZESTRZEŃ",
-roomsTitle:"Komfortowe pokoje",
-roomsText:"Każda część apartamentu została zaprojektowana z myślą o wygodzie.",
-bed1:"Główna sypialnia",
-bed1p:"Komfortowa sypialnia z bardzo dużym łóżkiem podwójnym.",
-bed2:"Druga sypialnia",
-bed2p:"Przytulna druga sypialnia z łóżkiem podwójnym.",
-living:"Salon",
-livingp:"Przestronny salon z sofą, która może służyć jako łóżko.",
-galleryEyebrow:"ODKRYJ ELPIDA'S EDEM",
-galleryTitle:"Miejsce, które warto poznać",
-galleryText:"Apartament, balkon, morze i Riwiera Ateńska.",
-amenitiesEyebrow:"UDOGODNIENIA",
-amenitiesTitle:"Wszystko dla komfortowego pobytu",
-locationEyebrow:"RIWIERA ATEŃSKA",
-locationTitle:"Morze, plaże i Ateny",
-locationText:"W Palaio Faliro możesz cieszyć się Riwierą Ateńską i jednocześnie być blisko centrum Aten.",
-ctaTitle:"Twój wypoczynek na Riwierze Ateńskiej zaczyna się tutaj",
-ctaText:"Sprawdź terminy i zarezerwuj bezpośrednio.",
-ctaButton:"SPRAWDŹ DOSTĘPNOŚĆ",
-footerText:"Twój prywatny apartament nad morzem w Palaio Faliro w Atenach.",
-footerExplore:"Odkryj",
-footerBook:"Rezerwacje",
-footerCheck:"Sprawdź dostępność",
-footerDirect:"Zarezerwuj bezpośrednio"
-}
+        living:
+            "Living Room",
+
+        livingp:
+            "A spacious living area with comfortable seating and a sofa that can also be used as a bed.",
+
+        galleryEyebrow:
+            "DISCOVER ELPIDA'S EDEM",
+
+        galleryTitle:
+            "A place to enjoy",
+
+        galleryText:
+            "Explore the apartment, the balcony, the sea and the Athens Riviera.",
+
+        amenitiesEyebrow:
+            "AMENITIES",
+
+        amenitiesTitle:
+            "Everything for a comfortable stay",
+
+        locationEyebrow:
+            "THE ATHENS RIVIERA",
+
+        locationTitle:
+            "Sea, beaches and Athens in one place",
+
+        locationText:
+            "Located in Palaio Faliro, ELPIDA'S EDEM gives you the chance to enjoy the relaxed atmosphere of the Athens Riviera while remaining close to the centre of Athens.",
+
+        ctaTitle:
+            "Your Athens Riviera escape starts here",
+
+        ctaText:
+            "Check your dates and book directly with us. We look forward to welcoming you to ELPIDA'S EDEM.",
+
+        ctaButton:
+            "CHECK AVAILABILITY",
+
+        footerText:
+            "Your private apartment by the sea in Palaio Faliro, Athens. A comfortable home for discovering the Athens Riviera and Athens.",
+
+        footerExplore:
+            "Explore",
+
+        footerBook:
+            "Reservations",
+
+        footerCheck:
+            "Check availability",
+
+        footerDirect:
+            "Book direct"
+
+    },
+
+
+    el: {
+
+        topbar:
+            "Κάντε απευθείας κράτηση μαζί μας και απολαύστε προσωπική φιλοξενία.",
+
+        navHome:
+            "Αρχική",
+
+        navApartment:
+            "Το διαμέρισμα",
+
+        navGallery:
+            "Φωτογραφίες",
+
+        navAmenities:
+            "Παροχές",
+
+        navLocation:
+            "Τοποθεσία",
+
+        navBook:
+            "Κράτηση",
+
+        heroKicker:
+            "Αθηναϊκή Ριβιέρα • Παλαιό Φάληρο",
+
+        heroTitle:
+            "Το δικό σας διαμέρισμα δίπλα στη θάλασσα στην Αθήνα",
+
+        heroText:
+            "Ένα άνετο και ευρύχωρο διαμέρισμα 74 m² στο Παλαιό Φάληρο, λίγα μόλις λεπτά από τη θάλασσα, τις παραλίες και την όμορφη Αθηναϊκή Ριβιέρα.",
+
+        heroBook:
+            "ΑΠΕΥΘΕΙΑΣ ΚΡΑΤΗΣΗ",
+
+        heroExplore:
+            "ΕΞΕΡΕΥΝΗΣΤΕ ΤΟ ΔΙΑΜΕΡΙΣΜΑ",
+
+        checkinLabel:
+            "Άφιξη",
+
+        checkoutLabel:
+            "Αναχώρηση",
+
+        guestsLabel:
+            "Επισκέπτες",
+
+        availability:
+            "ΕΛΕΓΧΟΣ ΔΙΑΘΕΣΙΜΟΤΗΤΑΣ",
+
+        aboutEyebrow:
+            "ΤΟ ΔΙΑΜΕΡΙΣΜΑ",
+
+        aboutTitle:
+            "Νιώστε σαν στο σπίτι σας δίπλα στη θάλασσα",
+
+        aboutText1:
+            "Το ELPIDA'S EDEM είναι ένα ιδιωτικό διαμέρισμα 74 m² σχεδιασμένο για άνετες διακοπές σε μία από τις πιο όμορφες παραθαλάσσιες περιοχές της Αθήνας.",
+
+        aboutText2:
+            "Με δύο υπνοδωμάτια, άνετο σαλόνι, ιδιωτική κουζίνα, μπάνιο και μπαλκόνι, είναι ιδανικό για ζευγάρια, οικογένειες και φίλους.",
+
+        aboutButton:
+            "ΕΛΕΓΧΟΣ ΗΜΕΡΟΜΗΝΙΩΝ",
+
+        highlightsEyebrow:
+            "ΜΕ ΜΙΑ ΜΑΤΙΑ",
+
+        highlightsTitle:
+            "Όλα όσα χρειάζεστε για μια όμορφη διαμονή",
+
+        highlightsText:
+            "Άνεση, ιδιωτικότητα και η Αθηναϊκή Ριβιέρα ακριβώς έξω από την πόρτα σας.",
+
+        h1:
+            "Δίπλα στη θάλασσα",
+
+        h1p:
+            "Κοντά στις παραλίες Έδεμ και Φλοίσβος.",
+
+        h2:
+            "Ολόκληρο διαμέρισμα",
+
+        h2p:
+            "Απολαύστε τον δικό σας ιδιωτικό χώρο.",
+
+        h3:
+            "Χαλάρωση",
+
+        h3p:
+            "Ιδιωτικό jacuzzi / υδρομασάζ.",
+
+        h4:
+            "Εξαιρετική τοποθεσία",
+
+        h4p:
+            "Παραλία και Αθήνα σε απόσταση.",
+
+        roomsEyebrow:
+            "Ο ΧΩΡΟΣ ΣΑΣ",
+
+        roomsTitle:
+            "Άνετοι χώροι για τη διαμονή σας",
+
+        roomsText:
+            "Κάθε χώρος του διαμερίσματος έχει σχεδιαστεί για άνεση και ξεκούραση.",
+
+        bed1:
+            "Κύριο υπνοδωμάτιο",
+
+        bed1p:
+            "Άνετο υπνοδωμάτιο με πολύ μεγάλο διπλό κρεβάτι για έναν ξεκούραστο ύπνο.",
+
+        bed2:
+            "Δεύτερο υπνοδωμάτιο",
+
+        bed2p:
+            "Φιλόξενο δεύτερο υπνοδωμάτιο με άνετο διπλό κρεβάτι.",
+
+        living:
+            "Σαλόνι",
+
+        livingp:
+            "Ευρύχωρο σαλόνι με άνετο καθιστικό και καναπέ που μπορεί να χρησιμοποιηθεί και ως κρεβάτι.",
+
+        galleryEyebrow:
+            "ΑΝΑΚΑΛΥΨΤΕ ΤΟ ELPIDA'S EDEM",
+
+        galleryTitle:
+            "Ένας χώρος για να απολαύσετε",
+
+        galleryText:
+            "Γνωρίστε το διαμέρισμα, το μπαλκόνι, τη θάλασσα και την Αθηναϊκή Ριβιέρα.",
+
+        amenitiesEyebrow:
+            "ΠΑΡΟΧΕΣ",
+
+        amenitiesTitle:
+            "Όλα όσα χρειάζεστε για μια άνετη διαμονή",
+
+        locationEyebrow:
+            "Η ΑΘΗΝΑΪΚΗ ΡΙΒΙΕΡΑ",
+
+        locationTitle:
+            "Θάλασσα, παραλίες και Αθήνα σε ένα σημείο",
+
+        locationText:
+            "Στο Παλαιό Φάληρο, το ELPIDA'S EDEM σας επιτρέπει να απολαύσετε την ήρεμη ατμόσφαιρα της Αθηναϊκής Ριβιέρας και ταυτόχρονα να βρίσκεστε κοντά στο κέντρο της Αθήνας.",
+
+        ctaTitle:
+            "Η απόδρασή σας στην Αθηναϊκή Ριβιέρα ξεκινά εδώ",
+
+        ctaText:
+            "Ελέγξτε τις ημερομηνίες σας και κάντε απευθείας κράτηση μαζί μας.",
+
+        ctaButton:
+            "ΕΛΕΓΧΟΣ ΔΙΑΘΕΣΙΜΟΤΗΤΑΣ",
+
+        footerText:
+            "Το ιδιωτικό σας διαμέρισμα δίπλα στη θάλασσα στο Παλαιό Φάληρο.",
+
+        footerExplore:
+            "Εξερεύνηση",
+
+        footerBook:
+            "Κρατήσεις",
+
+        footerCheck:
+            "Έλεγχος διαθεσιμότητας",
+
+        footerDirect:
+            "Απευθείας κράτηση"
+
+    }
 
 };
 
-/* =========================
-   LANGUAGE FUNCTION
-========================= */
 
-function changeLanguage(lang){
+/* LANGUAGE FUNCTION */
 
-    const data = translations[lang];
+function changeLanguage(lang) {
 
-    if(!data) return;
+    const data =
+        translations[lang];
 
-    document.documentElement.lang = lang;
+    if (!data) {
+        return;
+    }
 
-    document.querySelectorAll("[data-lang]").forEach(element=>{
 
-        const key = element.getAttribute("data-lang");
+    document.documentElement.lang =
+        lang;
 
-        if(data[key]){
-            element.textContent = data[key];
-        }
 
-    });
+    document
+        .querySelectorAll("[data-lang]")
+        .forEach(function (element) {
 
-    localStorage.setItem("elpidasEdemLanguage",lang);
+            const key =
+                element.getAttribute("data-lang");
+
+            if (data[key]) {
+
+                element.textContent =
+                    data[key];
+
+            }
+
+        });
+
+
+    localStorage.setItem(
+        "elpidasEdemLanguage",
+        lang
+    );
 
 }
 
-/* =========================
-   LOAD SAVED LANGUAGE
-========================= */
+
+/* LOAD SAVED LANGUAGE */
 
 const savedLanguage =
-    localStorage.getItem("elpidasEdemLanguage") || "en";
+    localStorage.getItem(
+        "elpidasEdemLanguage"
+    ) || "en";
 
-document.querySelector(".language").value = savedLanguage;
 
-changeLanguage(savedLanguage);
+const languageSelector =
+    document.querySelector(".language");
 
-/* =========================
-   YEAR
-========================= */
 
-document.getElementById("year").textContent =
-    new Date().getFullYear();
+if (languageSelector) {
+
+    languageSelector.value =
+        savedLanguage;
+
+}
+
+
+changeLanguage(
+    savedLanguage
+);
+
+
+/* YEAR */
+
+const year =
+    document.getElementById("year");
+
+
+if (year) {
+
+    year.textContent =
+        new Date().getFullYear();
+
+}
 
 </script>
 
+
+<!-- SHARED JAVASCRIPT -->
+<script src="js/main.js"></script>
+
 </body>
+
 </html>
