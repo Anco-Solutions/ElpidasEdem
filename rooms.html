@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Apartment | ELPIDA'S EDEM</title>
+
+    <meta
+        name="description"
+        content="Discover Elpida's Edem, a spacious 74 m² private apartment by the sea in Palaio Faliro, Athens Riviera."
+    >
+
+    <style>
+        :root {
+            --navy: #102a43;
+            --blue: #176b87;
+            --sea: #2b8ca3;
+            --gold: #c69b5d;
+            --sand: #f4eee5;
+            --cream: #fbf9f5;
+            --dark: #17202a;
+            --muted: #667085;
+            --white: #ffffff;
+            --border: #e1e6ea;
+            --shadow: 0 18px 45px rgba(16, 42, 67, .11);
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--dark);
+            background: var(--cream);
+            line-height: 1.65;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* =========================
+           TOP BAR
+        ========================= */
+
+        .topbar {
+            background: var(--navy);
+            color: white;
+            text-align: center;
+            padding: 9px 15px;
+            font-size: .85rem;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        header {
+            background: white;
+            border-bottom: 1px solid #edf0f2;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: auto;
+            padding: 18px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            color: var(--navy);
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            display: block;
+            font-size: .62rem;
+            letter-spacing: 2px;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            color: var(--navy);
+            font-size: .92rem;
+        }
+
+        .nav-links a {
+            transition: .2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-book {
+            background: var(--gold);
+            color: white !important;
+            padding: 9px 17px;
+            border-radius: 7px;
+            font-weight: 700;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 80px 20px;
+
+            background:
+                linear-gradient(
+                    rgba(16, 42, 67, .92),
+                    rgba(23, 107, 135, .88)
+                );
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: .75rem;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.7rem, 6vw, 5rem);
+            line-height: 1.05;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            max-width: 720px;
+            margin: auto;
+            font-size: 1.15rem;
+            color: #e4edf2;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 35px;
+            margin-top: 35px;
+        }
+
+        .hero-stat strong {
+            display: block;
+            font-size: 1.35rem;
+            color: white;
+        }
+
+        .hero-stat span {
+            font-size: .78rem;
+            color: #cbdbe3;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* =========================
+           GENERAL
+        ========================= */
+
+        section {
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-heading .eyebrow {
+            color: var(--sea);
+            margin-bottom: 10px;
+        }
+
+        .section-heading h2 {
+            color: var(--navy);
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 12px;
+        }
+
+        .section-heading p {
+            max-width: 700px;
+            margin: auto;
+            color: var(--muted);
+        }
+
+        /* =========================
+           INTRO
+        ========================= */
+
+        .intro {
+            background: white;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 55px;
+            align-items: center;
+        }
+
+        .intro-text h2 {
+            color: var(--navy);
+            font-size: 2.2rem;
+            margin-bottom: 18px;
+        }
+
+        .intro-text p {
+            color: var(--muted);
+            margin-bottom: 17px;
+        }
+
+        .highlight-box {
+            background: var(--sand);
+            border-left: 4px solid var(--gold);
+            padding: 22px;
+            border-radius: 8px;
+            margin-top: 25px;
+        }
+
+        .highlight-box strong {
+            color: var(--navy);
+        }
+
+        /* =========================
+           PLACEHOLDER VISUAL
+        ========================= */
+
+        .visual-placeholder {
+            min-height: 380px;
+            border-radius: var(--radius);
+            background:
+                linear-gradient(
+                    135deg,
+                    #1d5970,
+                    #2b8ca3 50%,
+                    #d2b57f
+                );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .visual-placeholder::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,.08),
+                    transparent 50%
+                );
+        }
+
+        .visual-placeholder-content {
+            position: relative;
+            z-index: 1;
+            padding: 25px;
+        }
+
+        .visual-placeholder-content .icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+
+        .visual-placeholder-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .visual-placeholder-content p {
+            color: #e5f0f3;
+            font-size: .9rem;
+        }
+
+        /* =========================
+           ROOMS
+        ========================= */
+
+        .rooms {
+            background: var(--cream);
+        }
+
+        .room-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .room-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(16,42,67,.07);
+        }
+
+        .room-visual {
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            background:
+                linear-gradient(
+                    135deg,
+                    #174b61,
+                    #3b93a5
+                );
+        }
+
+        .room-card:nth-child(2) .room-visual {
+            background:
+                linear-gradient(
+                    135deg,
+                    #365b68,
+                    #b88f5b
+                );
+        }
+
+        .room-card:nth-child(3) .room-visual {
+            background:
+                linear-gradient(
+                    135deg,
+                    #31566b,
+                    #8aa8af
+                );
+        }
+
+        .room-card:nth-child(4) .room-visual {
+            background:
+                linear-gradient(
+                    135deg,
+                    #536d70,
+                    #c7a56d
+                );
+        }
+
+        .room-content {
+            padding: 25px;
+        }
+
+        .room-content h3 {
+            color: var(--navy);
+            font-size: 1.35rem;
+            margin-bottom: 8px;
+        }
+
+        .room-content p {
+            color: var(--muted);
+            font-size: .9rem;
+        }
+
+        /* =========================
+           FEATURES
+        ========================= */
+
+        .features {
+            background: white;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .feature {
+            padding: 25px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: #fff;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--sand);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .feature h3 {
+            color: var(--navy);
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .feature p {
+            color: var(--muted);
+            font-size: .84rem;
+        }
+
+        /* =========================
+           AMENITIES
+        ========================= */
+
+        .amenities {
+            background: var(--sand);
+        }
+
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px 30px;
+        }
+
+        .amenity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--navy);
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(16,42,67,.1);
+            font-size: .9rem;
+        }
+
+        .amenity::before {
+            content: "✓";
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        /* =========================
+           INFO CARDS
+        ========================= */
+
+        .info {
+            background: white;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .info-card {
+            background: var(--cream);
+            border-radius: 14px;
+            padding: 28px;
+        }
+
+        .info-card h3 {
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+
+        .info-card p,
+        .info-card li {
+            color: var(--muted);
+            font-size: .88rem;
+        }
+
+        .info-card ul {
+            list-style: none;
+        }
+
+        .info-card li {
+            padding: 5px 0;
+        }
+
+        /* =========================
+           CTA
+        ========================= */
+
+        .cta {
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--navy),
+                    var(--blue)
+                );
+            color: white;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 12px;
+        }
+
+        .cta p {
+            max-width: 650px;
+            margin: auto;
+            color: #d8e7ed;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 28px;
+            padding: 14px 28px;
+            background: var(--gold);
+            color: white;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: .2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(198,155,93,.3);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #091d2d;
+            color: #b8c7d1;
+            padding: 45px 20px 25px;
+        }
+
+        .footer-grid {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        footer h3 {
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        footer p,
+        footer li {
+            font-size: .88rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin: 7px 0;
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 35px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,.12);
+            text-align: center;
+            font-size: .75rem;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .intro-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .feature-grid,
+            .amenities-grid,
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                gap: 12px;
+                font-size: .8rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .nav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 16px 18px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                min-height: 450px;
+                padding: 60px 18px;
+            }
+
+            .hero-stats {
+                gap: 20px;
+            }
+
+            section {
+                padding: 60px 16px;
+            }
+
+            .room-grid,
+            .feature-grid,
+            .amenities-grid,
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .visual-placeholder {
+                min-height: 280px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+
+    <div class="topbar">
+        Book directly with us and enjoy a personal hosting experience.
+    </div>
+
+
+    <!-- NAVIGATION -->
+
+    <header>
+
+        <nav class="nav">
+
+            <a href="index.html" class="logo">
+                ELPIDA'S EDEM
+                <span>APARTMENT · ATHENS RIVIERA</span>
+            </a>
+
+            <div class="nav-links">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="rooms.html">
+                    Apartment
+                </a>
+
+                <a href="index.html#gallery">
+                    Gallery
+                </a>
+
+                <a href="index.html#amenities">
+                    Amenities
+                </a>
+
+                <a href="index.html#location">
+                    Location
+                </a>
+
+                <a href="booking.html" class="nav-book">
+                    Book
+                </a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+                ATHENS RIVIERA · PALAIO FALIRO
+            </div>
+
+            <h1>
+                Your Home by the Sea
+            </h1>
+
+            <p>
+                Discover a spacious and comfortable private apartment
+                just moments from the sea, beaches and the heart of
+                the Athens Riviera.
+            </p>
+
+            <div class="hero-stats">
+
+                <div class="hero-stat">
+                    <strong>74 m²</strong>
+                    <span>Apartment</span>
+                </div>
+
+                <div class="hero-stat">
+                    <strong>2</strong>
+                    <span>Bedrooms</span>
+                </div>
+
+                <div class="hero-stat">
+                    <strong>4</strong>
+                    <span>Guests</span>
+                </div>
+
+                <div class="hero-stat">
+                    <strong>1</strong>
+                    <span>Bathroom</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- INTRODUCTION -->
+
+    <section class="intro" id="apartment">
+
+        <div class="container">
+
+            <div class="intro-grid">
+
+                <div class="intro-text">
+
+                    <div class="eyebrow">
+                        THE APARTMENT
+                    </div>
+
+                    <h2>
+                        A comfortable base for your Athens stay
+                    </h2>
+
+                    <p>
+                        ELPIDA'S EDEM is a private 74 m² apartment
+                        in Palaio Faliro, located on the Athens Riviera
+                        and just a short walk from the sea.
+                    </p>
+
+                    <p>
+                        The apartment combines the comfort of a real home
+                        with an excellent location for enjoying both the
+                        coast and the city of Athens.
+                    </p>
+
+                    <p>
+                        Whether you are visiting Athens for a relaxing
+                        seaside break, a family holiday or a city
+                        adventure, the apartment gives you the freedom
+                        and privacy of your own home.
+                    </p>
+
+                    <div class="highlight-box">
+
+                        <strong>
+                            A private apartment — not just a place to sleep.
+                        </strong>
+
+                        <p>
+                            Enjoy your own living room, kitchen,
+                            bedrooms, bathroom and outdoor space
+                            throughout your stay.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="visual-placeholder">
+
+                    <div class="visual-placeholder-content">
+
+                        <div class="icon">
+                            🏡
+                        </div>
+
+                        <h3>
+                            Apartment Photography
+                        </h3>
+
+                        <p>
+                            Your real apartment photos will be added here.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ROOMS -->
+
+    <section class="rooms">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="eyebrow">
+                    INSIDE ELPIDA'S EDEM
+                </div>
+
+                <h2>
+                    Space to relax and feel at home
+                </h2>
+
+                <p>
+                    Everything you need for a comfortable stay,
+                    whether you are travelling as a couple, family
+                    or small group.
+                </p>
+
+            </div>
+
+
+            <div class="room-grid">
+
+                <article class="room-card">
+
+                    <div class="room-visual">
+                        🛋️
+                    </div>
+
+                    <div class="room-content">
+
+                        <h3>
+                            Living Room
+                        </h3>
+
+                        <p>
+                            A comfortable living space for relaxing,
+                            dining and spending time together.
+                            The living room also includes a sofa bed.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="room-card">
+
+                    <div class="room-visual">
+                        🛏️
+                    </div>
+
+                    <div class="room-content">
+
+                        <h3>
+                            Two Bedrooms
+                        </h3>
+
+                        <p>
+                            Two separate bedrooms provide privacy
+                            and comfortable sleeping arrangements
+                            for up to four guests.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="room-card">
+
+                    <div class="room-visual">
+                        🍳
+                    </div>
+
+                    <div class="room-content">
+
+                        <h3>
+                            Fully Equipped Kitchen
+                        </h3>
+
+                        <p>
+                            Prepare breakfast, a quick meal or dinner
+                            with the apartment's equipped kitchen,
+                            including refrigerator, oven, microwave
+                            and coffee facilities.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="room-card">
+
+                    <div class="room-visual">
+                        🌊
+                    </div>
+
+                    <div class="room-content">
+
+                        <h3>
+                            Balcony & Views
+                        </h3>
+
+                        <p>
+                            Enjoy outdoor space and views towards the
+                            sea, city and surrounding Athens Riviera.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- KEY FEATURES -->
+
+    <section class="features">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="eyebrow">
+                    COMFORT
+                </div>
+
+                <h2>
+                    Designed for an easy stay
+                </h2>
+
+                <p>
+                    Practical amenities and the comforts you expect
+                    from your own home.
+                </p>
+
+            </div>
+
+
+            <div class="feature-grid">
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        📶
+                    </div>
+
+                    <h3>
+                        Wi-Fi
+                    </h3>
+
+                    <p>
+                        Stay connected throughout the apartment.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ❄️
+                    </div>
+
+                    <h3>
+                        Air Conditioning
+                    </h3>
+
+                    <p>
+                        Comfortable indoor temperatures during your stay.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🫧
+                    </div>
+
+                    <h3>
+                        Jacuzzi / Hot Tub
+                    </h3>
+
+                    <p>
+                        Relax and enjoy the apartment's private
+                        hydromassage facilities.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🧺
+                    </div>
+
+                    <h3>
+                        Washing Machine
+                    </h3>
+
+                    <p>
+                        Convenient laundry facilities for longer stays.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        📺
+                    </div>
+
+                    <h3>
+                        Entertainment
+                    </h3>
+
+                    <p>
+                        TV and entertainment facilities for relaxing evenings.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🌿
+                    </div>
+
+                    <h3>
+                        Outdoor Space
+                    </h3>
+
+                    <p>
+                        Balcony and outdoor areas to enjoy the surroundings.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- AMENITIES -->
+
+    <section class="amenities" id="amenities">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="eyebrow">
+                    AMENITIES
+                </div>
+
+                <h2>
+                    Everything you need
+                </h2>
+
+                <p>
+                    The apartment is equipped for short stays,
+                    family holidays and longer visits.
+                </p>
+
+            </div>
+
+
+            <div class="amenities-grid">
+
+                <div class="amenity">
+                    Free Wi-Fi
+                </div>
+
+                <div class="amenity">
+                    Air conditioning
+                </div>
+
+                <div class="amenity">
+                    Fully equipped kitchen
+                </div>
+
+                <div class="amenity">
+                    Refrigerator
+                </div>
+
+                <div class="amenity">
+                    Oven
+                </div>
+
+                <div class="amenity">
+                    Microwave
+                </div>
+
+                <div class="amenity">
+                    Coffee maker
+                </div>
+
+                <div class="amenity">
+                    Electric kettle
+                </div>
+
+                <div class="amenity">
+                    Toaster
+                </div>
+
+                <div class="amenity">
+                    Washing machine
+                </div>
+
+                <div class="amenity">
+                    Iron
+                </div>
+
+                <div class="amenity">
+                    Hair dryer
+                </div>
+
+                <div class="amenity">
+                    Private bathroom
+                </div>
+
+                <div class="amenity">
+                    Balcony / terrace
+                </div>
+
+                <div class="amenity">
+                    Sea views
+                </div>
+
+                <div class="amenity">
+                    City views
+                </div>
+
+                <div class="amenity">
+                    Garden views
+                </div>
+
+                <div class="amenity">
+                    Jacuzzi / hydromassage
+                </div>
+
+                <div class="amenity">
+                    TV
+                </div>
+
+                <div class="amenity">
+                    Family friendly
+                </div>
+
+                <div class="amenity">
+                    Pets on request
+                </div>
+
+                <div class="amenity">
+                    No smoking
+                </div>
+
+                <div class="amenity">
+                    Private apartment
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PRACTICAL INFORMATION -->
+
+    <section class="info">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="eyebrow">
+                    GOOD TO KNOW
+                </div>
+
+                <h2>
+                    Before you arrive
+                </h2>
+
+            </div>
+
+
+            <div class="info-grid">
+
+                <div class="info-card">
+
+                    <h3>
+                        Sleeping arrangements
+                    </h3>
+
+                    <ul>
+
+                        <li>
+                            • Bedroom 1 — large double / king-size bed
+                        </li>
+
+                        <li>
+                            • Bedroom 2 — double bed
+                        </li>
+
+                        <li>
+                            • Living room — sofa bed
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <h3>
+                        For families
+                    </h3>
+
+                    <p>
+                        The apartment is suitable for families.
+                        A baby cot can be requested in advance,
+                        subject to availability.
+                    </p>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <h3>
+                        Location
+                    </h3>
+
+                    <p>
+                        Palaio Faliro, Athens Riviera — close to
+                        Edem Beach, Flisvos and the seaside promenade,
+                        with easy access to Athens.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CTA -->
+
+    <section class="cta">
+
+        <div class="container">
+
+            <h2>
+                Ready to stay by the sea?
+            </h2>
+
+            <p>
+                Check your dates and book directly with us.
+                Our direct booking system will give you a simple
+                and personal way to arrange your stay.
+            </p>
+
+            <a
+                href="booking.html"
+                class="cta-button"
+            >
+                CHECK AVAILABILITY & BOOK
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-grid">
+
+            <div>
+
+                <h3>
+                    ELPIDA'S EDEM
+                </h3>
+
+                <p>
+                    Your private apartment by the sea in Palaio Faliro,
+                    on the Athens Riviera.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Explore
+                </h3>
+
+                <ul class="footer-links">
+
+                    <li>
+                        <a href="index.html">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="rooms.html">
+                            Apartment
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="index.html#gallery">
+                            Gallery
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="index.html#location">
+                            Location
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Booking
+                </h3>
+
+                <ul class="footer-links">
+
+                    <li>
+                        <a href="booking.html">
+                            Book directly
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="index.html">
+                            Home
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            © 2026 ELPIDA'S EDEM · Palaio Faliro · Athens Riviera
+
+        </div>
+
+    </footer>
+
+</body>
+</html>
