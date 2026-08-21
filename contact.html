@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Contact | ELPIDA'S EDEM</title>
+
+    <meta
+        name="description"
+        content="Contact ELPIDA'S EDEM, your private apartment by the sea in Palaio Faliro, Athens Riviera."
+    >
+
+    <style>
+
+        :root {
+            --navy: #102a43;
+            --blue: #176b87;
+            --sea: #2b8ca3;
+            --gold: #c69b5d;
+            --sand: #f4eee5;
+            --cream: #fbf9f5;
+            --dark: #17202a;
+            --muted: #667085;
+            --white: #ffffff;
+            --border: #e1e6ea;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--dark);
+            background: var(--cream);
+            line-height: 1.65;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* TOP BAR */
+
+        .topbar {
+            background: var(--navy);
+            color: white;
+            text-align: center;
+            padding: 9px 15px;
+            font-size: .85rem;
+        }
+
+        /* NAVIGATION */
+
+        header {
+            background: white;
+            border-bottom: 1px solid #edf0f2;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: auto;
+            padding: 18px 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            color: var(--navy);
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            display: block;
+            font-size: .62rem;
+            letter-spacing: 2px;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+
+            color: var(--navy);
+            font-size: .92rem;
+        }
+
+        .nav-links a {
+            transition: .2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-book {
+            background: var(--gold);
+            color: white !important;
+
+            padding: 9px 17px;
+            border-radius: 7px;
+
+            font-weight: 700;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 400px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            color: white;
+
+            padding: 70px 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #102a43,
+                    #176b87 55%,
+                    #2b8ca3
+                );
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: .75rem;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 6vw, 4.7rem);
+            line-height: 1.05;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            color: #e2edf1;
+            font-size: 1.1rem;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        /* MAIN */
+
+        section {
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: .85fr 1.15fr;
+            gap: 45px;
+            align-items: start;
+        }
+
+        /* CONTACT INFO */
+
+        .contact-info {
+            background: var(--navy);
+            color: white;
+
+            padding: 40px;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 18px 45px rgba(16, 42, 67, .12);
+        }
+
+        .contact-info .eyebrow {
+            color: #a9d3dc;
+        }
+
+        .contact-info h2 {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .contact-info > p {
+            color: #d0dee5;
+            margin-bottom: 30px;
+        }
+
+        .info-item {
+            padding: 20px 0;
+            border-top: 1px solid rgba(255,255,255,.14);
+        }
+
+        .info-item strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .info-item span {
+            color: #c5d5dd;
+            font-size: .9rem;
+        }
+
+        /* FORM */
+
+        .contact-form {
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 12px 35px rgba(16, 42, 67, .07);
+        }
+
+        .contact-form h2 {
+            color: var(--navy);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-form > p {
+            color: var(--muted);
+            margin-bottom: 30px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .field {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+
+            color: var(--navy);
+
+            font-size: .85rem;
+            font-weight: 700;
+        }
+
+        input,
+        textarea,
+        select {
+
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 8px;
+
+            background: #fff;
+
+            color: var(--dark);
+
+            font-family: inherit;
+
+            font-size: .95rem;
+
+            outline: none;
+
+            transition: .2s;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: var(--sea);
+
+            box-shadow:
+                0 0 0 3px rgba(43,140,163,.10);
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            width: 100%;
+
+            border: none;
+
+            padding: 14px 20px;
+
+            border-radius: 8px;
+
+            background: var(--gold);
+
+            color: white;
+
+            font-size: .95rem;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: .2s;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 8px 20px rgba(198,155,93,.25);
+        }
+
+        .form-note {
+            margin-top: 14px;
+
+            color: var(--muted);
+
+            font-size: .75rem;
+
+            text-align: center;
+        }
+
+        /* BOOKING CTA */
+
+        .booking-section {
+            background: white;
+            text-align: center;
+        }
+
+        .booking-section .eyebrow {
+            color: var(--sea);
+        }
+
+        .booking-section h2 {
+            color: var(--navy);
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 12px;
+        }
+
+        .booking-section p {
+            max-width: 650px;
+            margin: auto;
+            color: var(--muted);
+        }
+
+        .buttons {
+            margin-top: 28px;
+
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-block;
+
+            padding: 13px 25px;
+
+            border-radius: 8px;
+
+            font-weight: 700;
+
+            transition: .2s;
+        }
+
+        .button-primary {
+            background: var(--gold);
+            color: white;
+        }
+
+        .button-secondary {
+            border: 1px solid var(--navy);
+            color: var(--navy);
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #091d2d;
+            color: #b8c7d1;
+
+            padding: 45px 20px 25px;
+        }
+
+        .footer-grid {
+            max-width: 1100px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+
+            gap: 40px;
+        }
+
+        footer h3 {
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        footer p,
+        footer li {
+            font-size: .88rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin: 7px 0;
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 35px auto 0;
+
+            padding-top: 20px;
+
+            border-top:
+                1px solid rgba(255,255,255,.12);
+
+            text-align: center;
+
+            font-size: .75rem;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .nav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 16px 18px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+                font-size: .8rem;
+            }
+
+            section {
+                padding: 60px 16px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 27px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- TOP BAR -->
+
+    <div class="topbar">
+        Book directly with us and enjoy a personal hosting experience.
+    </div>
+
+
+    <!-- NAVIGATION -->
+
+    <header>
+
+        <nav class="nav">
+
+            <a href="index.html" class="logo">
+                ELPIDA'S EDEM
+                <span>APARTMENT · ATHENS RIVIERA</span>
+            </a>
+
+
+            <div class="nav-links">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="rooms.html">
+                    Apartment
+                </a>
+
+                <a href="index.html#gallery">
+                    Gallery
+                </a>
+
+                <a href="index.html#amenities">
+                    Amenities
+                </a>
+
+                <a href="location.html">
+                    Location
+                </a>
+
+                <a href="booking.html" class="nav-book">
+                    Book
+                </a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+                ELPIDA'S EDEM · ATHENS RIVIERA
+            </div>
+
+            <h1>
+                We'd Love to Hear From You
+            </h1>
+
+            <p>
+                Have a question about the apartment, your stay or
+                booking directly with us? Get in touch.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="contact-grid">
+
+
+                <!-- INFORMATION -->
+
+                <div class="contact-info">
+
+                    <div class="eyebrow">
+                        CONTACT
+                    </div>
+
+                    <h2>
+                        Let's make your stay special.
+                    </h2>
+
+                    <p>
+                        We are happy to answer questions about the
+                        apartment, the area, your arrival or anything
+                        else you would like to know before booking.
+                    </p>
+
+
+                    <div class="info-item">
+
+                        <strong>
+                            📍 Location
+                        </strong>
+
+                        <span>
+                            Palaio Faliro<br>
+                            Athens Riviera, Greece
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <strong>
+                            🏠 Apartment
+                        </strong>
+
+                        <span>
+                            74 m² · 2 bedrooms · 1 bathroom<br>
+                            Entire private apartment
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <strong>
+                            🌊 Nearby
+                        </strong>
+
+                        <span>
+                            Edem Beach · Flisvos · Athens Riviera
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <strong>
+                            🌍 Languages
+                        </strong>
+
+                        <span>
+                            Greek · English
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FORM -->
+
+                <div class="contact-form">
+
+                    <h2>
+                        Send us a message
+                    </h2>
+
+                    <p>
+                        Tell us what you would like to know and
+                        we will get back to you.
+                    </p>
+
+
+                    <form
+                        onsubmit="return handleContactForm(event)"
+                    >
+
+
+                        <div class="form-row">
+
+                            <div class="field">
+
+                                <label for="name">
+                                    Your name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    placeholder="Your name"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label for="email">
+                                    Email
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder="you@example.com"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label for="subject">
+                                Subject
+                            </label>
+
+                            <select
+                                id="subject"
+                                name="subject"
+                            >
+
+                                <option value="booking">
+                                    Booking enquiry
+                                </option>
+
+                                <option value="apartment">
+                                    Question about the apartment
+                                </option>
+
+                                <option value="location">
+                                    Question about the location
+                                </option>
+
+                                <option value="arrival">
+                                    Arrival / check-in
+                                </option>
+
+                                <option value="other">
+                                    Something else
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label for="message">
+                                Message
+                            </label>
+
+                            <textarea
+                                id="message"
+                                name="message"
+                                placeholder="How can we help you?"
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="submit-button"
+                        >
+                            SEND MESSAGE
+                        </button>
+
+
+                        <div class="form-note">
+                            The contact form will be connected to
+                            the website's email system in the next stage.
+                        </div>
+
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BOOKING CTA -->
+
+    <section class="booking-section">
+
+        <div class="container">
+
+            <div class="eyebrow">
+                READY TO STAY BY THE SEA?
+            </div>
+
+            <h2>
+                Check availability
+            </h2>
+
+            <p>
+                If you already know your dates, go directly to our
+                booking page and check availability.
+            </p>
+
+
+            <div class="buttons">
+
+                <a
+                    href="booking.html"
+                    class="button button-primary"
+                >
+                    CHECK AVAILABILITY
+                </a>
+
+                <a
+                    href="location.html"
+                    class="button button-secondary"
+                >
+                    EXPLORE THE LOCATION
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-grid">
+
+
+            <div>
+
+                <h3>
+                    ELPIDA'S EDEM
+                </h3>
+
+                <p>
+                    Your private apartment by the sea in Palaio Faliro,
+                    on the Athens Riviera.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Explore
+                </h3>
+
+                <ul class="footer-links">
+
+                    <li>
+                        <a href="index.html">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="rooms.html">
+                            Apartment
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="location.html">
+                            Location
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Booking
+                </h3>
+
+                <ul class="footer-links">
+
+                    <li>
+                        <a href="booking.html">
+                            Book directly
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="contact.html">
+                            Contact
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            © 2026 ELPIDA'S EDEM · Palaio Faliro · Athens Riviera
+
+        </div>
+
+    </footer>
+
+
+    <script>
+
+        function handleContactForm(event) {
+
+            event.preventDefault();
+
+            alert(
+                "Thank you! The contact form will be connected to the website email system in the next stage."
+            );
+
+            return false;
+        }
+
+    </script>
+
+
+</body>
+
+</html>
