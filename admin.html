@@ -4,7 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ELPIDA'S EDEM — Admin</title>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root{--navy:#102a43;--deep:#0a2033;--gold:#c69b5d;--cream:#fbf9f5;--white:#fff;--muted:#6b7280;--border:#e5e7eb}
 *{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--navy);font-family:Arial,Helvetica,sans-serif}
@@ -14,7 +13,8 @@
 h1,h2,h3{font-family:Georgia,serif;font-weight:500}label{display:block;font-size:.85rem;font-weight:700;margin:16px 0 7px}
 input{width:100%;padding:12px;border:1px solid #d7dce1;border-radius:9px}.btn{border:0;border-radius:9px;padding:11px 15px;font-weight:700;cursor:pointer}
 .primary{background:var(--navy);color:white}.gold{background:var(--gold);color:white}.light{background:white;border:1px solid var(--border);color:var(--navy)}
-.full{width:100%;margin-top:20px}.error{color:#a33a3a;margin-top:12px}.muted{color:var(--muted)}
+.full{width:100%;margin-top:20px}.error{color:#a33a3a;margin-top:12px}.success{color:#27734a;margin-top:12px}.muted{color:var(--muted)}
+.status{margin-top:12px;padding:10px 12px;border-radius:9px;background:#f4f6f8;font-size:.85rem;min-height:18px}
 .app{min-height:100vh;display:grid;grid-template-columns:240px 1fr}aside{background:var(--deep);color:white;padding:25px 16px;display:flex;flex-direction:column}
 .brand{padding:0 10px 22px;border-bottom:1px solid #ffffff1f;margin-bottom:15px}.brand strong{font:1.2rem Georgia,serif}
 nav button{display:block;width:100%;text-align:left;background:transparent;color:#dbe7ef;border:0;padding:11px;border-radius:8px;margin:2px 0;cursor:pointer}
@@ -34,8 +34,10 @@ main{padding:30px;max-width:1300px;width:100%;margin:auto}.top{display:flex;just
 <form id="loginForm">
 <label>Username</label><input id="username" type="text" required autocomplete="username">
 <label>Password</label><input id="password" type="password" required autocomplete="current-password">
-<button class="btn primary full">Sign in</button>
-</form><div id="loginError" class="error"></div>
+<button id="signInBtn" class="btn primary full" type="submit">Sign in</button>
+</form>
+<div id="loginStatus" class="status"></div>
+<div id="loginError" class="error"></div>
 </div></div>
 
 <div id="app" class="app hidden">
@@ -70,19 +72,206 @@ main{padding:30px;max-width:1300px;width:100%;margin:auto}.top{display:flex;just
 </main></div>
 
 <script>
-const URL="https://sducfanvyqokingkuzyr.supabase.co";
-const KEY="sb_publishable_yQpc2rLBi98hBR0pDtjcYQ_pZxVXiuW";
-const sb=supabase.createClient(URL,KEY);
-const login=document.getElementById("login"),app=document.getElementById("app");
+/*
+  ELPIDA'S EDEM Admin
+  This version deliberately uses the browser Fetch API instead of the
+  Supabase JavaScript CDN, so login cannot silently fail because an
+  external JS library did not load.
+*/
+const SUPABASE_URL="https://sducfanvyqokingkuzyr.supabase.co";
+const SUPABASE_KEY="sb_publishable_yQpc2rLBi98hBR0pDtjcYQ_pZxVXiuW";
+const BUCKET="property-photos";
+const login=document.getElementById("login");
+const app=document.getElementById("app");
+const loginStatus=document.getElementById("loginStatus");
+const loginError=document.getElementById("loginError");
 
-async function admin(){const {data:{user}}=await sb.auth.getUser();if(!user)return false;const {data,error}=await sb.from("user_roles").select("role").eq("user_id",user.id).maybeSingle();return !error&&data?.role==="admin";}
-async function start(){try{const {data:{session},error:sessionError}=await sb.auth.getSession();if(sessionError)throw sessionError;if(!session){login.classList.remove("hidden");app.classList.add("hidden");return}const ok=await admin();if(!ok){await sb.auth.signOut();login.classList.remove("hidden");app.classList.add("hidden");document.getElementById("loginError").textContent="This account is not an administrator, or the admin check failed.";return}login.classList.add("hidden");app.classList.remove("hidden");await loadPhotos()}catch(error){console.error("Admin startup error:",error);login.classList.remove("hidden");app.classList.add("hidden");document.getElementById("loginError").textContent="Login succeeded, but the Admin Panel could not start: "+(error.message||error)}}
-document.getElementById("loginForm").onsubmit=async e=>{e.preventDefault();const errBox=document.getElementById("loginError");errBox.textContent="";const username=document.getElementById("username").value.trim().toLowerCase();const password=document.getElementById("password").value;const usernameMap={admin:"tassos.solutions@gmail.com",elpida:"greecetravel.me@gmail.com"};const email=usernameMap[username];if(!email){errBox.textContent="Invalid username. Use admin or elpida.";return;}const {error}=await sb.auth.signInWithPassword({email,password});if(error)errBox.textContent=error.message;else await start();};
-document.getElementById("logout").onclick=async()=>{await sb.auth.signOut();start();};
-document.querySelectorAll("#nav button").forEach(b=>b.onclick=()=>{document.querySelectorAll("#nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.querySelectorAll(".section").forEach(x=>x.classList.remove("active"));document.getElementById(b.dataset.s).classList.add("active");document.getElementById("title").textContent=b.textContent;if(b.dataset.s==="photos")loadPhotos();});
-async function loadPhotos(){const g=document.getElementById("photoGrid");g.innerHTML='<div class="muted">Loading…</div>';const {data,error}=await sb.storage.from("property-photos").list("",{limit:100,sortBy:{column:"created_at",order:"desc"}});if(error){g.innerHTML='<div class="error">'+error.message+"</div>";return}const files=(data||[]).filter(x=>x.id);document.getElementById("count").textContent=files.length;if(!files.length){g.innerHTML='<div class="muted">No photos yet.</div>';return}g.innerHTML="";files.forEach(f=>{const {data:u}=sb.storage.from("property-photos").getPublicUrl(f.name);const c=document.createElement("article");c.className="photo";c.innerHTML='<img src="'+u.publicUrl+'"><div class="info"><div class="name"></div><div class="muted">'+Math.round((f.metadata?.size||0)/1024)+' KB</div><div class="actions"><button class="btn light">Delete</button></div></div>';c.querySelector(".name").textContent=f.name;c.querySelector("button").onclick=()=>del(f.name);g.appendChild(c);});}
-async function del(name){if(!confirm("Delete this photo?"))return;const {error}=await sb.storage.from("property-photos").remove([name]);document.getElementById("msg").textContent=error?error.message:"Photo deleted.";if(!error)loadPhotos();}
-document.getElementById("files").onchange=async e=>{const files=[...e.target.files];const m=document.getElementById("msg");for(const f of files){m.textContent="Uploading "+f.name+"…";const path=Date.now()+"_"+f.name.replace(/[^a-zA-Z0-9._-]/g,"_");const {error}=await sb.storage.from("property-photos").upload(path,f,{contentType:f.type,upsert:false});if(error){m.textContent=error.message;return}}e.target.value="";m.textContent="Upload complete.";loadPhotos();};
-start();
+function apiHeaders(token){
+  return {"apikey":SUPABASE_KEY,"Authorization":"Bearer "+(token||SUPABASE_KEY),"Content-Type":"application/json"};
+}
+function clearMessages(){
+  loginStatus.textContent="";
+  loginError.textContent="";
+}
+function setStatus(text){loginStatus.textContent=text||"";}
+
+async function readJson(response){
+  const text=await response.text();
+  let data=null;
+  try{data=text?JSON.parse(text):null}catch(_){}
+  if(!response.ok){
+    const message=(data&&(data.msg||data.message||data.error_description||data.error))||text||("HTTP "+response.status);
+    throw new Error(message);
+  }
+  return data;
+}
+
+async function signIn(username,password){
+  const usernameMap={
+    admin:"tassos.solutions@gmail.com",
+    elpida:"greecetravel.me@gmail.com"
+  };
+  const email=usernameMap[username];
+  if(!email) throw new Error("Invalid username. Use admin or elpida.");
+
+  setStatus("Connecting to secure login…");
+  const response=await fetch(SUPABASE_URL+"/auth/v1/token?grant_type=password",{
+    method:"POST",
+    headers:{"apikey":SUPABASE_KEY,"Content-Type":"application/json"},
+    body:JSON.stringify({email,password})
+  });
+  const data=await readJson(response);
+  if(!data.access_token||!data.user) throw new Error("Supabase did not return a valid login session.");
+  sessionStorage.setItem("elpidas_access_token",data.access_token);
+  sessionStorage.setItem("elpidas_refresh_token",data.refresh_token||"");
+  sessionStorage.setItem("elpidas_user_id",data.user.id);
+  return data;
+}
+
+async function checkAdmin(userId,token){
+  setStatus("Checking administrator access…");
+  const url=SUPABASE_URL+"/rest/v1/user_roles?user_id=eq."+encodeURIComponent(userId)+"&select=role";
+  const response=await fetch(url,{headers:apiHeaders(token)});
+  const data=await readJson(response);
+  if(!Array.isArray(data)||data.length===0) throw new Error("No administrator role was found for this account.");
+  if(data[0].role!=="admin") throw new Error("This account is not an administrator.");
+  return true;
+}
+
+async function startAfterLogin(){
+  try{
+    const token=sessionStorage.getItem("elpidas_access_token");
+    const userId=sessionStorage.getItem("elpidas_user_id");
+    if(!token||!userId){
+      login.classList.remove("hidden");
+      app.classList.add("hidden");
+      return;
+    }
+    await checkAdmin(userId,token);
+    setStatus("Access approved. Opening Admin Panel…");
+    login.classList.add("hidden");
+    app.classList.remove("hidden");
+    await loadPhotos();
+  }catch(error){
+    console.error(error);
+    sessionStorage.clear();
+    login.classList.remove("hidden");
+    app.classList.add("hidden");
+    setStatus("");
+    loginError.textContent="Admin Panel error: "+(error.message||error);
+  }
+}
+
+document.getElementById("loginForm").addEventListener("submit",async function(e){
+  e.preventDefault();
+  clearMessages();
+  const button=document.getElementById("signInBtn");
+  button.disabled=true;
+  button.textContent="Signing in…";
+  try{
+    const username=document.getElementById("username").value.trim().toLowerCase();
+    const password=document.getElementById("password").value;
+    if(!username||!password) throw new Error("Please enter username and password.");
+    await signIn(username,password);
+    await startAfterLogin();
+  }catch(error){
+    console.error("Login error:",error);
+    setStatus("");
+    loginError.textContent=error.message||String(error);
+  }finally{
+    button.disabled=false;
+    button.textContent="Sign in";
+  }
+});
+
+document.getElementById("logout").onclick=()=>{
+  sessionStorage.clear();
+  app.classList.add("hidden");
+  login.classList.remove("hidden");
+  document.getElementById("password").value="";
+  clearMessages();
+};
+
+document.querySelectorAll("#nav button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll("#nav button").forEach(x=>x.classList.remove("active"));
+  b.classList.add("active");
+  document.querySelectorAll(".section").forEach(x=>x.classList.remove("active"));
+  document.getElementById(b.dataset.s).classList.add("active");
+  document.getElementById("title").textContent=b.textContent;
+  if(b.dataset.s==="photos")loadPhotos();
+});
+
+async function storageFetch(path,options={}){
+  const token=sessionStorage.getItem("elpidas_access_token");
+  const headers=Object.assign({"apikey":SUPABASE_KEY,"Authorization":"Bearer "+token},options.headers||{});
+  return fetch(SUPABASE_URL+"/storage/v1/"+path,Object.assign({},options,{headers}));
+}
+
+async function loadPhotos(){
+  const g=document.getElementById("photoGrid");
+  g.innerHTML='<div class="muted">Loading…</div>';
+  try{
+    const response=await storageFetch("object/list/"+BUCKET,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({prefix:"",limit:100,sortBy:{column:"created_at",order:"desc"}})
+    });
+    const data=await readJson(response);
+    const files=(data||[]).filter(x=>x.id);
+    document.getElementById("count").textContent=files.length;
+    if(!files.length){g.innerHTML='<div class="muted">No photos yet.</div>';return}
+    g.innerHTML="";
+    files.forEach(f=>{
+      const publicUrl=SUPABASE_URL+"/storage/v1/object/public/"+BUCKET+"/"+encodeURIComponent(f.name);
+      const c=document.createElement("article");
+      c.className="photo";
+      c.innerHTML='<img><div class="info"><div class="name"></div><div class="muted">'+Math.round((f.metadata?.size||0)/1024)+' KB</div><div class="actions"><button class="btn light">Delete</button></div></div>';
+      c.querySelector("img").src=publicUrl;
+      c.querySelector(".name").textContent=f.name;
+      c.querySelector("button").onclick=()=>del(f.name);
+      g.appendChild(c);
+    });
+  }catch(error){
+    g.innerHTML='<div class="error">'+(error.message||error)+'</div>';
+  }
+}
+
+async function del(name){
+  if(!confirm("Delete this photo?"))return;
+  const m=document.getElementById("msg");
+  try{
+    const response=await storageFetch("object/"+BUCKET,{
+      method:"DELETE",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({prefix:"",paths:[name]})
+    });
+    await readJson(response);
+    m.textContent="Photo deleted.";
+    loadPhotos();
+  }catch(error){m.textContent=error.message||String(error)}
+}
+
+document.getElementById("files").onchange=async e=>{
+  const files=[...e.target.files];
+  const m=document.getElementById("msg");
+  for(const f of files){
+    try{
+      m.textContent="Uploading "+f.name+"…";
+      const path=Date.now()+"_"+f.name.replace(/[^a-zA-Z0-9._-]/g,"_");
+      const response=await storageFetch("object/"+BUCKET+"/"+encodeURIComponent(path),{
+        method:"POST",
+        headers:{"Content-Type":f.type||"application/octet-stream","x-upsert":"false"},
+        body:f
+      });
+      await readJson(response);
+    }catch(error){m.textContent=error.message||String(error);e.target.value="";return}
+  }
+  e.target.value="";
+  m.textContent="Upload complete.";
+  loadPhotos();
+};
+
+startAfterLogin();
 </script>
-</body></html>
+</body>
+</html>
