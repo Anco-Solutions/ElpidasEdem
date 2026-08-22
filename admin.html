@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ELPIDA'S EDEM — Admin</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--navy:#102a43;--deep:#0a2033;--gold:#c69b5d;--cream:#fbf9f5;--white:#fff;--muted:#6b7280;--border:#e5e7eb}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--navy);font-family:Arial,Helvetica,sans-serif}
+.hidden{display:none!important}.login{min-height:100vh;display:grid;place-items:center;padding:24px}
+.card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:26px;box-shadow:0 8px 28px #102a4314}
+.login .card{width:min(420px,100%)}.eyebrow{font-size:.72rem;letter-spacing:.16em;color:var(--gold);font-weight:700}
+h1,h2,h3{font-family:Georgia,serif;font-weight:500}label{display:block;font-size:.85rem;font-weight:700;margin:16px 0 7px}
+input{width:100%;padding:12px;border:1px solid #d7dce1;border-radius:9px}.btn{border:0;border-radius:9px;padding:11px 15px;font-weight:700;cursor:pointer}
+.primary{background:var(--navy);color:white}.gold{background:var(--gold);color:white}.light{background:white;border:1px solid var(--border);color:var(--navy)}
+.full{width:100%;margin-top:20px}.error{color:#a33a3a;margin-top:12px}.muted{color:var(--muted)}
+.app{min-height:100vh;display:grid;grid-template-columns:240px 1fr}aside{background:var(--deep);color:white;padding:25px 16px;display:flex;flex-direction:column}
+.brand{padding:0 10px 22px;border-bottom:1px solid #ffffff1f;margin-bottom:15px}.brand strong{font:1.2rem Georgia,serif}
+nav button{display:block;width:100%;text-align:left;background:transparent;color:#dbe7ef;border:0;padding:11px;border-radius:8px;margin:2px 0;cursor:pointer}
+nav button.active,nav button:hover{background:#ffffff12;color:white}.logout{margin-top:auto}
+main{padding:30px;max-width:1300px;width:100%;margin:auto}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}
+.section{display:none}.section.active{display:block}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.stat{font:2rem Georgia,serif;margin-top:8px}
+.photos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.photo{background:white;border:1px solid var(--border);border-radius:13px;overflow:hidden}
+.photo img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}.photo .info{padding:12px}.photo .name{font-weight:700;word-break:break-word}.actions{margin-top:9px}
+@media(max-width:800px){.app{grid-template-columns:1fr}aside{position:sticky;top:0;z-index:5;padding:12px}nav{display:flex;overflow:auto;gap:3px}nav button{white-space:nowrap;width:auto}.logout{display:none}main{padding:18px 13px}.stats,.photos{grid-template-columns:1fr}.top{align-items:flex-start}}
+</style>
+</head>
+<body>
+<div id="login" class="login">
+<div class="card">
+<div class="eyebrow">ELPIDA'S EDEM</div><h1>Admin Panel</h1>
+<p class="muted">Sign in to manage your property.</p>
+<form id="loginForm">
+<label>Email</label><input id="email" type="email" required autocomplete="email">
+<label>Password</label><input id="password" type="password" required autocomplete="current-password">
+<button class="btn primary full">Sign in</button>
+</form><div id="loginError" class="error"></div>
+</div></div>
+
+<div id="app" class="app hidden">
+<aside>
+<div class="brand"><div class="eyebrow">ATHENS RIVIERA</div><strong>ELPIDA'S EDEM</strong></div>
+<nav id="nav">
+<button class="active" data-s="dashboard">Dashboard</button><button data-s="photos">Photos</button>
+<button data-s="content">Content</button><button data-s="prices">Prices</button>
+<button data-s="availability">Availability</button><button data-s="reservations">Reservations</button>
+<button data-s="property">Property</button><button data-s="settings">Settings</button>
+</nav><button id="logout" class="btn light logout">Sign out</button>
+</aside>
+<main>
+<div class="top"><div><div class="eyebrow">MANAGEMENT</div><h2 id="title">Dashboard</h2></div></div>
+<section id="dashboard" class="section active"><div class="stats">
+<div class="card"><div class="muted">Photos</div><div id="count" class="stat">—</div></div>
+<div class="card"><div class="muted">Upcoming reservations</div><div class="stat">—</div></div>
+<div class="card"><div class="muted">Availability</div><div class="stat">—</div></div>
+</div><div class="card" style="margin-top:16px"><h3>Welcome</h3><p class="muted">Secure administration is connected to Supabase. Photos are the first live management module.</p></div></section>
+<section id="photos" class="section">
+<div class="card" style="margin-bottom:16px"><h3>Property Photos</h3><p class="muted">Manage images in <b>property-photos</b>.</p>
+<label class="btn gold" style="display:inline-block;width:auto">Upload photos<input id="files" type="file" accept="image/*" multiple hidden></label>
+<div id="msg" class="muted" style="margin-top:10px"></div></div>
+<div id="photoGrid" class="photos"></div>
+</section>
+<section id="content" class="section"><div class="card"><h3>Content</h3><p class="muted">Next: connect the content table.</p></div></section>
+<section id="prices" class="section"><div class="card"><h3>Prices</h3><p class="muted">Next: connect the prices table.</p></div></section>
+<section id="availability" class="section"><div class="card"><h3>Availability</h3><p class="muted">Next: connect the availability table.</p></div></section>
+<section id="reservations" class="section"><div class="card"><h3>Reservations</h3><p class="muted">Next: connect reservations and guests.</p></div></section>
+<section id="property" class="section"><div class="card"><h3>Property</h3><p class="muted">Next: connect the property table.</p></div></section>
+<section id="settings" class="section"><div class="card"><h3>Settings</h3><p class="muted">Next: system settings.</p></div></section>
+</main></div>
+
+<script>
+const URL="https://sducfanvyqokingkuzyr.supabase.co";
+const KEY="sb_publishable_yQpc2rLBi98hBR0pDtjcYQ_pZxVXiuW";
+const sb=supabase.createClient(URL,KEY);
+const login=document.getElementById("login"),app=document.getElementById("app");
+
+async function admin(){const {data:{user}}=await sb.auth.getUser();if(!user)return false;const {data,error}=await sb.from("user_roles").select("role").eq("user_id",user.id).maybeSingle();return !error&&data?.role==="admin";}
+async function start(){const {data:{session}}=await sb.auth.getSession();if(!session){login.classList.remove("hidden");app.classList.add("hidden");return}if(!await admin()){await sb.auth.signOut();document.getElementById("loginError").textContent="This account is not an administrator.";return}login.classList.add("hidden");app.classList.remove("hidden");loadPhotos();}
+document.getElementById("loginForm").onsubmit=async e=>{e.preventDefault();document.getElementById("loginError").textContent="";const {error}=await sb.auth.signInWithPassword({email:email.value.trim(),password:password.value});if(error)document.getElementById("loginError").textContent=error.message;else start();};
+document.getElementById("logout").onclick=async()=>{await sb.auth.signOut();start();};
+document.querySelectorAll("#nav button").forEach(b=>b.onclick=()=>{document.querySelectorAll("#nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.querySelectorAll(".section").forEach(x=>x.classList.remove("active"));document.getElementById(b.dataset.s).classList.add("active");document.getElementById("title").textContent=b.textContent;if(b.dataset.s==="photos")loadPhotos();});
+async function loadPhotos(){const g=document.getElementById("photoGrid");g.innerHTML='<div class="muted">Loading…</div>';const {data,error}=await sb.storage.from("property-photos").list("",{limit:100,sortBy:{column:"created_at",order:"desc"}});if(error){g.innerHTML='<div class="error">'+error.message+"</div>";return}const files=(data||[]).filter(x=>x.id);document.getElementById("count").textContent=files.length;if(!files.length){g.innerHTML='<div class="muted">No photos yet.</div>';return}g.innerHTML="";files.forEach(f=>{const {data:u}=sb.storage.from("property-photos").getPublicUrl(f.name);const c=document.createElement("article");c.className="photo";c.innerHTML='<img src="'+u.publicUrl+'"><div class="info"><div class="name"></div><div class="muted">'+Math.round((f.metadata?.size||0)/1024)+' KB</div><div class="actions"><button class="btn light">Delete</button></div></div>';c.querySelector(".name").textContent=f.name;c.querySelector("button").onclick=()=>del(f.name);g.appendChild(c);});}
+async function del(name){if(!confirm("Delete this photo?"))return;const {error}=await sb.storage.from("property-photos").remove([name]);document.getElementById("msg").textContent=error?error.message:"Photo deleted.";if(!error)loadPhotos();}
+document.getElementById("files").onchange=async e=>{const files=[...e.target.files];const m=document.getElementById("msg");for(const f of files){m.textContent="Uploading "+f.name+"…";const path=Date.now()+"_"+f.name.replace(/[^a-zA-Z0-9._-]/g,"_");const {error}=await sb.storage.from("property-photos").upload(path,f,{contentType:f.type,upsert:false});if(error){m.textContent=error.message;return}}e.target.value="";m.textContent="Upload complete.";loadPhotos();};
+start();
+</script>
+</body></html>
