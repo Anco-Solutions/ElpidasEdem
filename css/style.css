@@ -1154,3 +1154,318 @@ footer li {
         font-size: 1.32rem;
     }
 }
+
+
+/* =========================================================
+   FINAL POLISH — HEADER + CLEAN HERO
+   Designed for the existing Elpida's Edem HTML structure
+   ========================================================= */
+
+/* Remove the decorative circles/rings.
+   The premium look comes from typography, spacing, photography
+   and the restrained Athens Riviera palette instead. */
+.hero::before,
+.hero::after,
+.page-hero::after,
+.cta::before,
+.cta::after {
+    display: none !important;
+}
+
+
+/* =========================================================
+   EXISTING SITE HEADER
+   ========================================================= */
+
+.site-header {
+    background: rgba(255, 255, 255, .98);
+    border-bottom: 1px solid rgba(16, 42, 67, .08);
+    position: relative;
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 78px;
+    padding: 14px 24px;
+
+    display: flex;
+    align-items: center;
+    gap: 26px;
+}
+
+.nav-container .logo {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    color: var(--navy);
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+.logo-main {
+    font-size: 1.12rem;
+    font-weight: 700;
+    letter-spacing: 2.8px;
+}
+
+.logo-sub {
+    margin-top: 5px;
+    color: var(--gold);
+    font-size: .56rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+}
+
+.nav-container .nav-links {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 21px;
+    color: var(--navy);
+    font-size: .86rem;
+}
+
+.nav-container .nav-links a {
+    position: relative;
+    white-space: nowrap;
+    transition: color .2s ease;
+}
+
+.nav-container .nav-links a:not(.nav-book)::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: -7px;
+    height: 1px;
+    background: var(--gold);
+    transition: right .22s ease;
+}
+
+.nav-container .nav-links a:hover,
+.nav-container .nav-links a.active {
+    color: var(--gold);
+}
+
+.nav-container .nav-links a:not(.nav-book):hover::after,
+.nav-container .nav-links a.active:not(.nav-book)::after {
+    right: 0;
+}
+
+.nav-container .nav-book {
+    background: var(--gold);
+    color: var(--white) !important;
+    padding: 10px 18px;
+    border-radius: 7px;
+    font-weight: 700;
+    box-shadow: 0 8px 20px rgba(198,155,93,.20);
+}
+
+.nav-container .nav-book::after {
+    display: none !important;
+}
+
+.language-selector {
+    flex: 0 0 auto;
+}
+
+.language-selector select {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid rgba(16,42,67,.12);
+    background: var(--white);
+    color: var(--navy);
+    border-radius: 7px;
+    padding: 9px 28px 9px 10px;
+    min-width: 116px;
+    font-size: .78rem;
+    cursor: pointer;
+}
+
+.menu-toggle {
+    display: none;
+    border: 1px solid rgba(16,42,67,.12);
+    background: var(--white);
+    color: var(--navy);
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    font-size: 1.35rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   CLEAN PAGE HERO
+   ========================================================= */
+
+.page-hero {
+    background:
+        linear-gradient(135deg, #f7f0e7 0%, #f5f3ef 48%, #eef5f6 100%);
+}
+
+.page-hero .section-heading {
+    max-width: 780px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.page-hero .section-heading h1 {
+    letter-spacing: -.5px;
+}
+
+.page-hero .section-heading p {
+    color: #667085;
+}
+
+
+/* =========================================================
+   MOBILE HEADER
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .nav-container {
+        min-height: 70px;
+        padding: 12px 15px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 42px auto;
+        align-items: center;
+        gap: 10px;
+        position: relative;
+    }
+
+    .nav-container .logo {
+        min-width: 0;
+        text-align: left;
+    }
+
+    .logo-main {
+        font-size: 1rem;
+        letter-spacing: 2.2px;
+    }
+
+    .logo-sub {
+        font-size: .52rem;
+        letter-spacing: 2.5px;
+    }
+
+    .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: center;
+    }
+
+    .language-selector {
+        grid-column: 3;
+        grid-row: 1;
+        justify-self: end;
+    }
+
+    .language-selector select {
+        min-width: 105px;
+        max-width: 112px;
+        padding: 8px 24px 8px 8px;
+        font-size: .72rem;
+    }
+
+    .nav-container .nav-links {
+        display: none;
+        position: absolute;
+        left: 12px;
+        right: 12px;
+        top: calc(100% + 8px);
+        z-index: 200;
+
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        gap: 0;
+
+        padding: 8px;
+        background: rgba(255,255,255,.99);
+        border: 1px solid rgba(16,42,67,.10);
+        border-radius: 12px;
+        box-shadow: 0 18px 40px rgba(16,42,67,.15);
+    }
+
+    /* Supports the common classes used by the site's menu script. */
+    body.menu-open .nav-container .nav-links,
+    .nav-container .nav-links.open,
+    .nav-container .nav-links.is-open,
+    .nav-container .nav-links.menu-open,
+    .nav-container .nav-links.active {
+        display: flex;
+    }
+
+    .nav-container .nav-links a {
+        display: block;
+        padding: 12px 13px;
+        border-radius: 7px;
+        font-size: .9rem;
+    }
+
+    .nav-container .nav-links a:hover,
+    .nav-container .nav-links a.active {
+        background: #faf7f1;
+    }
+
+    .nav-container .nav-links a:not(.nav-book)::after {
+        display: none;
+    }
+
+    .nav-container .nav-book {
+        margin-top: 5px;
+        text-align: center;
+    }
+
+    .page-hero {
+        padding: 72px 16px 60px;
+    }
+
+    .page-hero .section-heading h1 {
+        font-size: clamp(2.45rem, 12vw, 3.6rem);
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+    .nav-container {
+        padding-left: 12px;
+        padding-right: 12px;
+        gap: 7px;
+    }
+
+    .logo-main {
+        font-size: .92rem;
+        letter-spacing: 1.9px;
+    }
+
+    .logo-sub {
+        font-size: .48rem;
+        letter-spacing: 2.1px;
+    }
+
+    .language-selector select {
+        min-width: 98px;
+        max-width: 102px;
+        font-size: .69rem;
+    }
+
+    .menu-toggle {
+        width: 40px;
+        height: 40px;
+    }
+}
