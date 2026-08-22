@@ -87,7 +87,7 @@ const loginStatus=document.getElementById("loginStatus");
 const loginError=document.getElementById("loginError");
 
 function apiHeaders(token){
-  return {"apikey":SUPABASE_KEY,"Authorization":"Bearer "+(token||SUPABASE_KEY),"Content-Type":"application/json"};
+  return {"apikey":SUPABASE_KEY,"Authorization":"Bearer "+(token||SUPABASE_KEY)};
 }
 function clearMessages(){
   loginStatus.textContent="";
