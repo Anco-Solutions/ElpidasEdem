@@ -107,14 +107,14 @@ async function signIn(username,password){
  const map={admin:"tassos.solutions@gmail.com",elpida:"greecetravel.me@gmail.com"};
  const email=map[username];
  if(!email) throw new Error("Invalid username. Use admin or elpida.");
- setStatus("Connecting to secure login…");
+ setStatus("TEST 1/2 — Connecting to Supabase Auth…");
  const r=await fetch(SUPABASE_URL+"/auth/v1/token?grant_type=password",{
    method:"POST",
    headers:{"apikey":SUPABASE_KEY,"Content-Type":"application/json"},
    body:JSON.stringify({email,password})
  });
  const d=await readJson(r);
- if(!d.access_token||!d.user) throw new Error("Supabase did not return a valid login session.");
+ if(!d.access_token||!d.user) throw new Error("AUTH RESPONSE INVALID: Supabase did not return a valid login session.");
  sessionStorage.setItem("elpidas_access_token",d.access_token);
  sessionStorage.setItem("elpidas_refresh_token",d.refresh_token||"");
  sessionStorage.setItem("elpidas_user_id",d.user.id);
@@ -122,14 +122,14 @@ async function signIn(username,password){
 }
 
 async function checkAdmin(id,token){
- setStatus("Checking administrator access…");
+ setStatus("TEST 2/2 — Login succeeded. Checking user_roles…");
  const r=await fetch(
    SUPABASE_URL+"/rest/v1/user_roles?user_id=eq."+encodeURIComponent(id)+"&select=role",
    {headers:apiHeaders(token)}
  );
  const d=await readJson(r);
- if(!Array.isArray(d)||!d.length) throw new Error("No administrator role was found for this account.");
- if(d[0].role!=="admin") throw new Error("This account is not an administrator.");
+ if(!Array.isArray(d)||!d.length) throw new Error("ROLE CHECK: Login worked, but no row was returned from user_roles.");
+ if(d[0].role!=="admin") throw new Error("ROLE CHECK: The account exists but its role is '"+d[0].role+"', not admin.");
 }
 
 async function openPanel(){
@@ -155,7 +155,11 @@ document.getElementById("loginForm").addEventListener("submit",async e=>{
  }catch(err){
    console.error(err);
    setStatus("");
-   loginError.textContent=err.message||String(err);
+   let msg=(err&&err.message)?err.message:String(err);
+   if(msg==="Load failed" || msg==="Failed to fetch"){
+     msg += "\n\nBROWSER NETWORK/CORS FAILURE: the request did not receive a normal HTTP response from Supabase.";
+   }
+   loginError.textContent="DIAGNOSTIC ERROR\n"+(err.name||"Error")+": "+msg;
    sessionStorage.clear();
  }finally{
    b.disabled=false;b.textContent="Sign in";
