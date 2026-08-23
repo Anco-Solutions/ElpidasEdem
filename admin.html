@@ -70,9 +70,9 @@ main{padding:30px;max-width:1300px;width:100%;margin:auto}.top{display:flex;just
 </main></div>
 
 <script>
-const URL="https://sducfanvyqokingkuzyr.supabase.co";
+const SUPABASE_URL="https://sducfanvyqokjngkuzyr.supabase.co";
 const KEY="sb_publishable_yQpc2rLBi98hBR0pDtjcYQ_pZxVXiuW";
-const sb=supabase.createClient(URL,KEY);
+const sb=supabase.createClient(SUPABASE_URL,KEY);
 const login=document.getElementById("login"),app=document.getElementById("app");
 
 async function admin(){const {data:{user}}=await sb.auth.getUser();if(!user)return false;const {data,error}=await sb.from("user_roles").select("role").eq("user_id",user.id).maybeSingle();return !error&&data?.role==="admin";}
@@ -147,6 +147,9 @@ document.getElementById("files").onchange=async e=>{
   m.textContent="Upload complete. Photo added.";
   document.getElementById("count").textContent=document.querySelectorAll("#photoGrid .photo").length;
 };
-start();
+start().catch(e=>{
+  const box=document.getElementById("loginError");
+  if(box) box.textContent="Admin startup error: "+((e&&e.message)||e);
+});
 </script>
 </body></html>
