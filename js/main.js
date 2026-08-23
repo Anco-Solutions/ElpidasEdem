@@ -190,8 +190,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
             });
     }
-
-    /* LANGUAGE SELECTOR */
+    
+        /* LANGUAGE SELECTOR */
     const languageSelector =
         document.querySelector(
             "[data-language-selector]"
@@ -397,14 +397,41 @@ document.addEventListener("DOMContentLoaded", function () {
                 .join("/")
         );
     }
-
-    async function loadPropertyPhotos() {
+    
+            async function loadPropertyPhotos() {
 
         /*
-         * Only actual photo placeholders are selected here.
-         * We deliberately do not use keyword scoring to guess
-         * which photo belongs to which room.
+         * EXPLICIT PHOTO MAPPING
+         *
+         * We do NOT use the order returned by Supabase.
+         * Each page position receives a specific photo.
          */
+
+        const PHOTO_LIVING =
+            photoUrl(
+                "1787445773858_IMG_5803.png"
+            );
+
+        const PHOTO_BEDROOM =
+            photoUrl(
+                "1787445824758_IMG_5803.png"
+            );
+
+        const PHOTO_KITCHEN =
+            photoUrl(
+                "1787447203859_IMG_5803.png"
+            );
+
+        const PHOTO_BALCONY =
+            photoUrl(
+                "IMG_5756.jpeg"
+            );
+
+        /*
+         * Map the visible photo placeholders
+         * according to their position in rooms.html.
+         */
+
         const slots =
             Array.from(
                 document.querySelectorAll(
@@ -416,116 +443,79 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!slots.length) return;
 
-        try {
+        /*
+         * rooms.html order:
+         *
+         * 1. Main apartment       -> Living
+         * 2. Master bedroom       -> Bedroom
+         * 3. Second bedroom       -> Bedroom
+         * 4. Living room         -> Living
+         * 5. Kitchen             -> Kitchen
+         * 6. Dining area         -> Kitchen
+         * 7. Bathroom            -> no photo
+         * 8. Balcony             -> Balcony
+         * 9. Sea view            -> Balcony
+         */
 
-            const response =
-                await fetch(
-                    SUPABASE_URL +
-                    "/storage/v1/object/list/" +
-                    PHOTO_BUCKET,
-                    {
-                        method: "POST",
+        const photoMapping = [
+            PHOTO_LIVING,
+            PHOTO_BEDROOM,
+            PHOTO_BEDROOM,
+            PHOTO_LIVING,
+            PHOTO_KITCHEN,
+            PHOTO_KITCHEN,
+            null,
+            PHOTO_BALCONY,
+            PHOTO_BALCONY
+        ];
 
-                        headers: {
-                            "apikey": SUPABASE_KEY,
-                            "Authorization":
-                                "Bearer " +
-                                SUPABASE_KEY,
-                            "Content-Type":
-                                "application/json"
-                        },
+        slots.forEach(function (slot, index) {
 
-                        body: JSON.stringify({
-                            prefix: "",
-                            limit: 100,
-                            sortBy: {
-                                column: "created_at",
-                                order: "asc"
-                            }
-                        })
-                    }
-                );
-
-            if (!response.ok) {
-
-                throw new Error(
-                    "Photo library could not be loaded."
-                );
-            }
-
-            const files =
-                (await response.json())
-                    .filter(function (file) {
-
-                        return (
-                            file &&
-                            file.id &&
-                            file.name
-                        );
-                    });
-
-            if (!files.length) return;
+            const url =
+                photoMapping[index];
 
             /*
-             * Deterministic fallback:
-             * assign photos in Storage creation order.
-             *
-             * This is intentionally simple for this test.
-             * Once the final photo filenames are confirmed,
-             * we can replace this with an explicit mapping.
+             * If there is no assigned photo,
+             * leave the placeholder untouched.
              */
-            slots.forEach(function (slot, index) {
 
-                const file = files[index];
+            if (!url) return;
 
-                if (!file) return;
+            slot.style.backgroundImage =
+                "linear-gradient(" +
+                "rgba(8,35,52,.18)," +
+                "rgba(8,35,52,.18)" +
+                "), url(\"" +
+                url +
+                "\")";
 
-                const url =
-                    photoUrl(file.name);
+            slot.style.backgroundSize =
+                "cover";
 
-                slot.style.backgroundImage =
-                    "linear-gradient(" +
-                    "rgba(8,35,52,.18)," +
-                    "rgba(8,35,52,.18)" +
-                    "), url(\"" +
-                    url +
-                    "\")";
+            slot.style.backgroundPosition =
+                "center";
 
-                slot.style.backgroundSize =
-                    "cover";
+            slot.style.backgroundRepeat =
+                "no-repeat";
 
-                slot.style.backgroundPosition =
-                    "center";
+            slot.classList.add(
+                "has-property-photo"
+            );
 
-                slot.style.backgroundRepeat =
-                    "no-repeat";
-
-                slot.classList.add(
-                    "has-property-photo"
+            const note =
+                slot.querySelector(
+                    ".photo-note"
                 );
 
-                const note =
-                    slot.querySelector(
-                        ".photo-note"
-                    );
+            if (note) {
 
-                if (note) {
-
-                    note.style.background =
-                        "rgba(0,0,0,.28)";
-                }
-            });
-
-        } catch (error) {
-
-            console.warn(
-                "Property photos unavailable:",
-                error
-            );
-        }
+                note.style.background =
+                    "rgba(0,0,0,.28)";
+            }
+        });
     }
-
-    /* LOAD PROPERTY PHOTOS */
+    
+            /* LOAD PROPERTY PHOTOS */
     loadPropertyPhotos();
 
     console.log(
