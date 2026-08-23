@@ -109,9 +109,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* GALLERY MODAL */
-    const galleryItems =
-        document.querySelectorAll("[data-gallery-item]");
-
     const galleryModal =
         document.querySelector("[data-gallery-modal]");
 
@@ -121,35 +118,33 @@ document.addEventListener("DOMContentLoaded", function () {
     const galleryClose =
         document.querySelector("[data-gallery-close]");
 
-    if (
-        galleryItems.length &&
-        galleryModal &&
-        galleryModalImage
-    ) {
+    function closeGallery() {
 
-        galleryItems.forEach(function (item) {
+        if (!galleryModal) return;
 
-            item.addEventListener("click", function () {
+        galleryModal.classList.remove("is-open");
 
-                const image =
-                    this.getAttribute("data-gallery-item");
+        document.body.classList.remove("modal-open");
+    }
 
-                if (!image) return;
+    function openGallery(image) {
 
-                galleryModalImage.src = image;
-
-                galleryModal.classList.add("is-open");
-
-                document.body.classList.add("modal-open");
-            });
-        });
-
-        function closeGallery() {
-
-            galleryModal.classList.remove("is-open");
-
-            document.body.classList.remove("modal-open");
+        if (
+            !galleryModal ||
+            !galleryModalImage ||
+            !image
+        ) {
+            return;
         }
+
+        galleryModalImage.src = image;
+
+        galleryModal.classList.add("is-open");
+
+        document.body.classList.add("modal-open");
+    }
+
+    if (galleryModal && galleryModalImage) {
 
         if (galleryClose) {
             galleryClose.addEventListener(
@@ -177,6 +172,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }
         );
+
+        document
+            .querySelectorAll("[data-gallery-item]")
+            .forEach(function (item) {
+
+                item.addEventListener(
+                    "click",
+                    function () {
+
+                        openGallery(
+                            this.getAttribute(
+                                "data-gallery-item"
+                            )
+                        );
+                    }
+                );
+            });
     }
 
     /* LANGUAGE SELECTOR */
@@ -210,8 +222,8 @@ document.addEventListener("DOMContentLoaded", function () {
             languageSelector.value = savedLanguage;
         }
     }
-    
-        /* CONTACT FORM */
+
+    /* CONTACT FORM */
     const contactForm =
         document.querySelector("[data-contact-form]");
 
@@ -233,7 +245,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     message.textContent =
                         "Thank you. Your message is ready to be sent.";
 
-                    message.classList.add("is-visible");
+                    message.classList.add(
+                        "is-visible"
+                    );
                 }
             }
         );
@@ -384,69 +398,19 @@ document.addEventListener("DOMContentLoaded", function () {
         );
     }
 
-    function keywordsFromSlot(slot) {
-
-        const text =
-            (slot.textContent || "").toLowerCase();
-
-        const words =
-            text
-                .replace(
-                    /[^a-z0-9\u0370-\u03ff]+/gi,
-                    " "
-                )
-                .split(/\s+/)
-                .filter(Boolean);
-
-        return words.filter(function (word) {
-
-            return (
-                word.length > 3 &&
-                ![
-                    "photo",
-                    "main",
-                    "room",
-                    "view",
-                    "area",
-                    "space"
-                ].includes(word)
-            );
-        });
-    }
-
-    function scorePhoto(slot, file) {
-
-        const haystack =
-            (
-                (file.name || "") +
-                " " +
-                (file.metadata?.mimetype || "")
-            ).toLowerCase();
-
-        const words =
-            keywordsFromSlot(slot);
-
-        let score = 0;
-
-        words.forEach(function (word) {
-
-            if (haystack.includes(word)) {
-                score += 10;
-            }
-        });
-
-        return score;
-    }
-
     async function loadPropertyPhotos() {
 
+        /*
+         * Only actual photo placeholders are selected here.
+         * We deliberately do not use keyword scoring to guess
+         * which photo belongs to which room.
+         */
         const slots =
             Array.from(
                 document.querySelectorAll(
                     ".hero-placeholder, " +
                     ".intro-image, " +
-                    ".room-photo, " +
-                    ".gallery-item"
+                    ".room-photo"
                 )
             );
 
@@ -483,6 +447,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
             if (!response.ok) {
+
                 throw new Error(
                     "Photo library could not be loaded."
                 );
@@ -501,43 +466,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (!files.length) return;
 
-            const used = new Set();
+            /*
+             * Deterministic fallback:
+             * assign photos in Storage creation order.
+             *
+             * This is intentionally simple for this test.
+             * Once the final photo filenames are confirmed,
+             * we can replace this with an explicit mapping.
+             */
+            slots.forEach(function (slot, index) {
 
-            const ordered =
-                files.slice();
+                const file = files[index];
 
-            slots.forEach(function (slot) {
-
-                let bestIndex = -1;
-                let bestScore = -1;
-
-                ordered.forEach(
-                    function (file, i) {
-
-                        if (used.has(file.name)) {
-                            return;
-                        }
-
-                        const score =
-                            scorePhoto(
-                                slot,
-                                file
-                            );
-
-                        if (score > bestScore) {
-
-                            bestScore = score;
-                            bestIndex = i;
-                        }
-                    }
-                );
-
-                if (bestIndex < 0) return;
-
-                const file =
-                    ordered[bestIndex];
-
-                used.add(file.name);
+                if (!file) return;
 
                 const url =
                     photoUrl(file.name);
@@ -569,74 +510,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
                 if (note) {
+
                     note.style.background =
                         "rgba(0,0,0,.28)";
                 }
-
-                if (
-                    slot.classList.contains(
-                        "gallery-item"
-                    )
-                ) {
-
-                    slot.style.cursor =
-                        "zoom-in";
-
-                    slot.setAttribute(
-                        "data-gallery-item",
-                        url
-                    );
-                }
             });
-            
-                        const modal =
-                document.querySelector(
-                    "[data-gallery-modal]"
-                );
-
-            const modalImage =
-                document.querySelector(
-                    "[data-gallery-modal-image]"
-                );
-
-            if (modal && modalImage) {
-
-                document
-                    .querySelectorAll(
-                        ".gallery-item[data-gallery-item]"
-                    )
-                    .forEach(function (item) {
-
-                        if (
-                            item.dataset.galleryBound ===
-                            "true"
-                        ) {
-                            return;
-                        }
-
-                        item.dataset.galleryBound =
-                            "true";
-
-                        item.addEventListener(
-                            "click",
-                            function () {
-
-                                modalImage.src =
-                                    this.getAttribute(
-                                        "data-gallery-item"
-                                    );
-
-                                modal.classList.add(
-                                    "is-open"
-                                );
-
-                                document.body.classList.add(
-                                    "modal-open"
-                                );
-                            }
-                        );
-                    });
-            }
 
         } catch (error) {
 
@@ -655,4 +533,3 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 });
-
