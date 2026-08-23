@@ -5,36 +5,19 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* =========================================
-       CURRENT YEAR
-       ========================================= */
-
-    const yearElements = document.querySelectorAll("[data-current-year]");
-
-    yearElements.forEach(function (element) {
-        element.textContent = new Date().getFullYear();
+    /* CURRENT YEAR */
+    document.querySelectorAll("[data-current-year]").forEach(function (el) {
+        el.textContent = new Date().getFullYear();
     });
 
-
-    /* =========================================
-       SMOOTH INTERNAL LINKS
-       ========================================= */
-
+    /* SMOOTH INTERNAL LINKS */
     document.querySelectorAll('a[href^="#"]').forEach(function (link) {
-
         link.addEventListener("click", function (event) {
-
             const targetId = this.getAttribute("href");
-
-            if (!targetId || targetId === "#") {
-                return;
-            }
+            if (!targetId || targetId === "#") return;
 
             const target = document.querySelector(targetId);
-
-            if (!target) {
-                return;
-            }
+            if (!target) return;
 
             event.preventDefault();
 
@@ -42,16 +25,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 behavior: "smooth",
                 block: "start"
             });
-
         });
-
     });
 
-
-    /* =========================================
-       MOBILE MENU
-       ========================================= */
-
+    /* MOBILE MENU */
     const menuButton = document.querySelector("[data-menu-button]");
     const mobileMenu = document.querySelector("[data-mobile-menu]");
 
@@ -59,76 +36,56 @@ document.addEventListener("DOMContentLoaded", function () {
 
         menuButton.addEventListener("click", function () {
 
-            const isOpen =
-                mobileMenu.classList.toggle("is-open");
+            const isOpen = mobileMenu.classList.toggle("is-open");
+
+            mobileMenu.classList.toggle("open", isOpen);
 
             menuButton.setAttribute(
                 "aria-expanded",
                 isOpen ? "true" : "false"
             );
-
         });
-
 
         mobileMenu.querySelectorAll("a").forEach(function (link) {
 
             link.addEventListener("click", function () {
 
-                mobileMenu.classList.remove("is-open");
+                mobileMenu.classList.remove(
+                    "is-open",
+                    "open"
+                );
 
                 menuButton.setAttribute(
                     "aria-expanded",
                     "false"
                 );
-
             });
-
         });
-
     }
 
-
-    /* =========================================
-       ACTIVE NAVIGATION
-       ========================================= */
-
+    /* ACTIVE NAVIGATION */
     const currentPage =
-        window.location.pathname
-            .split("/")
-            .pop()
-            .toLowerCase() || "index.html";
+        window.location.pathname.split("/").pop().toLowerCase()
+        || "index.html";
 
     document.querySelectorAll(".nav-links a").forEach(function (link) {
 
-        const href =
-            link.getAttribute("href");
+        const href = link.getAttribute("href");
 
-        if (!href) {
-            return;
-        }
+        if (!href) return;
 
         const linkPage =
             href.split("#")[0]
-                .split("/")
-                .pop()
-                .toLowerCase();
+               .split("/")
+               .pop()
+               .toLowerCase();
 
-        if (
-            linkPage &&
-            linkPage === currentPage
-        ) {
-
+        if (linkPage && linkPage === currentPage) {
             link.classList.add("active");
-
         }
-
     });
 
-
-    /* =========================================
-       BACK TO TOP
-       ========================================= */
-
+    /* BACK TO TOP */
     const backToTop =
         document.querySelector("[data-back-to-top]");
 
@@ -136,16 +93,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         window.addEventListener("scroll", function () {
 
-            if (window.scrollY > 500) {
-
-                backToTop.classList.add("is-visible");
-
-            } else {
-
-                backToTop.classList.remove("is-visible");
-
-            }
-
+            backToTop.classList.toggle(
+                "is-visible",
+                window.scrollY > 500
+            );
         });
 
         backToTop.addEventListener("click", function () {
@@ -154,16 +105,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 top: 0,
                 behavior: "smooth"
             });
-
         });
-
     }
 
-
-    /* =========================================
-       SIMPLE GALLERY
-       ========================================= */
-
+    /* GALLERY MODAL */
     const galleryItems =
         document.querySelectorAll("[data-gallery-item]");
 
@@ -189,39 +134,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 const image =
                     this.getAttribute("data-gallery-item");
 
-                if (!image) {
-                    return;
-                }
+                if (!image) return;
 
                 galleryModalImage.src = image;
 
                 galleryModal.classList.add("is-open");
 
                 document.body.classList.add("modal-open");
-
             });
-
         });
-
 
         function closeGallery() {
 
             galleryModal.classList.remove("is-open");
 
             document.body.classList.remove("modal-open");
-
         }
 
-
         if (galleryClose) {
-
             galleryClose.addEventListener(
                 "click",
                 closeGallery
             );
-
         }
-
 
         galleryModal.addEventListener(
             "click",
@@ -230,10 +165,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (event.target === galleryModal) {
                     closeGallery();
                 }
-
             }
         );
-
 
         document.addEventListener(
             "keydown",
@@ -242,19 +175,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (event.key === "Escape") {
                     closeGallery();
                 }
-
             }
         );
-
     }
 
-
-    /* =========================================
-       LANGUAGE SELECTOR
-       ========================================= */
-
+    /* LANGUAGE SELECTOR */
     const languageSelector =
-        document.querySelector("[data-language-selector]");
+        document.querySelector(
+            "[data-language-selector]"
+        );
 
     if (languageSelector) {
 
@@ -262,21 +191,15 @@ document.addEventListener("DOMContentLoaded", function () {
             "change",
             function () {
 
-                const language =
-                    this.value;
+                if (this.value) {
 
-                if (!language) {
-                    return;
+                    localStorage.setItem(
+                        "elpidas-edem-language",
+                        this.value
+                    );
                 }
-
-                localStorage.setItem(
-                    "elpidas-edem-language",
-                    language
-                );
-
             }
         );
-
 
         const savedLanguage =
             localStorage.getItem(
@@ -284,34 +207,19 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
         if (savedLanguage) {
-
-            languageSelector.value =
-                savedLanguage;
-
+            languageSelector.value = savedLanguage;
         }
-
     }
-
-
-    /* =========================================
-       CONTACT FORM
-       ========================================= */
-
+    
+        /* CONTACT FORM */
     const contactForm =
-        document.querySelector(
-            "[data-contact-form]"
-        );
+        document.querySelector("[data-contact-form]");
 
     if (contactForm) {
 
         contactForm.addEventListener(
             "submit",
             function (event) {
-
-                /*
-                 * The form will later be connected
-                 * to the real email/backend system.
-                 */
 
                 event.preventDefault();
 
@@ -325,31 +233,18 @@ document.addEventListener("DOMContentLoaded", function () {
                     message.textContent =
                         "Thank you. Your message is ready to be sent.";
 
-                    message.classList.add(
-                        "is-visible"
-                    );
-
+                    message.classList.add("is-visible");
                 }
-
             }
         );
-
     }
 
-
-    /* =========================================
-       BOOKING DATE HELPERS
-       ========================================= */
-
+    /* BOOKING DATE HELPERS */
     const checkIn =
-        document.querySelector(
-            "[data-check-in]"
-        );
+        document.querySelector("[data-check-in]");
 
     const checkOut =
-        document.querySelector(
-            "[data-check-out]"
-        );
+        document.querySelector("[data-check-out]");
 
     if (checkIn && checkOut) {
 
@@ -357,9 +252,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "change",
             function () {
 
-                if (!this.value) {
-                    return;
-                }
+                if (!this.value) return;
 
                 checkOut.min = this.value;
 
@@ -367,35 +260,21 @@ document.addEventListener("DOMContentLoaded", function () {
                     checkOut.value &&
                     checkOut.value <= this.value
                 ) {
-
                     checkOut.value = "";
-
                 }
-
             }
         );
-
     }
 
-
-    /* =========================================
-       BOOKING GUEST COUNTER
-       ========================================= */
-
+    /* BOOKING GUEST COUNTER */
     const guestInput =
-        document.querySelector(
-            "[data-guests]"
-        );
+        document.querySelector("[data-guests]");
 
     const guestPlus =
-        document.querySelector(
-            "[data-guests-plus]"
-        );
+        document.querySelector("[data-guests-plus]");
 
     const guestMinus =
-        document.querySelector(
-            "[data-guests-minus]"
-        );
+        document.querySelector("[data-guests-minus]");
 
     if (guestInput) {
 
@@ -408,26 +287,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 "click",
                 function () {
 
-                    let value =
-                        parseInt(
-                            guestInput.value,
-                            10
-                        ) || minGuests;
-
-                    value =
+                    guestInput.value =
                         Math.min(
-                            value + 1,
+                            (parseInt(
+                                guestInput.value,
+                                10
+                            ) || minGuests) + 1,
                             maxGuests
                         );
-
-                    guestInput.value =
-                        value;
-
                 }
             );
-
         }
-
 
         if (guestMinus) {
 
@@ -435,37 +305,22 @@ document.addEventListener("DOMContentLoaded", function () {
                 "click",
                 function () {
 
-                    let value =
-                        parseInt(
-                            guestInput.value,
-                            10
-                        ) || minGuests;
-
-                    value =
+                    guestInput.value =
                         Math.max(
-                            value - 1,
+                            (parseInt(
+                                guestInput.value,
+                                10
+                            ) || minGuests) - 1,
                             minGuests
                         );
-
-                    guestInput.value =
-                        value;
-
                 }
             );
-
         }
-
     }
 
-
-    /* =========================================
-       SCROLL REVEAL
-       ========================================= */
-
+    /* SCROLL REVEAL */
     const revealElements =
-        document.querySelectorAll(
-            "[data-reveal]"
-        );
+        document.querySelectorAll("[data-reveal]");
 
     if (
         revealElements.length &&
@@ -476,26 +331,19 @@ document.addEventListener("DOMContentLoaded", function () {
             new IntersectionObserver(
                 function (entries) {
 
-                    entries.forEach(
-                        function (entry) {
+                    entries.forEach(function (entry) {
 
-                            if (
-                                entry.isIntersecting
-                            ) {
+                        if (entry.isIntersecting) {
 
-                                entry.target.classList.add(
-                                    "is-visible"
-                                );
+                            entry.target.classList.add(
+                                "is-visible"
+                            );
 
-                                observer.unobserve(
-                                    entry.target
-                                );
-
-                            }
-
+                            observer.unobserve(
+                                entry.target
+                            );
                         }
-                    );
-
+                    });
                 },
                 {
                     threshold: 0.12
@@ -504,21 +352,307 @@ document.addEventListener("DOMContentLoaded", function () {
 
         revealElements.forEach(
             function (element) {
-
                 observer.observe(element);
-
             }
         );
-
     }
 
-
     /* =========================================
-       CONSOLE MESSAGE
+       SUPABASE PROPERTY PHOTOS
        ========================================= */
+
+    const SUPABASE_URL =
+        "https://sducfanvyqokjngkuzyr.supabase.co";
+
+    const SUPABASE_KEY =
+        "sb_publishable_yQpc2rLBi98hBR0pDtjcYQ_pZxVXiuW";
+
+    const PHOTO_BUCKET =
+        "property-photos";
+
+    function photoUrl(name) {
+
+        return (
+            SUPABASE_URL +
+            "/storage/v1/object/public/" +
+            PHOTO_BUCKET +
+            "/" +
+            name
+                .split("/")
+                .map(encodeURIComponent)
+                .join("/")
+        );
+    }
+
+    function keywordsFromSlot(slot) {
+
+        const text =
+            (slot.textContent || "").toLowerCase();
+
+        const words =
+            text
+                .replace(
+                    /[^a-z0-9\u0370-\u03ff]+/gi,
+                    " "
+                )
+                .split(/\s+/)
+                .filter(Boolean);
+
+        return words.filter(function (word) {
+
+            return (
+                word.length > 3 &&
+                ![
+                    "photo",
+                    "main",
+                    "room",
+                    "view",
+                    "area",
+                    "space"
+                ].includes(word)
+            );
+        });
+    }
+
+    function scorePhoto(slot, file) {
+
+        const haystack =
+            (
+                (file.name || "") +
+                " " +
+                (file.metadata?.mimetype || "")
+            ).toLowerCase();
+
+        const words =
+            keywordsFromSlot(slot);
+
+        let score = 0;
+
+        words.forEach(function (word) {
+
+            if (haystack.includes(word)) {
+                score += 10;
+            }
+        });
+
+        return score;
+    }
+
+    async function loadPropertyPhotos() {
+
+        const slots =
+            Array.from(
+                document.querySelectorAll(
+                    ".hero-placeholder, " +
+                    ".intro-image, " +
+                    ".room-photo, " +
+                    ".gallery-item"
+                )
+            );
+
+        if (!slots.length) return;
+
+        try {
+
+            const response =
+                await fetch(
+                    SUPABASE_URL +
+                    "/storage/v1/object/list/" +
+                    PHOTO_BUCKET,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "apikey": SUPABASE_KEY,
+                            "Authorization":
+                                "Bearer " +
+                                SUPABASE_KEY,
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            prefix: "",
+                            limit: 100,
+                            sortBy: {
+                                column: "created_at",
+                                order: "asc"
+                            }
+                        })
+                    }
+                );
+
+            if (!response.ok) {
+                throw new Error(
+                    "Photo library could not be loaded."
+                );
+            }
+
+            const files =
+                (await response.json())
+                    .filter(function (file) {
+
+                        return (
+                            file &&
+                            file.id &&
+                            file.name
+                        );
+                    });
+
+            if (!files.length) return;
+
+            const used = new Set();
+
+            const ordered =
+                files.slice();
+
+            slots.forEach(function (slot) {
+
+                let bestIndex = -1;
+                let bestScore = -1;
+
+                ordered.forEach(
+                    function (file, i) {
+
+                        if (used.has(file.name)) {
+                            return;
+                        }
+
+                        const score =
+                            scorePhoto(
+                                slot,
+                                file
+                            );
+
+                        if (score > bestScore) {
+
+                            bestScore = score;
+                            bestIndex = i;
+                        }
+                    }
+                );
+
+                if (bestIndex < 0) return;
+
+                const file =
+                    ordered[bestIndex];
+
+                used.add(file.name);
+
+                const url =
+                    photoUrl(file.name);
+
+                slot.style.backgroundImage =
+                    "linear-gradient(" +
+                    "rgba(8,35,52,.18)," +
+                    "rgba(8,35,52,.18)" +
+                    "), url(\"" +
+                    url +
+                    "\")";
+
+                slot.style.backgroundSize =
+                    "cover";
+
+                slot.style.backgroundPosition =
+                    "center";
+
+                slot.style.backgroundRepeat =
+                    "no-repeat";
+
+                slot.classList.add(
+                    "has-property-photo"
+                );
+
+                const note =
+                    slot.querySelector(
+                        ".photo-note"
+                    );
+
+                if (note) {
+                    note.style.background =
+                        "rgba(0,0,0,.28)";
+                }
+
+                if (
+                    slot.classList.contains(
+                        "gallery-item"
+                    )
+                ) {
+
+                    slot.style.cursor =
+                        "zoom-in";
+
+                    slot.setAttribute(
+                        "data-gallery-item",
+                        url
+                    );
+                }
+            });
+            
+                        const modal =
+                document.querySelector(
+                    "[data-gallery-modal]"
+                );
+
+            const modalImage =
+                document.querySelector(
+                    "[data-gallery-modal-image]"
+                );
+
+            if (modal && modalImage) {
+
+                document
+                    .querySelectorAll(
+                        ".gallery-item[data-gallery-item]"
+                    )
+                    .forEach(function (item) {
+
+                        if (
+                            item.dataset.galleryBound ===
+                            "true"
+                        ) {
+                            return;
+                        }
+
+                        item.dataset.galleryBound =
+                            "true";
+
+                        item.addEventListener(
+                            "click",
+                            function () {
+
+                                modalImage.src =
+                                    this.getAttribute(
+                                        "data-gallery-item"
+                                    );
+
+                                modal.classList.add(
+                                    "is-open"
+                                );
+
+                                document.body.classList.add(
+                                    "modal-open"
+                                );
+                            }
+                        );
+                    });
+            }
+
+        } catch (error) {
+
+            console.warn(
+                "Property photos unavailable:",
+                error
+            );
+        }
+    }
+
+    /* LOAD PROPERTY PHOTOS */
+    loadPropertyPhotos();
 
     console.log(
         "Elpida's Edem website initialized."
     );
 
 });
+
